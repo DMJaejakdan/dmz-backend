@@ -25,4 +25,4 @@ logging:
     hibernate:
       SQL: debug
       type: trace
-    com.dmj.dmzdbtest: debug
+    com.dmj.dmz: debug
