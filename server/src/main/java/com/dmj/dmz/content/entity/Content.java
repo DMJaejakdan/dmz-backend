@@ -68,7 +68,7 @@ public class Content {
                 }
             }
             String s = dramaResultResponse.getFirstAirDate();
-            if (!s.isEmpty())
+            if (s != null && !s.isEmpty())
                 releasedDate = LocalDate.parse(s);
             nameKR = dramaResultResponse.getOriginalName();
             nameEn = dramaResultResponse.getName();
