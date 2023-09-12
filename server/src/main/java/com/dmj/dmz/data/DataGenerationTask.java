@@ -108,7 +108,7 @@ public class DataGenerationTask {
         }
 
         final int dramaCode = 18;
-        for (int page = 1; page <= 2; page++) {
+        for (int page = 3; page <= 10; page++) {
             // 한국 드라마 리스트
             url = UriComponentsBuilder.fromUriString(baseURL)
                     .path("/discover/tv")
@@ -198,7 +198,7 @@ public class DataGenerationTask {
         }
         // 영화 등록
 
-        for (int page = 1; page <= 2; page++) {
+        for (int page = 3; page <= 2; page++) {
             // 한국 영화 리스트
             url = UriComponentsBuilder.fromUriString(baseURL)
                     .path("/discover/movie")

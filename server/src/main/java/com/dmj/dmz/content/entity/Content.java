@@ -52,7 +52,7 @@ public class Content {
         DramaResultResponse dramaResultResponse;
         MovieResultResponse movieResultResponse;
         String KRRating = "";
-        String releasedDate = "";
+        LocalDate releasedDate = null;
         ContentKind contentKind = null;
         String nameKR = "";
         String nameEn = "";
@@ -67,7 +67,9 @@ public class Content {
                     break;
                 }
             }
-            releasedDate = dramaResultResponse.getFirstAirDate();
+            String s = dramaResultResponse.getFirstAirDate();
+            if (!s.isEmpty())
+                releasedDate = LocalDate.parse(s);
             nameKR = dramaResultResponse.getOriginalName();
             nameEn = dramaResultResponse.getName();
         } else {
@@ -80,12 +82,14 @@ public class Content {
                     KRRating = r.getReleaseDates().get(0).getCertification();
                 }
             }
-            releasedDate= movieResultResponse.getReleaseDate();
+            String s = movieResultResponse.getReleaseDate();
+            if (!s.isEmpty())
+                releasedDate = LocalDate.parse(s);
             nameKR = movieResultResponse.getOriginalTitle();
             nameEn = movieResultResponse.getTitle();
         }
         return Content.builder()
-                .releasedDate(LocalDate.parse(releasedDate))
+                .releasedDate(releasedDate)
                 .tmdbId(result.getId())
                 .kind(contentKind)
                 .nameKr(nameKR)
