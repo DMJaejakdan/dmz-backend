@@ -36,9 +36,12 @@
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/parser": "^6.6.0",
+    "@vanilla-extract/webpack-plugin": "^2.3.0",
+    "css-loader": "^6.8.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-storybook": "^0.6.13",
+    "mini-css-extract-plugin": "^2.7.6",
     "storybook": "7.3.2",
     "webpack": "^5.88.2"
   },
