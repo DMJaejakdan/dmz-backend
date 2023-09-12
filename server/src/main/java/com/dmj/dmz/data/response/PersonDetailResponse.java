@@ -12,9 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class DramaResultResponse extends MovieDramaResultResponse{
-    String firstAirDate;
-    String name;
-    List<String> originCountry;
-    String originalName;
+public class PersonDetailResponse {
+    private boolean adult;
+    private List<String> alsoKnownAs;
+    private String biography;
+    private String birthday;
+    private String deathday;
+    private String knownForDepartment;
+    private String placeOfBirth;
+    private double popularity;
 }

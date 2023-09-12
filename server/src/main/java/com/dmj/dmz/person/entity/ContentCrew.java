@@ -1,6 +1,7 @@
 package com.dmj.dmz.person.entity;
 
 import com.dmj.dmz.content.entity.Content;
+import com.dmj.dmz.data.response.CrewResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,5 +33,19 @@ public class ContentCrew {
         this.content = content;
         this.person = person;
         this.role = role;
+    }
+
+    public static ContentCrew toEntity(Content content, Person person, CrewResponse c) {
+        String role = "";
+        if (content.getKind() == Content.ContentKind.DRAMA) {
+            role = c.getJobs().get(0).getJob();
+        } else {
+            role = c.getJob();
+        }
+        return ContentCrew.builder()
+                .content(content)
+                .person(person)
+                .role(role)
+                .build();
     }
 }

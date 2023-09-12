@@ -1,8 +1,6 @@
 package com.dmj.dmz.content.entity;
 
-import com.dmj.dmz.data.response.ContentResultsResponse;
-import com.dmj.dmz.data.response.DramaDetailResponse;
-import com.dmj.dmz.data.response.DramaResultResponse;
+import com.dmj.dmz.data.response.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,7 +15,7 @@ public class Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int tmdbId;
+    private Long tmdbId;
 
     private String nameKr;
 
@@ -30,14 +28,14 @@ public class Content {
 
     private LocalDate releasedDate;
 
-//    @Enumerated(value = EnumType.STRING)
+    //    @Enumerated(value = EnumType.STRING)
     private String rating;
 
     @Column(length = 5000)
     private String plot;
 
     @Builder
-    public Content(int tmdbId, String nameKr, String nameEn, ContentKind kind, String posterPath, LocalDate releasedDate, String rating, String plot) {
+    public Content(long tmdbId, String nameKr, String nameEn, ContentKind kind, String posterPath, LocalDate releasedDate, String rating, String plot) {
         this.tmdbId = tmdbId;
         this.nameKr = nameKr;
         this.nameEn = nameEn;
@@ -48,21 +46,50 @@ public class Content {
         this.plot = plot;
     }
 
-    public static Content toEntity(DramaResultResponse result, DramaDetailResponse dramaDetailResponse) {
-        List<ContentResultsResponse> crr = dramaDetailResponse.getContentRatings().getResults();
+    public static Content toEntity(String flag, MovieDramaResultResponse result, MovieDramaDetailResponse movieDramaDetailResponse) {
+        DramaDetailResponse dramaDetailResponse;
+        MovieDetailResponse movieDetailResponse;
+        DramaResultResponse dramaResultResponse;
+        MovieResultResponse movieResultResponse;
         String KRRating = "";
-        for (ContentResultsResponse c:crr) {
-            if (c.getIso_3166_1().equals("KR")) {
-                KRRating = c.getRating();
-                break;
+        String releasedDate = "";
+        ContentKind contentKind = null;
+        String nameKR = "";
+        String nameEn = "";
+        if (flag.equals("D")) {
+            contentKind = ContentKind.DRAMA;
+            dramaDetailResponse = (DramaDetailResponse) movieDramaDetailResponse;
+            dramaResultResponse = (DramaResultResponse) result;
+            List<ContentResultsResponse> crr = dramaDetailResponse.getContentRatings().getResults();
+            for (ContentResultsResponse c : crr) {
+                if (c.getIso_3166_1().equals("KR")) {
+                    KRRating = c.getRating();
+                    break;
+                }
             }
+            releasedDate = dramaResultResponse.getFirstAirDate();
+            nameKR = dramaResultResponse.getOriginalName();
+            nameEn = dramaResultResponse.getName();
+        } else {
+            contentKind = ContentKind.MOVIE;
+            movieDetailResponse = (MovieDetailResponse) movieDramaDetailResponse;
+            movieResultResponse = (MovieResultResponse) result;
+            List<ReleaseResponse> rr = movieDetailResponse.getReleaseDates().getResults();
+            for (ReleaseResponse r : rr) {
+                if (r.getIso_3166_1().equals("KR")) {
+                    KRRating = r.getReleaseDates().get(0).getCertification();
+                }
+            }
+            releasedDate= movieResultResponse.getReleaseDate();
+            nameKR = movieResultResponse.getOriginalTitle();
+            nameEn = movieResultResponse.getTitle();
         }
         return Content.builder()
-                .releasedDate(LocalDate.parse(result.getFirstAirDate()))
+                .releasedDate(LocalDate.parse(releasedDate))
                 .tmdbId(result.getId())
-                .kind(ContentKind.DRAMA)
-                .nameKr(result.getOriginalName())
-                .nameEn(result.getName())
+                .kind(contentKind)
+                .nameKr(nameKR)
+                .nameEn(nameEn)
                 .plot(result.getOverview())
                 .posterPath(result.getPosterPath())
                 .rating(KRRating)

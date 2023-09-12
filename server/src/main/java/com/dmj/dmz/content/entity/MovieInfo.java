@@ -1,5 +1,6 @@
 package com.dmj.dmz.content.entity;
 
+import com.dmj.dmz.data.response.MovieDetailResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,12 +22,20 @@ public class MovieInfo {
 
     private Long boxOffice;
 
-    private Integer runningTile;
+    private Integer runningTime;
 
     @Builder
-    public MovieInfo(Content content, Long boxOffice, Integer runningTile) {
+    public MovieInfo(Content content, Long boxOffice, Integer runningTime) {
         this.content = content;
         this.boxOffice = boxOffice;
-        this.runningTile = runningTile;
+        this.runningTime = runningTime;
+    }
+
+    public static MovieInfo toEntity(Content content, MovieDetailResponse movieDetailResponse) {
+
+        return MovieInfo.builder()
+                .content(content)
+                .runningTime(movieDetailResponse.getRuntime())
+                .build();
     }
 }

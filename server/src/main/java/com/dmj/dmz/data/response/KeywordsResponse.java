@@ -14,4 +14,5 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class KeywordsResponse {
     private List<KeywordsResultResponse> results;
+    private List<KeywordsResultResponse> keywords;
 }
