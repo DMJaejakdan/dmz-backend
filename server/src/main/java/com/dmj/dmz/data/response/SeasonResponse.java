@@ -1,5 +1,6 @@
 package com.dmj.dmz.data.response;
 
+import com.dmj.dmz.content.entity.Episode;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
@@ -12,9 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class DramaResultResponse extends MovieDramaResultResponse{
-    String firstAirDate;
-    String name;
-    List<String> originCountry;
-    String originalName;
+public class SeasonResponse {
+    private List<EpisodeResponse> episodes;
 }

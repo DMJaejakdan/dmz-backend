@@ -1,5 +1,6 @@
 package com.dmj.dmz.content.entity;
 
+import com.dmj.dmz.data.response.GenreResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,5 +25,12 @@ public class Genre {
     public Genre(Long tmdbId, String name) {
         this.tmdbId = tmdbId;
         this.name = name;
+    }
+
+    public static Genre toEntity(GenreResponse genreResponse) {
+        return Genre.builder()
+                .tmdbId(genreResponse.getId())
+                .name(genreResponse.getName())
+                .build();
     }
 }

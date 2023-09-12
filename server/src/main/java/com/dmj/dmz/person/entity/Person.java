@@ -1,5 +1,8 @@
 package com.dmj.dmz.person.entity;
 
+import com.dmj.dmz.data.response.CastCrewResponse;
+import com.dmj.dmz.data.response.CastResponse;
+import com.dmj.dmz.data.response.PersonDetailResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +29,6 @@ public class Person {
 
     private String profilePath;
 
-    @Column(nullable = false)
     private LocalDate birth;
 
     private LocalDate death;
@@ -48,5 +50,28 @@ public class Person {
         this.death = death;
         this.gender = gender;
         this.area = area;
+    }
+
+    public static Person toEntity(CastCrewResponse castCrewResponse, PersonDetailResponse personDetailResponse) {
+        String birthDay= personDetailResponse.getBirthday();
+        String deathDay = personDetailResponse.getDeathday();
+        LocalDate birthLocalDate = null;
+        LocalDate deathLocalDate = null;
+        if (deathDay != null) {
+            deathLocalDate = LocalDate.parse(deathDay);
+        }
+        if (birthDay != null) {
+            birthLocalDate = LocalDate.parse(birthDay);
+        }
+        return Person.builder()
+                .tmdbId(castCrewResponse.getId())
+                .nameKr(castCrewResponse.getOriginalName())
+                .nameEn(castCrewResponse.getName())
+                .profilePath(castCrewResponse.getProfilePath())
+                .birth(birthLocalDate)
+                .death(deathLocalDate)
+                .gender(castCrewResponse.getGender())
+                .area(castCrewResponse.getKnownForDepartment())
+                .build();
     }
 }

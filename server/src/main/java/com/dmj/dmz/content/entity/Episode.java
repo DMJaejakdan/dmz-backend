@@ -1,5 +1,6 @@
 package com.dmj.dmz.content.entity;
 
+import com.dmj.dmz.data.response.EpisodeResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,5 +31,13 @@ public class Episode {
         this.dramaInfo = dramaInfo;
         this.nth = nth;
         this.overview = overview;
+    }
+
+    public static Episode toEntity(DramaInfo dramaInfo, EpisodeResponse episodeResponse) {
+        return Episode.builder()
+                .dramaInfo(dramaInfo)
+                .nth(episodeResponse.getEpisodeNumber())
+                .overview(episodeResponse.getOverview())
+                .build();
     }
 }

@@ -1,5 +1,6 @@
-package com.dmj.dmz.content.entity;
+package com.dmj.dmz.person.entity;
 
+import com.dmj.dmz.content.entity.Content;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ContentGenre {
+public class ContentPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,19 +21,23 @@ public class ContentGenre {
     private Content content;
 
     @ManyToOne
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    @Column(nullable = false)
+    private String role;
 
     @Builder
-    public ContentGenre(Content content, Genre genre) {
+    public ContentPerson(Content content, Person person) {
         this.content = content;
-        this.genre = genre;
+        this.person = person;
+        this.role = person.getArea();
     }
 
-    public static ContentGenre toEntity(Content content, Genre genre) {
-        return ContentGenre.builder()
+    public static ContentPerson toEntity(Content content, Person person) {
+        return ContentPerson.builder()
                 .content(content)
-                .genre(genre)
+                .person(person)
                 .build();
     }
 }

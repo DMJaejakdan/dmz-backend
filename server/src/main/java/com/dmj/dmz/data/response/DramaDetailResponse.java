@@ -12,10 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class DramaDetailResponse {
+public class DramaDetailResponse extends MovieDramaDetailResponse{
     private String lastAirDate;
     private List<NetworkResponse> networks;
     private ContentRatingsResponse contentRatings;
-    private KeywordsResponse keywords;
-    private List<ProductionCompanyResponse> productionCompanies;
+    private CreditsResponse aggregateCredits;
+    private int numberOfEpisodes;
+    private int numberOfSeasons;
 }

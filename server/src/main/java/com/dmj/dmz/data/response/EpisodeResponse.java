@@ -4,17 +4,16 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class DramaResultResponse extends MovieDramaResultResponse{
-    String firstAirDate;
-    String name;
-    List<String> originCountry;
-    String originalName;
+public class EpisodeResponse {
+    private String airDate;
+    private int episodeNumber;
+    private int id;
+    private String name;
+    private String overview;
 }
