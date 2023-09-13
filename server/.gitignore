@@ -39,3 +39,6 @@ out/
 ### sercet ###
 apikey.yml
 *.db
+
+### QueryDSL ###
+generated
