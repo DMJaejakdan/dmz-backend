@@ -108,7 +108,8 @@ public class DataGenerationTask {
         }
 
         final int dramaCode = 18;
-        for (int page = 3; page <= 10; page++) {
+        log.info("드라마 작업 시작");
+        for (int page = 97; page <= 96; page++) {
             // 한국 드라마 리스트
             url = UriComponentsBuilder.fromUriString(baseURL)
                     .path("/discover/tv")
@@ -128,6 +129,9 @@ public class DataGenerationTask {
 
             assert dramaList != null;
             for (DramaResultResponse result : dramaList.getResults()) {
+                if (contentRepository.existsByTmdbIdAndKind(result.getId(), Content.ContentKind.DRAMA)) {
+                    continue;
+                }
                 // 드라마 상세
                 URI url2 = UriComponentsBuilder.fromUriString(baseURL)
                         .path("/tv/" + result.getId())
@@ -197,8 +201,8 @@ public class DataGenerationTask {
             log.info("드라마: {}/{}", page, dramaList.getTotalPages());
         }
         // 영화 등록
-
-        for (int page = 3; page <= 2; page++) {
+        log.info("영화 작업 시작");
+        for (int page = 501; page <= 544; page++) {
             // 한국 영화 리스트
             url = UriComponentsBuilder.fromUriString(baseURL)
                     .path("/discover/movie")
@@ -217,6 +221,9 @@ public class DataGenerationTask {
 
             assert movieList != null;
             for (MovieResultResponse result : movieList.getResults()) {
+                if (contentRepository.existsByTmdbIdAndKind(result.getId(), Content.ContentKind.MOVIE)) {
+                    continue;
+                }
                 // 영화 상세
                 URI url2 = UriComponentsBuilder.fromUriString(baseURL)
                         .path("/movie/" + result.getId())
@@ -269,6 +276,7 @@ public class DataGenerationTask {
             }
             log.info("영화: {}/{}", page, movieList.getTotalPages());
         }
+        log.info("모든 작업 종료");
     }
 
     private Person getPerson(CastCrewResponse c, String baseURL, String apikey, RestTemplate restTemplate, HttpEntity<String> entity) {

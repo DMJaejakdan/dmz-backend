@@ -37,10 +37,14 @@ public class DramaInfo {
         if (dramaDetailResponse.getLastAirDate() != null) {
             localDate = LocalDate.parse(dramaDetailResponse.getLastAirDate());
         }
+        String channel = "";
+        if (!dramaDetailResponse.getNetworks().isEmpty()) {
+            channel = dramaDetailResponse.getNetworks().get(0).getName();
+        }
         return DramaInfo.builder()
                 .content(content)
                 .endDate(localDate)
-                .channel(dramaDetailResponse.getNetworks().get(0).getName())
+                .channel(channel)
                 .build();
     }
 
