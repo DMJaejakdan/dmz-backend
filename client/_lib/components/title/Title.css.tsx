@@ -1,13 +1,8 @@
+import { theme } from '#/design/colors.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 
-/**
- * @author 박성준
- * @todo base의 color를 글로벌스타일의 white로 변경
- */
-
 const base = style({
-  // todo
-  color: 'white',
+  color: theme.txt.white,
   fontWeight: 700,
 });
 
