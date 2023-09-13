@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Title } from './Title';
+
+/**
+ * @author 박성준
+ * @todo white를 글로벌스타일 white으로
+ */
 
 const meta = {
   title: 'Common/Title',
@@ -12,5 +16,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { hN: 'h1', content: 'Title' },
+  // todo
+  args: { hN: 'h1', content: 'Title', color: 'white' },
 };

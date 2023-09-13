@@ -1,13 +1,23 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, CSSProperties } from 'react';
 import { titleAlign, titleFontSize } from './Title.css';
+
+/**
+ * @author 박성준
+ */
 
 interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   content: string;
   hN: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
-  textAlign?: 'start' | 'center' | 'end';
+  textAlign?: 'start' | 'center' | 'end' | 'left' | 'right';
 }
 
-export function Title({ content, hN, textAlign = 'start' }: TitleProps) {
+export function Title({
+  content,
+  hN,
+  textAlign = 'start',
+  // todo
+  color = 'white',
+}: TitleProps) {
   if (hN === 'h1')
     return (
       <h1 className={`${titleFontSize[hN]} ${titleAlign[textAlign]}`}>
