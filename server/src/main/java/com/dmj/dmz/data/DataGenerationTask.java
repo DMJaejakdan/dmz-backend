@@ -109,7 +109,7 @@ public class DataGenerationTask {
 
         final int dramaCode = 18;
         log.info("드라마 작업 시작");
-        for (int page = 1; page <= 20; page++) {
+        for (int page = 97; page <= 96; page++) {
             // 한국 드라마 리스트
             url = UriComponentsBuilder.fromUriString(baseURL)
                     .path("/discover/tv")
@@ -202,7 +202,7 @@ public class DataGenerationTask {
         }
         // 영화 등록
         log.info("영화 작업 시작");
-        for (int page = 1; page <= 0; page++) {
+        for (int page = 501; page <= 544; page++) {
             // 한국 영화 리스트
             url = UriComponentsBuilder.fromUriString(baseURL)
                     .path("/discover/movie")
@@ -276,6 +276,7 @@ public class DataGenerationTask {
             }
             log.info("영화: {}/{}", page, movieList.getTotalPages());
         }
+        log.info("모든 작업 종료");
     }
 
     private Person getPerson(CastCrewResponse c, String baseURL, String apikey, RestTemplate restTemplate, HttpEntity<String> entity) {
