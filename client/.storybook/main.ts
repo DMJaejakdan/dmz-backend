@@ -1,6 +1,7 @@
 import type { StorybookConfig } from '@storybook/nextjs';
 import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path from 'path';
 
 const config: StorybookConfig = {
   stories: ['../**/*.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
@@ -46,7 +47,16 @@ const config: StorybookConfig = {
         },
       ],
     });
-
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '#/components': path.resolve(__dirname, '../_lib/components'),
+      '#/hook': path.resolve(__dirname, '../_lib/hook'),
+      '#/util': path.resolve(__dirname, '../_lib/util'),
+      '#/design': path.resolve(__dirname, '../_lib/design'),
+      '#/txts': path.resolve(__dirname, '../_lib/txts'),
+      '#/*': path.resolve(__dirname, '../_lib'),
+      '@/*': path.resolve(__dirname, '../'),
+    };
     return config;
   },
 };
