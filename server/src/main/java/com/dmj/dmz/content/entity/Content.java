@@ -83,7 +83,7 @@ public class Content {
                 }
             }
             String s = movieResultResponse.getReleaseDate();
-            if (!s.isEmpty())
+            if (s != null && !s.isEmpty())
                 releasedDate = LocalDate.parse(s);
             nameKR = movieResultResponse.getOriginalTitle();
             nameEn = movieResultResponse.getTitle();
