@@ -1,0 +1,3 @@
+apikey:
+  baseURL: https://api.themoviedb.org/3
+  key: ${TMDB_API_KEY}

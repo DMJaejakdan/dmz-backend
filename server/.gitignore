@@ -37,6 +37,7 @@ out/
 .vscode/
 
 ### sercet ###
+*.db
 
 ### QueryDSL ###
 generated

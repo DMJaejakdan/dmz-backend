@@ -35,7 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### sercet ###
-apikey.yml
-*.db
