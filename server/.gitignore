@@ -36,9 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 
-### sercet(env) ###
-# apikey.yml
-# *.db
+### sercet ###
 
 ### QueryDSL ###
 generated
