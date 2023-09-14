@@ -1,3 +1,4 @@
+import { theme } from '#/design/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 
 /**
@@ -8,37 +9,52 @@ import { style, styleVariants } from '@vanilla-extract/css';
 const base = style({
   width: 'fit-content',
   fontWeight: 700,
-  borderColor: 'transparent',
-  ':hover': { cursor: 'pointer' },
+  cursor: 'pointer',
+  lineHeight: 0,
 });
 
-export const buttonVariant = styleVariants({
+export const COLOR_VARIANT = styleVariants({
   // todo
-  primary: [base, { backgroundColor: 'white', color: 'black' }],
-  secondary: [
+  white: [
     base,
     {
-      backgroundColor: 'grey',
-      color: 'white',
+      backgroundColor: theme.colors.white,
+      border: theme.border.transparent,
+      color: theme.txt.black,
     },
   ],
-  tertiary: [
+  grey: [
+    base,
+    {
+      backgroundColor: theme.colors.grey,
+      border: theme.border.transparent,
+      color: theme.txt.white,
+    },
+  ],
+  black: [
     base,
     {
       backgroundColor: 'black',
-      outlineColor: 'white',
-      outlineWidth: 1.5,
-      color: 'white',
+      border: theme.border.transparent,
+      color: theme.txt.white,
+    },
+  ],
+  key: [
+    base,
+    {
+      backgroundColor: theme.bg.key,
+      border: theme.border.transparent,
+      color: theme.txt.white,
     },
   ],
 });
 
-export const buttonStatus = styleVariants({
+export const STATUS_VARIANT = styleVariants({
   normal: {},
-  disabled: { color: 'lightgrey', ':hover': { cursor: 'default' } },
+  disabled: { color: 'lightgrey', cursor: 'not-allowed' },
 });
 
-export const buttonSize = styleVariants({
+export const SIZE_VARIANT = styleVariants({
   large: {
     padding: '0 1.75rem 0 1.75rem',
     height: '3rem',
@@ -52,12 +68,12 @@ export const buttonSize = styleVariants({
   },
 });
 
-export const buttonShape = styleVariants({
+export const SHAPE_VARIANT = styleVariants({
   round: { borderRadius: 100 },
   square: { borderRadius: '1rem' },
 });
 
-export const buttonFullWidth = styleVariants({
+export const WIDTH_VARIANT = styleVariants({
   none: {},
   full: { width: '100%' },
 });

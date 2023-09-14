@@ -12,5 +12,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { variant: 'span', content: '텍스트를 입력하세요.' },
+  args: { type: 'span', content: '텍스트를 입력하세요.', color: 'white' },
 };

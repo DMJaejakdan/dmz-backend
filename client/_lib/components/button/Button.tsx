@@ -2,11 +2,11 @@
 
 import { ButtonHTMLAttributes } from 'react';
 import {
-  buttonVariant,
-  buttonSize,
-  buttonShape,
-  buttonFullWidth,
-  buttonStatus,
+  COLOR_VARIANT,
+  SHAPE_VARIANT,
+  SIZE_VARIANT,
+  STATUS_VARIANT,
+  WIDTH_VARIANT,
 } from './Button.css';
 
 /**
@@ -15,35 +15,35 @@ import {
  */
 
 // 버튼 라벨, 테마, 타입, 크기, 라운드/스퀘어, 너비full
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   btnType?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'tertiary';
-  status?: 'normal' | 'disabled';
-  size?: 'large' | 'medium' | 'small';
-  shape?: 'round' | 'square';
-  fullWidth?: 'none' | 'full';
+  color: keyof typeof COLOR_VARIANT;
+  status?: keyof typeof STATUS_VARIANT;
+  size?: keyof typeof SIZE_VARIANT;
+  shape?: keyof typeof SHAPE_VARIANT;
+  width?: keyof typeof WIDTH_VARIANT;
 }
 
 export function Button({
   label,
-  variant = 'secondary',
+  color,
   btnType = 'button',
   status = 'normal',
   size = 'medium',
   shape = 'round',
-  fullWidth = 'none',
+  width = 'none',
   ...props
-}: ButtonProps) {
+}: Props) {
   return (
     <button
       type={btnType}
       className={`
-      ${buttonVariant[variant]}
-      ${buttonStatus[status]}
-      ${buttonSize[size]}
-      ${buttonShape[shape]}
-      ${buttonFullWidth[fullWidth]}
+      ${COLOR_VARIANT[color]}
+      ${STATUS_VARIANT[status]}
+      ${SIZE_VARIANT[size]}
+      ${SHAPE_VARIANT[shape]}
+      ${WIDTH_VARIANT[width]}
       `}
       {...props}
     >
