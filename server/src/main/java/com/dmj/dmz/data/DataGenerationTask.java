@@ -107,9 +107,9 @@ public class DataGenerationTask {
             }
         }
 
-        final int dramaCode = 18;
+        final String code = "10759|35|80|18|10751|9648|10765|10766|10768";
         log.info("드라마 작업 시작");
-        for (int page = 97; page <= 96; page++) {
+        for (int page = 1; page <= 122; page++) {
             // 한국 드라마 리스트
             url = UriComponentsBuilder.fromUriString(baseURL)
                     .path("/discover/tv")
@@ -118,7 +118,7 @@ public class DataGenerationTask {
                     .queryParam("include_null_first_air_dates", false)
                     .queryParam("language", "ko")
                     .queryParam("sort_by", "popularity.desc")
-                    .queryParam("with_genres", dramaCode)
+                    .queryParam("with_genres", code)
                     .queryParam("with_origin_country", "KR")
                     .queryParam("page", page)
                     .build()

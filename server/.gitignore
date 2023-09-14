@@ -37,8 +37,8 @@ out/
 .vscode/
 
 ### sercet ###
-apikey.yml
-*.db
+#apikey.yml
+#*.db
 
 ### QueryDSL ###
 generated
