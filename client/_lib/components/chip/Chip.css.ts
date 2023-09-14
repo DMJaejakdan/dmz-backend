@@ -1,17 +1,32 @@
-import { theme } from '@/_lib/design/colors.css';
+import { theme } from '#/design/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 
 const base = style({
   borderRadius: '2rem',
   width: 'fit-content',
+  height: '1.75rem',
+  display: 'inline-flex',
+  alignItems: 'center',
   fontSize: '0.8rem',
-  padding: '0.3rem 0.6rem 0.3rem 0.6rem',
+  lineHeight: 0,
+  padding: '0 0.75rem 0 0.75rem',
   color: theme.colors.white,
-  fontFamily: theme.font.bd,
+  fontFamily: theme.font.rg,
+  fontWeight: 400,
 });
 
-export const container = styleVariants({
-  filter: [base, { backgroundColor: 'black' }],
-  input: [base, { backgroundColor: 'black' }],
-  suggestion: [base, { backgroundColor: 'black' }],
+export const TYPE_VARIANT = styleVariants({
+  filter: [
+    base,
+    { backgroundColor: theme.colors.white, color: theme.colors.black },
+  ],
+  filterselected: [base, { backgroundColor: theme.bg.key }],
+  input: [
+    base,
+    {
+      backgroundColor: theme.bg.d1,
+      paddingRight: '0.4rem',
+    },
+  ],
+  suggestion: [base, { backgroundColor: theme.bg.d1 }],
 });
