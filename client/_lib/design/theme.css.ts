@@ -1,8 +1,8 @@
 import {
   createGlobalTheme,
   createGlobalThemeContract,
-  createTheme,
   globalFontFace,
+  globalStyle,
   style,
 } from '@vanilla-extract/css';
 
@@ -15,20 +15,26 @@ const LIGHT_GREY = '#EEEEF3';
 const WHITE_GREY = '#F1F1F6';
 const WHITE = '#FAFAFF';
 
-const pt = 'pretendard';
-globalFontFace(pt, {
-  src: 'url(/fonts/Pretendard-Regular.subset.woff)',
-});
-export const font_rg = style({
-  fontFamily: pt,
-});
-
 const ptb = 'pretendard Bold';
 globalFontFace(ptb, {
   src: 'url(/fonts/Pretendard-Bold.subset.woff)',
+  fontWeight: 700,
 });
-export const font_bd = style({
+
+const font_bd = style({
+  fontFamily: ptb,
+  fontWeight: 700,
+});
+
+const pt = 'pretendard regular';
+globalFontFace(pt, {
+  src: 'url(/fonts/Pretendard-Regular.subset.woff)',
+  fontWeight: 400,
+});
+
+const font_rg = style({
   fontFamily: pt,
+  fontWeight: 400,
 });
 
 export const theme = createGlobalThemeContract({
@@ -47,6 +53,8 @@ export const theme = createGlobalThemeContract({
     disabled: 'txt-disabled',
   },
   border: {
+    black: 'border-black',
+    input: 'border-input',
     placeholder: 'border-placeholder',
     transparent: 'border-transparent',
   },
@@ -78,10 +86,12 @@ createGlobalTheme(':root', theme, {
   },
   txt: {
     black: BLACK,
-    white: WHITE,
+    white: '#FFFFFF',
     disabled: DARK_GREY,
   },
   border: {
+    black: `1px solid ${BLACK}`,
+    input: `1px solid ${LIGHT_GREY}`,
     placeholder: '1px solid #505057',
     transparent: '1px solid transparent',
   },
@@ -100,23 +110,27 @@ createGlobalTheme(':root', theme, {
     bd: ptb,
   },
 });
-// '--bg-d1': BLACK,
-// '--bg-d2': BLACK_GREY,
-// '--bg-d3': '#505057',
-// '--bg-d4': '#65656C',
-// '--bg-disabled': 'DDDDE2',
-// '--bg-key': KEY,
-// '--bg-key33': KEY,
-// '--txt-black': BLACK,
-// '--txt-white': WHITE,
-// '--txt-disabled': DARK_GREY,
-// '--border-placeholder': '1px solid #505057',
-// '--border-transparent': '1px solid transparent',
-// key': KEY,
-// black': BLACK,
-// blackgrey': BLACK_GREY,
-// darkgrey': DARK_GREY,
-// grey': GREY,
-// lightgrey': LIGHT_GREY,
-// whitegrey': WHITE_GREY,
-// white': WHITE,
+
+globalStyle('*', {
+  boxSizing: 'border-box',
+}); //W3C 권고안을 따라 전역 선택자 사용
+globalStyle('html, body', {
+  margin: 0,
+  padding: 0,
+  fontSize: '100%',
+});
+globalStyle('h1, h2, h3, h4, h5, h6, p', {
+  margin: 0,
+  padding: 0,
+  fontSize: '100%',
+  fontWeight: 'normal',
+});
+globalStyle('a', {
+  color: 'inherit',
+  textDecoration: 'none',
+});
+globalStyle('ul, ol, li', {
+  margin: 0,
+  padding: 0,
+  listStyleType: 'none',
+});

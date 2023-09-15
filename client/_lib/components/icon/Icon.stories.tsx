@@ -12,5 +12,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { type: 'search', size: '1rem' },
+  args: { type: 'search', color: 'white' },
 };

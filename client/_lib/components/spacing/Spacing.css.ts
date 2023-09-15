@@ -13,7 +13,7 @@ const spacingSizeVar = {
   3: '3rem',
 };
 
-export const spacingSize = styleVariants(spacingSizeVar, spacingSize => [
+export const SIZE_VARIANT = styleVariants(spacingSizeVar, spacingSize => [
   base,
   { height: spacingSize },
 ]);

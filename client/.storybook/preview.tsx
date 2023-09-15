@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 import React from 'react';
+import { storybook } from './preview.css';
 
 const preview: Preview = {
   parameters: {
@@ -14,7 +15,7 @@ const preview: Preview = {
   decorators: [
     Story => (
       <>
-        <html>
+        <html className={storybook}>
           <body>
             <Story />
           </body>

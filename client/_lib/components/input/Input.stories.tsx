@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Chip } from './Chip';
+import { Input } from './Input';
 
 const meta = {
-  title: 'Common/Chip',
-  component: Chip,
+  title: 'Common/Input',
+  component: Input,
   argTypes: {},
-} satisfies Meta<typeof Chip>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { type: 'filter', label: '하하 저는 칩이지요' },
+  args: { placeholder: '나는 인풋입니다' },
 };

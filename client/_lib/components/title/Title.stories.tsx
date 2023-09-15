@@ -17,5 +17,5 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   // todo
-  args: { hN: 'h1', content: 'Title', color: 'white' },
+  args: { hn: 'h1', content: 'Title', color: 'white' },
 };

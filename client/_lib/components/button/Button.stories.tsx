@@ -12,5 +12,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { variant: 'primary', label: 'Button' },
+  args: { color: 'grey', label: 'Button' },
 };

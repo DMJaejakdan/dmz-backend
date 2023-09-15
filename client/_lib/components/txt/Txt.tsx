@@ -4,22 +4,22 @@
  * @todo size도
  */
 
-interface TxtProps {
+interface Props {
   content: string;
-  variant?: 'span' | 'p';
-  fontSize?: string;
-  textAlign?: 'start' | 'center' | 'end' | 'left' | 'right';
+  type?: 'span' | 'p';
+  size?: string;
+  align?: 'start' | 'center' | 'end' | 'left' | 'right';
   // todo
   color?: 'white' | string;
 }
 
 export function Txt({
   content,
-  variant = 'span',
-  textAlign = 'start',
+  type = 'span',
+  align = 'start',
   // todo
   color = 'white',
-}: TxtProps) {
-  if (variant === 'span') return <span>{content}</span>;
-  if (variant === 'p') return <p>{content}</p>;
+}: Props) {
+  if (type === 'span') return <span>{content}</span>;
+  if (type === 'p') return <p>{content}</p>;
 }
