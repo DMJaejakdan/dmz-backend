@@ -1,0 +1,22 @@
+version: '3'
+services:
+  next:
+    image: jyj2487/next-app
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - TZ=Asia/Seoul
+    stdin_open: true
+
+  springboot:
+    image: jyj2487/spring-app
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    environment:
+      - TZ=Asia/Seoul
