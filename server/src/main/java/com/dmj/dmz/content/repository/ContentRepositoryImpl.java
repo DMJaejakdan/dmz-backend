@@ -15,6 +15,7 @@ import static com.dmj.dmz.content.entity.QContent.content;
 @RequiredArgsConstructor
 public class ContentRepositoryImpl implements ContentRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
+
     @Override
     public List<Content> findByNameKrLike(String nameKr) {
         return jpaQueryFactory.selectFrom(content)
@@ -23,14 +24,14 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
     }
 
     @Override
-    public List<Content> findWithSearchConditions(String nameKr, LocalDate sDate,LocalDate eDate, String rating, String genre) {
+    public List<Content> findWithSearchConditions(String nameKr, LocalDate sDate, LocalDate eDate, List<String> rating, List<String> genre) {
         return jpaQueryFactory.selectFrom(content)
                 .where()
                 .fetch();
     }
 
     private BooleanExpression containsNameKr(final String nameKr) {
-        if(!StringUtils.hasText(nameKr)){
+        if (!StringUtils.hasText(nameKr)) {
             return null;
         }
         return content.nameKr.contains(nameKr);
@@ -43,5 +44,16 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
         return content.releasedDate.goe(sDate);
     }
 
-    private BooleanExpression
+    private BooleanExpression loeDate(final LocalDate eDate) {
+        if (eDate == null) {
+            return null;
+        }
+        return content.releasedDate.loe(eDate);
+    }
+    private BooleanExpression inGenre(final List<String> genre) {
+        if (genre == null) {
+            return null;
+        }
+        return null;
+    }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 public interface ContentRepositoryCustom {
     List<Content> findByNameKrLike(String nameKr);
 
-    List<Content> findWithSearchConditions(final String nameKr, final LocalDate sDate, final LocalDate eDate, final String rating, final String genre);
+    List<Content> findWithSearchConditions(final String nameKr, final LocalDate sDate, final LocalDate eDate, final List<String> rating, final List<String> genre);
 }
