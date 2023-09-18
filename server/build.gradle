@@ -53,20 +53,32 @@ tasks.named('test') {
 
 def querydslDir = "$buildDir/generated/querydsl"
 
-querydsl{
+querydsl {
     jpa = true
     querydslSourcesDir = querydslDir
 }
 sourceSets {
     main.java.srcDir querydslDir
 }
-compileQuerydsl{
+compileQuerydsl {
     options.annotationProcessorPath = configurations.querydsl
 }
 
 configurations {
-    compileOnly{
+    compileOnly {
         extendsFrom annotationProcessor
     }
     querydsl.extendsFrom compileClasspath
+}
+
+jar {
+    enabled = false
+}
+
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+
+tasks {
+    processResources {
+        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+    }
 }
