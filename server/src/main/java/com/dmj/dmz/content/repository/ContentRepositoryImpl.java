@@ -1,10 +1,13 @@
 package com.dmj.dmz.content.repository;
 
 import com.dmj.dmz.content.entity.Content;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.dmj.dmz.content.entity.QContent.content;
@@ -15,7 +18,30 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
     @Override
     public List<Content> findByNameKrLike(String nameKr) {
         return jpaQueryFactory.selectFrom(content)
-                .where((content.nameKr.like("%" + nameKr + "%")))
+                .where((content.nameKr.contains(nameKr)))
                 .fetch();
     }
+
+    @Override
+    public List<Content> findWithSearchConditions(String nameKr, LocalDate sDate,LocalDate eDate, String rating, String genre) {
+        return jpaQueryFactory.selectFrom(content)
+                .where()
+                .fetch();
+    }
+
+    private BooleanExpression containsNameKr(final String nameKr) {
+        if(!StringUtils.hasText(nameKr)){
+            return null;
+        }
+        return content.nameKr.contains(nameKr);
+    }
+
+    private BooleanExpression goeDate(final LocalDate sDate) {
+        if (sDate == null) {
+            return null;
+        }
+        return content.releasedDate.goe(sDate);
+    }
+
+    private BooleanExpression
 }
