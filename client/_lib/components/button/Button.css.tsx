@@ -9,7 +9,6 @@ const base = style({
 });
 
 export const COLOR_VARIANT = styleVariants({
-  // todo
   white: [
     base,
     {
