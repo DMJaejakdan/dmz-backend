@@ -1,21 +1,16 @@
-import { HTMLAttributes, CSSProperties } from 'react';
+import { HTMLAttributes } from 'react';
 import {
   WEIGHT_VARIANT,
   ALIGN_VARIANT,
   SIZE_VARIANT,
   COLOR_VARIANT,
 } from './Title.css';
-import { theme } from '#/design/theme.css';
-
-/**
- * @author 박성준
- */
 
 interface Props extends HTMLAttributes<HTMLHeadingElement> {
   content: string;
   hn: keyof typeof SIZE_VARIANT;
-  color?: keyof typeof COLOR_VARIANT;
   align?: keyof typeof ALIGN_VARIANT;
+  color?: keyof typeof COLOR_VARIANT;
 }
 
 export function Title({
@@ -25,7 +20,7 @@ export function Title({
   color = 'white',
   ...props
 }: Props) {
-  const classname = `${SIZE_VARIANT[hn]} ${ALIGN_VARIANT[align]} ${WEIGHT_VARIANT[hn]} ${COLOR_VARIANT[color]}`;
+  const classname = `${SIZE_VARIANT[hn]} ${WEIGHT_VARIANT[hn]} ${ALIGN_VARIANT[align]} ${COLOR_VARIANT[color]}`;
   switch (hn) {
     case 'h1':
       return (
