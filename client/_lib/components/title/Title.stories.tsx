@@ -1,11 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Title } from './Title';
 
-/**
- * @author 박성준
- * @todo white를 글로벌스타일 white으로
- */
-
 const meta = {
   title: 'Common/Title',
   component: Title,

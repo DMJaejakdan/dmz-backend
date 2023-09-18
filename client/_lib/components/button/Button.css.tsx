@@ -1,11 +1,6 @@
 import { theme } from '#/design/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 
-/**
- * @author 박성준
- * @todo 각종 속성 글로벌 변수로 변경
- * @todo pressed(active) 상태 아직 안함
- */
 const base = style({
   width: 'fit-content',
   fontWeight: 700,
@@ -14,7 +9,6 @@ const base = style({
 });
 
 export const COLOR_VARIANT = styleVariants({
-  // todo
   white: [
     base,
     {
