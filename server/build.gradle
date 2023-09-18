@@ -74,3 +74,11 @@ configurations {
 jar {
     enabled = false
 }
+
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+
+tasks {
+    processResources {
+        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+    }
+}
