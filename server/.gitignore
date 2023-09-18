@@ -38,6 +38,7 @@ out/
 
 ### sercet ###
 *.db
+env.yml
 
 ### QueryDSL ###
 generated
