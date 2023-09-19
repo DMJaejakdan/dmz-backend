@@ -10,7 +10,7 @@
     "module": "esnext",
     // "moduleResolution": "bundler",
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
