@@ -8734,7 +8734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.0":
+"dotenv@npm:^16.0.0, dotenv@npm:^16.3.1":
   version: 16.3.1
   resolution: "dotenv@npm:16.3.1"
   checksum: 15d75e7279018f4bafd0ee9706593dd14455ddb71b3bcba9c52574460b7ccaf67d5cf8b2c08a5af1a9da6db36c956a04a1192b101ee102a3e0cf8817bbcf3dfd
@@ -12391,6 +12391,7 @@ __metadata:
     "@visx/visx": ^3.3.0
     css-loader: ^6.8.1
     d3: ^7.8.5
+    dotenv: ^16.3.1
     eslint: 8.47.0
     eslint-config-next: 13.4.19
     eslint-config-prettier: ^9.0.0
@@ -12398,6 +12399,7 @@ __metadata:
     eslint-plugin-storybook: ^0.6.13
     mini-css-extract-plugin: ^2.7.6
     next: 13.4.19
+    prettier: ^3.0.3
     react: 18.2.0
     react-dom: 18.2.0
     storybook: 7.3.2
@@ -13303,6 +13305,15 @@ __metadata:
   bin:
     prettier: bin-prettier.js
   checksum: b49e409431bf129dd89238d64299ba80717b57ff5a6d1c1a8b1a28b590d998a34e083fa13573bc732bb8d2305becb4c9a4407f8486c81fa7d55100eb08263cf8
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "prettier@npm:3.0.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
   languageName: node
   linkType: hard
 
