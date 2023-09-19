@@ -50,12 +50,12 @@ const config: StorybookConfig = {
     });
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@/*': path.resolve(__dirname, '../'),
+      '@/*': path.resolve(__dirname, '..'),
       '#/components': path.resolve(__dirname, '../_lib/components'),
       '#/hook': path.resolve(__dirname, '../_lib/hook'),
       '#/util': path.resolve(__dirname, '../_lib/util'),
       '#/design': path.resolve(__dirname, '../_lib/design'),
-      '#/constants/*': path.resolve(__dirname, './_lib/constants/*'),
+      '#/constants': path.resolve(__dirname, '../_lib/constants'),
       '#/*': path.resolve(__dirname, '../_lib'),
     };
     return config;

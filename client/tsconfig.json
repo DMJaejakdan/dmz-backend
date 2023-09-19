@@ -27,21 +27,7 @@
       "#/*": [
         "./_lib/*"
       ],
-      "#/components/*": [
-        "./_lib/components/*"
-      ],
-      "#/util/*": [
-        "./_lib/util/*"
-      ],
-      "#/hook/*": [
-        "./_lib/hook/*"
-      ],
-      "#/design/*": [
-        "./_lib/design/*"
-      ],
-      "#/constants/*": [
-        "./_lib/constants/*"
-      ]
+      "@/*": ["./*"],
     }
   },
   "include": [
