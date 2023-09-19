@@ -10,8 +10,8 @@ public class SparkMysqlSession {
     private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
     private static final String MYSQL_URL = "jdbc:mysql://dmz-db.clgf81ssifml.ap-northeast-2.rds.amazonaws.com:3306/dmz?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf8";
 
-    private static final String MYSQL_USERNAME = "ssafy";
-    private static final String MYSQL_PASSWORD = "ssafy.j9a602.dmz";
+    private static final String MYSQL_USERNAME = "";
+    private static final String MYSQL_PASSWORD = "";
 
     private static SparkMysqlSession instance;
 
