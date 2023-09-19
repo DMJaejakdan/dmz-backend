@@ -54,8 +54,11 @@ export const theme = createGlobalThemeContract({
   },
   border: {
     black: 'border-black',
+    white: 'border-white',
     input: 'border-input',
     placeholder: 'border-placeholder',
+    tab_active: 'border-tab-active',
+    tab_inactive: 'border-tab-inactive',
     transparent: 'border-transparent',
   },
   colors: {
@@ -91,7 +94,11 @@ createGlobalTheme(':root', theme, {
   },
   border: {
     black: `1px solid ${BLACK}`,
+    white: `1px solid ${WHITE}`,
+    tab_active: `2px solid ${KEY}`,
+    tab_inactive: `2px solid ${WHITE}`,
     input: `1px solid ${LIGHT_GREY}`,
+
     placeholder: '1px solid #505057',
     transparent: '1px solid transparent',
   },
