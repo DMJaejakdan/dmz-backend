@@ -21,10 +21,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     indent: ['off', 2],
-    'linebreak-style': [
-      'error',
-      require('os').EOL === '\r\n' ? 'windows' : 'unix',
-    ],
+    'linebreak-style': 0,
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],

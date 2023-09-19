@@ -1,4 +1,4 @@
-import { ChangeEvent, HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 import { base } from './Input.css';
 
 interface Props extends HTMLAttributes<HTMLInputElement> {
