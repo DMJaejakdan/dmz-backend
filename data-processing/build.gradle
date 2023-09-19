@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'com.dmj'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = '11'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.apache.spark:spark-core_2.13:3.3.2'
+    implementation 'org.apache.spark:spark-sql_2.13:3.3.2'
+    implementation 'com.mysql:mysql-connector-j:8.0.33'
+    implementation 'org.mongodb:mongodb-driver-sync:4.10.2'
+    implementation 'org.mongodb.spark:mongo-spark-connector_2.13:10.2.0'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
+
+test {
+    useJUnitPlatform()
+}
