@@ -7,10 +7,7 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-import java.util.Properties;
-
 public class SparkMongoSession {
-    private static final String MONGO_DRIVER = "com.mongodb.client.MongoDriver";
     private static final String MONGO_URL = "mongodb://localhost:27017/admin";
 
     private static final String MONGO_USERNAME = "";
@@ -37,21 +34,6 @@ public class SparkMongoSession {
         return instance;
     }
 
-    public Dataset<Row> getMongoTable() {
-        Properties properties = new Properties();
-        properties.setProperty("username", MONGO_USERNAME);
-        properties.setProperty("password", MONGO_PASSWORD);
-        properties.setProperty("driver", MONGO_DRIVER);
-
-        Dataset<Row> df = sparkSession.read()
-                .format("mongodb")
-                .option("database", MONGO_DATABASE)
-                .option("collection", "test")
-                .load();
-
-        return df;
-    }
-
     public void appendVerticesToMongoCollection(JavaRDD<Vertex> dataset) {
         Dataset<Row> dataFrame = sparkSession.createDataFrame(dataset, Vertex.class).toDF();
 
@@ -59,7 +41,7 @@ public class SparkMongoSession {
                 .format("mongodb")
                 .option("database", MONGO_DATABASE)
                 .option("collection", "vertex")
-                .mode("append")
+                .mode("overwrite")
                 .save();
     }
 
@@ -70,7 +52,7 @@ public class SparkMongoSession {
                 .format("mongodb")
                 .option("database", MONGO_DATABASE)
                 .option("collection", "edge")
-                .mode("append")
+                .mode("overwrite")
                 .save();
     }
 }
