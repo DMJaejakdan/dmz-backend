@@ -87,11 +87,12 @@ public class Edge {
         return type.index * 1_000_000_000_000L + rowNo1 * 100_000L + rowNo2;
     }
 
+    // 장르와 키워드가 겹치는 개수를 가중치로 선택
     private static int calculateWeight(Content from, Content to) {
-        Set<String> genreIntersect = new HashSet<>(from.getGenres());
+        Set<Long> genreIntersect = new HashSet<>(from.getGenres());
         genreIntersect.retainAll(to.getGenres());
 
-        Set<String> keywordIntersect = new HashSet<>(from.getKeywords());
+        Set<Long> keywordIntersect = new HashSet<>(from.getKeywords());
         keywordIntersect.retainAll(to.getGenres());
 
         return genreIntersect.size() + keywordIntersect.size();
