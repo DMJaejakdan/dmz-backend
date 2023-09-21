@@ -46,6 +46,7 @@ export const theme = createGlobalThemeContract({
     disabled: 'bg-disabled',
     key: 'bg-key',
     key33: 'bg-key33',
+    input: 'bd-input',
   },
   txt: {
     black: 'txt-black',
@@ -86,6 +87,7 @@ createGlobalTheme(':root', theme, {
     disabled: '#DDDDE2',
     key: KEY,
     key33: KEY,
+    input: '#505057',
   },
   txt: {
     black: BLACK,
@@ -97,8 +99,7 @@ createGlobalTheme(':root', theme, {
     white: `1px solid ${WHITE}`,
     tab_active: `2px solid ${KEY}`,
     tab_inactive: `2px solid ${WHITE}`,
-    input: `1px solid ${LIGHT_GREY}`,
-
+    input: '1px solid transparent',
     placeholder: '1px solid #505057',
     transparent: '1px solid transparent',
   },

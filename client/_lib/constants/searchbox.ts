@@ -2,7 +2,7 @@ export const searchbox = {
   drama: {},
   movie: {},
   person: {},
-  searchcondition: {
+  box: {
     button: {
       search: '검색하기',
     },
