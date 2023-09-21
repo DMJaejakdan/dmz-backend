@@ -5,27 +5,40 @@ import com.dmj.dmz.mongodb.schema.Vertex;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 public class SparkMongoSession {
-    private static final String MONGO_URL = "mongodb://localhost:27017/admin";
+    private String url;
 
-    private static final String MONGO_USERNAME = "";
-    private static final String MONGO_PASSWORD = "";
-
-    private static final String MONGO_DATABASE = "admin";
+    private String database;
 
     private static SparkMongoSession instance;
 
+
     final SparkSession sparkSession = SparkSession
             .builder()
-            .master("local")
             .appName("MongoSparkSession")
-            .config("spark.mongodb.input.uri", MONGO_URL)
-            .config("spark.mongodb.output.uri", MONGO_URL)
+            .master("spark://spark-master:8000")
+            .config("spark.executor.memory", "3g")
             .getOrCreate();
 
-    private SparkMongoSession() {}
+    private SparkMongoSession() {
+        Properties properties = new Properties();
+        try {
+            String resources = "src/main/resources/mongo.properties";
+            properties.load(new FileInputStream(resources));
+            
+            url = properties.getProperty("MONGO_URL");
+            database = properties.getProperty("MONGO_DATABASE");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static SparkMongoSession getInstance() {
         if (instance == null) {
@@ -39,9 +52,10 @@ public class SparkMongoSession {
 
         dataFrame.write()
                 .format("mongodb")
-                .option("database", MONGO_DATABASE)
+                .option("spark.mongodb.write.connection.uri", url)
+                .option("database", database)
                 .option("collection", "vertex")
-                .mode("overwrite")
+                .mode(SaveMode.Append)
                 .save();
     }
 
@@ -50,9 +64,36 @@ public class SparkMongoSession {
 
         dataFrame.write()
                 .format("mongodb")
-                .option("database", MONGO_DATABASE)
+                .option("spark.mongodb.write.connection.uri", url)
+                .option("database", database)
                 .option("collection", "edge")
-                .mode("overwrite")
+                .mode(SaveMode.Append)
+                .save();
+    }
+
+    public void appendToMongoCollection(JavaRDD<?> dataset, Class schema, String collectionName) {
+        Dataset<Row> dataFrame = sparkSession.createDataFrame(dataset, schema).toDF();
+
+        dataFrame
+                .write()
+                .format("mongodb")
+                .option("spark.mongodb.write.connection.uri", url)
+                .option("database", database)
+                .option("collection", collectionName)
+                .mode(SaveMode.Append)
+                .save();
+    }
+
+    public void overwriteToMongoCollection(JavaRDD<?> dataset, Class schema, String collectionName) {
+        Dataset<Row> dataFrame = sparkSession.createDataFrame(dataset, schema).toDF();
+
+        dataFrame
+                .write()
+                .format("mongodb")
+                .option("spark.mongodb.write.connection.uri", url)
+                .option("database", database)
+                .option("collection", collectionName)
+                .mode(SaveMode.Overwrite)
                 .save();
     }
 }

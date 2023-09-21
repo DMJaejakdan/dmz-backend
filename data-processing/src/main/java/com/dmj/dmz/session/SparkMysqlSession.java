@@ -4,25 +4,40 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 public class SparkMysqlSession {
-    private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String MYSQL_URL = "jdbc:mysql://dmz-db.clgf81ssifml.ap-northeast-2.rds.amazonaws.com:3306/dmz?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf8";
+    private final static String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
+    private String url;
 
-    private static final String MYSQL_USERNAME = "";
-    private static final String MYSQL_PASSWORD = "";
+    private String username;
+    private String password;
 
     private static SparkMysqlSession instance;
 
     private static SparkSession session = SparkSession
             .builder()
             .appName("MySQLTest")
-            .config("spark.master", "local")
+            .master("spark://spark-master:8000")
             .config("driver", MYSQL_DRIVER)
+            .config("spark.executor.memory", "3g")
             .getOrCreate();
 
-    private SparkMysqlSession() {}
+    private SparkMysqlSession() {
+        Properties properties = new Properties();
+        try {
+            String resources = "src/main/resources/mysql.properties";
+            properties.load(new FileInputStream(resources));
+
+            url = properties.getProperty("MYSQL_URL");
+            username = properties.getProperty("MYSQL_USERNAME");
+            password = properties.getProperty("MYSQL_PASSWORD");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static SparkMysqlSession getInstance() {
         if (instance == null) {
@@ -32,14 +47,12 @@ public class SparkMysqlSession {
         return instance;
     }
 
-    public static Dataset<Row> readTable(String tableName) {
+    public Dataset<Row> readTable(String tableName) {
         Properties properties = new Properties();
         properties.setProperty("characterEncoding", "UTF-8");
-        properties.setProperty("username", MYSQL_USERNAME);
-        properties.setProperty("password", MYSQL_PASSWORD);
+        properties.setProperty("username", username);
+        properties.setProperty("password", password);
 
-        return session.read().jdbc(MYSQL_URL, tableName, properties);
+        return session.read().jdbc(url, tableName, properties);
     }
-
-
 }
