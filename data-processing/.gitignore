@@ -1,5 +1,7 @@
 .gradle
 build/
+**/src/main/**/mongo.properties
+**/src/main/**/mysql.properties
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
