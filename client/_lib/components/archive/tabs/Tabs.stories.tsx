@@ -4,7 +4,7 @@ import { Tabs } from './Tabs';
 import { Chip } from '../../common/chip/Chip';
 
 const meta = {
-  title: 'Archive/SearchBox/Tabs',
+  title: 'Archive/Tabs',
   component: Tabs,
   argTypes: {},
 } satisfies Meta<typeof Tabs>;

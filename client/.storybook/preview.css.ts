@@ -30,7 +30,7 @@ export const storybook = style({
   height: 'calc(100vh - 3rem)',
   fontFamily: pt,
   fontSize: '100%',
-  backgroundColor: theme.bg.d2,
+  backgroundColor: theme.bg.d1,
   color: 'inherit',
   textDecoration: 'none',
   listStyleType: 'none',

@@ -21,7 +21,7 @@ export const TYPE_VARIANT = styleVariants({
     { backgroundColor: theme.colors.white, color: theme.colors.black },
   ],
   filterselected: [base, { backgroundColor: theme.bg.key }],
-  input: [
+  keyword: [
     base,
     {
       backgroundColor: theme.bg.d1,

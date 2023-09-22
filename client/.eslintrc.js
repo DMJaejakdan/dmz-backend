@@ -26,7 +26,6 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'react/no-unknown-property': ['warn', { ignore: ['css'] }],
-    'no-unused-vars': 'warn',
     '@typescript-eslint/no-unused-vars': 'warn',
   },
 };
