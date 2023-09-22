@@ -2,16 +2,14 @@ package com.dmj.dmz.person.entity;
 
 import com.dmj.dmz.content.entity.Content;
 import com.dmj.dmz.data.response.CrewResponse;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class ContentCrew {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

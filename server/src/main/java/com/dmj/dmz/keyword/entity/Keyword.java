@@ -19,18 +19,18 @@ public class Keyword {
     private Long tmdbId;
 
     @Column(nullable = false)
-    private String name;
+    private String word;
 
     @Builder
-    public Keyword(Long tmdbId, String name) {
+    public Keyword(Long tmdbId, String word) {
         this.tmdbId = tmdbId;
-        this.name = name;
+        this.word = word;
     }
 
     public static Keyword toEntity(KeywordsResultResponse keywordsResultResponse) {
         return Keyword.builder()
                 .tmdbId(keywordsResultResponse.getId())
-                .name(keywordsResultResponse.getName())
+                .word(keywordsResultResponse.getName())
                 .build();
     }
 }
