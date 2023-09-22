@@ -10,9 +10,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.util.StringUtils;
 
@@ -39,7 +37,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
 
     @Override
     public Page<ContentResponse> movieFindWithSearchConditions(Pageable pageable, MovieSearchConditions movieSearchConditions) {
-        System.out.println(pageable);
+        pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         List<Content> contentList = jpaQueryFactory.select(content)
                 .from(content)
                 .leftJoin(content.contentGenreList, contentGenre)
@@ -65,7 +63,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .distinct()
                 .orderBy(sortMovie(pageable))
                 // 내부는 0인데 실제는 1부터 시작이라 여기만 바꿔줌
-                .offset(pageable.getOffset() - pageable.getPageSize())
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
         List<Long> contentIds = contentList.stream().map(Content::getId).collect(Collectors.toList());
@@ -77,7 +75,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                                 Projections.constructor(ContentResponse.class, content)
                         )
                 );
-        JPAQuery<Long> countQuery = jpaQueryFactory.select(content.count())
+        List<Long> countQuery = jpaQueryFactory.select(content.id)
                 .from(content)
                 .leftJoin(content.contentGenreList, contentGenre)
                 .leftJoin(contentGenre.genre, genre)
@@ -99,8 +97,9 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                         eqKeyword(movieSearchConditions.getKeywords()),
                         eqCompany(movieSearchConditions.getCompanies())
                 )
-                .distinct();
-        return PageableExecutionUtils.getPage(contentResponseList, pageable, countQuery::fetchOne);
+                .distinct()
+                .fetch();
+        return new PageImpl<>(contentResponseList, pageable, countQuery.size());
 
     }
 
