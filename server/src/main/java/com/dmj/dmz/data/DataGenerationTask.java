@@ -172,7 +172,7 @@ public class DataGenerationTask {
                     }
                 }
                 for (KeywordsResultResponse k : dramaDetail.getKeywords().getResults()) {
-                    Keyword keyword = keywordRepository.findByName(k.getName());
+                    Keyword keyword = keywordRepository.findByWord(k.getName());
                     if (keyword == null) {
                         keyword = keywordRepository.save(Keyword.toEntity(k));
                     }
@@ -248,7 +248,7 @@ public class DataGenerationTask {
 
                 // 키워드 등록
                 for (KeywordsResultResponse k : movieDetail.getKeywords().getKeywords()) {
-                    Keyword keyword = keywordRepository.findByName(k.getName());
+                    Keyword keyword = keywordRepository.findByWord(k.getName());
                     if (keyword == null) {
                         keyword = keywordRepository.save(Keyword.toEntity(k));
                     }
