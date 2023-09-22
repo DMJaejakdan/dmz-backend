@@ -33,7 +33,7 @@ export function Chip({ type, label, onSelect, onDelete }: Props) {
           </span>
         </div>
       );
-    case 'keyword':
+    case 'suggestion':
       return (
         <div className={TYPE_VARIANT[type]}>
           <span>{label}</span>
