@@ -44,3 +44,12 @@
 //     },
 //   };
 // }
+
+// 해당 모듈은 삭제 바랍니다.
+export default function Home() {
+  return (
+    <>
+      <div>수정 바람</div>
+    </>
+  );
+}
