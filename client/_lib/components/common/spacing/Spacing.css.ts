@@ -1,8 +1,10 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
-const base = style({});
+const base = style({
+  // backgroundColor: 'white',
+});
 
-const spacingSizeVar = {
+export const spacingSizeVar = {
   0.25: '0.25rem',
   0.5: '0.5rem',
   0.75: '0.75rem',
@@ -13,7 +15,12 @@ const spacingSizeVar = {
   3: '3rem',
 };
 
-export const SIZE_VARIANT = styleVariants(spacingSizeVar, spacingSize => [
+export const HORIZONTAL_VARIANT = styleVariants(spacingSizeVar, spacingSize => [
   base,
   { height: spacingSize },
+]);
+
+export const VERTICAL_VARIANT = styleVariants(spacingSizeVar, spacingSize => [
+  base,
+  { width: spacingSize, height: '100%' },
 ]);

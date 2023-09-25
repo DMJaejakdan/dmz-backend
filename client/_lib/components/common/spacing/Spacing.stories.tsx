@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  // todo
-  args: { unit: '0.25' },
+  args: { type: 'horizontal', unit: 0.25 },
 };
