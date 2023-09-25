@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DramaCard } from './DramaCard';
+import { MovieCard } from './MovieCard';
 
 const meta = {
-  title: 'Archive/Card/drama-card',
-  component: DramaCard,
+  title: 'Archive/Card/movie-card',
+  component: MovieCard,
   argTypes: {},
-} satisfies Meta<typeof DramaCard>;
+} satisfies Meta<typeof MovieCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -14,13 +14,12 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     screen: 'pc',
-    dramaCardData: {
+    movieCardData: {
       thumbnail: '',
       title: '제목',
       genres: ['장르1', '장르2', '장르3'],
-      makers: ['김김김', '박박박'],
+      director: '유승윤',
       releaseYear: 1234,
-      episodesNum: 16,
     },
   },
 };
