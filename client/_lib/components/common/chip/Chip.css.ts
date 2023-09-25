@@ -28,5 +28,10 @@ export const TYPE_VARIANT = styleVariants({
       paddingRight: '0.4rem',
     },
   ],
-  suggestion: [base, { backgroundColor: theme.bg.d1 }],
+  suggestion: [base, { backgroundColor: theme.bg.d2 }],
+});
+
+export const SHAPE_VARIANT = styleVariants({
+  round: { borderRadius: 100 },
+  square: { borderRadius: '0.5rem' },
 });
