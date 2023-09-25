@@ -10,6 +10,7 @@ import com.dmj.dmz.keyword.repository.KeywordRepository;
 import com.dmj.dmz.person.entity.ContentActor;
 import com.dmj.dmz.person.entity.ContentCrew;
 import com.dmj.dmz.person.entity.Person;
+import com.dmj.dmz.person.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
