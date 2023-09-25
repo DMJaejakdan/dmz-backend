@@ -1,18 +1,24 @@
 package com.dmj.dmz.content.repository;
 
 import com.dmj.dmz.config.QuerydslConfiguration;
+import com.dmj.dmz.content.dto.request.ContentSearchConditions;
+import com.dmj.dmz.content.dto.response.ContentResponse;
 import com.dmj.dmz.content.entity.Content;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.util.StopWatch;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(QuerydslConfiguration.class)
@@ -23,17 +29,63 @@ class ContentRepositoryTest {
     @Autowired
     ContentRepository contentRepository;
 
+    @BeforeAll
+    static void toStart() {
+        System.out.println("테스트 시작");
+    }
+
     @Test
-    @DisplayName("QueryDSL 이름으로 찾기 테스트")
-    void findByName() {
+    @DisplayName("다양한 조건으로 영화 검색")
+    void movieFindBySearchConditions() {
+        StopWatch stopWatch = new StopWatch();
         /* given */
-        String searchName = "시그널";
+        ContentSearchConditions contentSearchConditions = ContentSearchConditions.builder()
+                .nameKr(null)
+//                .sDate(null)
+                .sDate("2015-09-01")
+//                .eDate(null)
+                .eDate("2017-09-21")
+                .ratings(null/*List.of("코미디")*/)
+                .genres(/*null*/List.of("미스터리"))
+                .plot("")
+                .keywords(null/*List.of("romance","smile")*/)
+                .companies(null)
+                .people(/*null*/List.of("Lee Je-hoon"))
+                .channels(/*null*/List.of("tvN"))
+                .build();
+        Pageable pageable = PageRequest.of(1, 5/*, Sort.by("nameKr").descending()*/);
         /* when */
-        List<Content> contentList = contentRepository.findByNameKrLike(searchName);
-        for (Content c : contentList) {
-            log.info(c.getNameKr());
+        stopWatch.start("검색");
+        List<ContentResponse> results = contentRepository.contentFindWithSearchConditions(pageable, contentSearchConditions).getContent();
+        stopWatch.stop();
+        for (ContentResponse c : results) {
+            System.out.println(c.toString());
         }
+        System.out.println("걸린 시간: " + stopWatch.getTotalTimeSeconds() + "초");
+
         /* then */
-        assertThat(contentList.size()).isGreaterThanOrEqualTo(0);
+        assertThat(results.size()).isEqualTo(1);
+        assertThat(results.get(0).getNameKr()).isEqualTo("시그널");
+    }
+
+    @Test
+    @DisplayName("fetchJoin Test")
+    void findWithSearchConditionsFetchJoin() {
+        StopWatch stopWatch = new StopWatch();
+        /* given */
+        String searchName = "";
+        String sDate = "2023-09-01";
+        String eDate = "2023-09-21";
+        List<String> ratings = null;
+        List<String> genres = null;
+        /* when */
+        stopWatch.start("검색");
+        List<Content> results = contentRepository.findWithSearchConditionsFetchJoin(searchName, sDate, eDate, ratings, genres);
+        stopWatch.stop();
+        System.out.println("걸린 시간: " + stopWatch.getTotalTimeSeconds() + "초");
+        log.info(results.toString());
+        for (Content c : results) {
+            System.out.println(c.toString());
+        }
     }
 }

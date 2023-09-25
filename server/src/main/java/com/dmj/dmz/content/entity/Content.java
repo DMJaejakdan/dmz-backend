@@ -1,6 +1,9 @@
 package com.dmj.dmz.content.entity;
 
 import com.dmj.dmz.data.response.*;
+import com.dmj.dmz.keyword.entity.ContentKeyword;
+import com.dmj.dmz.person.entity.ContentActor;
+import com.dmj.dmz.person.entity.ContentCrew;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +38,30 @@ public class Content {
     @Column(length = 5000)
     private String plot;
 
+    @OneToMany(mappedBy = "content")
+    private List<ContentGenre> contentGenreList;
+
+    @OneToMany(mappedBy = "content")
+    private List<ContentKeyword> contentKeywordList;
+    @OneToMany(mappedBy = "content")
+    private List<ContentCompany> contentCompanyList;
+
+    @OneToMany(mappedBy = "content")
+    private List<ContentActor> contentActorList;
+
+    @OneToMany(mappedBy = "content")
+    private List<ContentCrew> contentCrewList;
+    // 실제로 하나임
+    @OneToMany(mappedBy = "content")
+    private List<DramaInfo> dramaInfo;
+
+
+    // 실제로는 하나임
+    @OneToMany(mappedBy = "content")
+    private List<MovieInfo> movieInfo;
+
     @Builder
-    public Content(long tmdbId, String nameKr, String nameEn, ContentKind kind, String posterPath, LocalDate releasedDate, String rating, String plot) {
+    public Content(long tmdbId, String nameKr, String nameEn, ContentKind kind, String posterPath, LocalDate releasedDate, String rating, String plot, List<ContentGenre> contentGenreList, List<ContentKeyword> contentKeywordList, List<ContentCompany> contentCompanyList, List<ContentActor> contentActorList, List<ContentCrew> contentCrewList, List<DramaInfo> dramaInfo, List<MovieInfo> movieInfo) {
         this.tmdbId = tmdbId;
         this.nameKr = nameKr;
         this.nameEn = nameEn;
@@ -44,6 +70,13 @@ public class Content {
         this.releasedDate = releasedDate;
         this.rating = rating;
         this.plot = plot;
+        this.contentGenreList = contentGenreList;
+        this.contentKeywordList = contentKeywordList;
+        this.contentCompanyList = contentCompanyList;
+        this.contentActorList = contentActorList;
+        this.contentCrewList = contentCrewList;
+        this.dramaInfo = dramaInfo;
+        this.movieInfo = movieInfo;
     }
 
     public static Content toEntity(String flag, MovieDramaResultResponse result, MovieDramaDetailResponse movieDramaDetailResponse) {

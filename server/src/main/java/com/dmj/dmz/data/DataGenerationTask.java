@@ -10,6 +10,7 @@ import com.dmj.dmz.keyword.repository.KeywordRepository;
 import com.dmj.dmz.person.entity.ContentActor;
 import com.dmj.dmz.person.entity.ContentCrew;
 import com.dmj.dmz.person.entity.Person;
+import com.dmj.dmz.person.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -172,7 +173,7 @@ public class DataGenerationTask {
                     }
                 }
                 for (KeywordsResultResponse k : dramaDetail.getKeywords().getResults()) {
-                    Keyword keyword = keywordRepository.findByName(k.getName());
+                    Keyword keyword = keywordRepository.findByWord(k.getName());
                     if (keyword == null) {
                         keyword = keywordRepository.save(Keyword.toEntity(k));
                     }
@@ -248,7 +249,7 @@ public class DataGenerationTask {
 
                 // 키워드 등록
                 for (KeywordsResultResponse k : movieDetail.getKeywords().getKeywords()) {
-                    Keyword keyword = keywordRepository.findByName(k.getName());
+                    Keyword keyword = keywordRepository.findByWord(k.getName());
                     if (keyword == null) {
                         keyword = keywordRepository.save(Keyword.toEntity(k));
                     }
