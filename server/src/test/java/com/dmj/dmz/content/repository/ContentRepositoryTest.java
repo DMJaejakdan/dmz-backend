@@ -1,7 +1,7 @@
 package com.dmj.dmz.content.repository;
 
 import com.dmj.dmz.config.QuerydslConfiguration;
-import com.dmj.dmz.content.dto.request.MovieSearchConditions;
+import com.dmj.dmz.content.dto.request.ContentSearchConditions;
 import com.dmj.dmz.content.dto.response.ContentResponse;
 import com.dmj.dmz.content.entity.Content;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +14,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.util.StopWatch;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -41,27 +39,33 @@ class ContentRepositoryTest {
     void movieFindBySearchConditions() {
         StopWatch stopWatch = new StopWatch();
         /* given */
-        MovieSearchConditions movieSearchConditions = MovieSearchConditions.builder()
-                .nameKr("")
-                .sDate(null)
-//                .sDate(LocalDate.parse("2023-09-01"))
-                .eDate(null)
-//                .eDate(LocalDate.parse("2023-09-21"))
+        ContentSearchConditions contentSearchConditions = ContentSearchConditions.builder()
+                .nameKr(null)
+//                .sDate(null)
+                .sDate("2015-09-01")
+//                .eDate(null)
+                .eDate("2017-09-21")
                 .ratings(null/*List.of("코미디")*/)
-                .genres(null/*List.of("코미디","드라마")*/)
+                .genres(/*null*/List.of("미스터리"))
                 .plot("")
-                .keywords(/*null*/List.of("romance","smile"))
+                .keywords(null/*List.of("romance","smile")*/)
                 .companies(null)
+                .people(/*null*/List.of("Lee Je-hoon"))
+                .channels(/*null*/List.of("tvN"))
                 .build();
         Pageable pageable = PageRequest.of(1, 5/*, Sort.by("nameKr").descending()*/);
         /* when */
         stopWatch.start("검색");
-        List<ContentResponse> results = contentRepository.movieFindWithSearchConditions(pageable, movieSearchConditions).getContent();
+        List<ContentResponse> results = contentRepository.contentFindWithSearchConditions(pageable, contentSearchConditions).getContent();
         stopWatch.stop();
         for (ContentResponse c : results) {
             System.out.println(c.toString());
         }
         System.out.println("걸린 시간: " + stopWatch.getTotalTimeSeconds() + "초");
+
+        /* then */
+        assertThat(results.size()).isEqualTo(1);
+        assertThat(results.get(0).getNameKr()).isEqualTo("시그널");
     }
 
     @Test
@@ -70,8 +74,8 @@ class ContentRepositoryTest {
         StopWatch stopWatch = new StopWatch();
         /* given */
         String searchName = "";
-        LocalDate sDate = LocalDate.parse("2023-09-01");
-        LocalDate eDate = LocalDate.parse("2023-09-21");
+        String sDate = "2023-09-01";
+        String eDate = "2023-09-21";
         List<String> ratings = null;
         List<String> genres = null;
         /* when */

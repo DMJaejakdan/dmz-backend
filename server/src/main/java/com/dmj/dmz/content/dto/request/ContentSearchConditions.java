@@ -9,13 +9,15 @@ import java.util.List;
 @Setter
 @Builder
 @ToString
-public class MovieSearchConditions {
+public class ContentSearchConditions {
     String nameKr;
-    LocalDate sDate;
-    LocalDate eDate;
+    String sDate;
+    String eDate;
     List<String> ratings;
     List<String> genres;
     String plot;
     List<String> keywords;
     List<String> companies;
+    List<String> people;
+    List<String> channels;
 }
