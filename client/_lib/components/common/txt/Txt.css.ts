@@ -21,7 +21,7 @@ const fontSizeVar = {
 
 export const SIZE_VARIANT = styleVariants(fontSizeVar, fontSize => [
   base,
-  { fontSize: fontSize, marginBottom: fontSize },
+  { fontSize: fontSize },
 ]);
 
 const fontWeightsVar = {
@@ -43,5 +43,6 @@ export const ALIGN_VARIANT = styleVariants({
 
 export const COLOR_VARIANT = styleVariants({
   black: { color: theme.txt.black },
+  disabled: { color: theme.txt.disabled },
   white: { color: theme.txt.white },
 });
