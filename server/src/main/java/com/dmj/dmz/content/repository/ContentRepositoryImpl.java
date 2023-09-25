@@ -1,17 +1,16 @@
 package com.dmj.dmz.content.repository;
 
-import com.dmj.dmz.content.dto.request.MovieSearchConditions;
+import com.dmj.dmz.content.dto.request.ContentSearchConditions;
 import com.dmj.dmz.content.dto.response.ContentResponse;
 import com.dmj.dmz.content.entity.Content;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
-import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
@@ -27,6 +26,7 @@ import static com.dmj.dmz.content.entity.QGenre.genre;
 import static com.dmj.dmz.content.entity.QMovieInfo.movieInfo;
 import static com.dmj.dmz.keyword.entity.QContentKeyword.contentKeyword;
 import static com.dmj.dmz.keyword.entity.QKeyword.keyword;
+import static com.dmj.dmz.person.entity.QContentActor.contentActor;
 import static com.dmj.dmz.person.entity.QContentCrew.contentCrew;
 import static com.dmj.dmz.person.entity.QPerson.person;
 import static com.querydsl.core.group.GroupBy.groupBy;
@@ -36,7 +36,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public Page<ContentResponse> movieFindWithSearchConditions(Pageable pageable, MovieSearchConditions movieSearchConditions) {
+    public Page<ContentResponse> contentFindWithSearchConditions(Pageable pageable, ContentSearchConditions contentSearchConditions) {
         pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         List<Content> contentList = jpaQueryFactory.select(content)
                 .from(content)
@@ -44,6 +44,8 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .leftJoin(contentGenre.genre, genre)
                 .leftJoin(content.contentCrewList, contentCrew)
                 .leftJoin(contentCrew.person, person)
+                .leftJoin(content.contentActorList,contentActor)
+                .leftJoin(contentActor.person,person)
                 .leftJoin(content.contentKeywordList, contentKeyword)
                 .leftJoin(contentKeyword.keyword, keyword)
                 .leftJoin(content.contentCompanyList, contentCompany)
@@ -51,14 +53,15 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .leftJoin(content.movieInfo, movieInfo)
                 .leftJoin(content.dramaInfo, dramaInfo)
                 .where(
-                        containsNameKr(movieSearchConditions.getNameKr()),
-                        goeDate(movieSearchConditions.getSDate()),
-                        loeDate(movieSearchConditions.getEDate()),
-                        eqGenre(movieSearchConditions.getGenres()),
-                        eqRating(movieSearchConditions.getRatings()),
-                        containsPlot(movieSearchConditions.getPlot()),
-                        eqKeyword(movieSearchConditions.getKeywords()),
-                        eqCompany(movieSearchConditions.getCompanies())
+                        containsNameKr(contentSearchConditions.getNameKr()),
+                        goeDate(LocalDate.parse(contentSearchConditions.getSDate())),
+                        loeDate(LocalDate.parse(contentSearchConditions.getEDate())),
+                        eqGenre(contentSearchConditions.getGenres()),
+                        eqRating(contentSearchConditions.getRatings()),
+                        containsPlot(contentSearchConditions.getPlot()),
+                        eqKeyword(contentSearchConditions.getKeywords()),
+                        eqCompany(contentSearchConditions.getCompanies()),
+                        andPerson(contentSearchConditions.getPeople())
                 )
                 .distinct()
                 .orderBy(sortMovie(pageable))
@@ -66,6 +69,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
+
         List<Long> contentIds = contentList.stream().map(Content::getId).collect(Collectors.toList());
         List<ContentResponse> contentResponseList = jpaQueryFactory.selectFrom(content)
                 .where(content.id.in(contentIds))
@@ -81,6 +85,8 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .leftJoin(contentGenre.genre, genre)
                 .leftJoin(content.contentCrewList, contentCrew)
                 .leftJoin(contentCrew.person, person)
+                .leftJoin(content.contentActorList,contentActor)
+                .leftJoin(contentActor.person,person)
                 .leftJoin(content.contentKeywordList, contentKeyword)
                 .leftJoin(contentKeyword.keyword, keyword)
                 .leftJoin(content.contentCompanyList, contentCompany)
@@ -88,14 +94,15 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .leftJoin(content.movieInfo, movieInfo)
                 .leftJoin(content.dramaInfo, dramaInfo)
                 .where(
-                        containsNameKr(movieSearchConditions.getNameKr()),
-                        goeDate(movieSearchConditions.getSDate()),
-                        loeDate(movieSearchConditions.getEDate()),
-                        eqGenre(movieSearchConditions.getGenres()),
-                        eqRating(movieSearchConditions.getRatings()),
-                        containsPlot(movieSearchConditions.getPlot()),
-                        eqKeyword(movieSearchConditions.getKeywords()),
-                        eqCompany(movieSearchConditions.getCompanies())
+                        containsNameKr(contentSearchConditions.getNameKr()),
+                        goeDate(LocalDate.parse(contentSearchConditions.getSDate())),
+                        loeDate(LocalDate.parse(contentSearchConditions.getEDate())),
+                        eqGenre(contentSearchConditions.getGenres()),
+                        eqRating(contentSearchConditions.getRatings()),
+                        containsPlot(contentSearchConditions.getPlot()),
+                        eqKeyword(contentSearchConditions.getKeywords()),
+                        eqCompany(contentSearchConditions.getCompanies()),
+                        andPerson(contentSearchConditions.getPeople())
                 )
                 .distinct()
                 .fetch();
@@ -105,7 +112,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
 
     /* 비교용 쿼리 */
     @Override
-    public List<Content> findWithSearchConditionsFetchJoin(String nameKr, LocalDate sDate, LocalDate eDate, List<String> ratingList, List<String> genreList) {
+    public List<Content> findWithSearchConditionsFetchJoin(String nameKr, String sDate, String eDate, List<String> ratingList, List<String> genreList) {
         return jpaQueryFactory.selectFrom(content)
                 .leftJoin(content.contentGenreList, contentGenre)
                 .fetchJoin()
@@ -172,6 +179,26 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
         return company.name.in(companies);
     }
 
+    private BooleanBuilder andPerson(List<String> people) {
+        if (people == null) {
+            return null;
+        }
+
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+
+        for (String p: people) {
+            booleanBuilder.and(person.nameKr.eq(p));
+        }
+
+        return booleanBuilder;
+    }
+
+    private BooleanExpression eqChannel(List<String> channels) {
+        if (channels == null) {
+            return null;
+        }
+        return dramaInfo.channel.in(channels);
+    }
 
     private OrderSpecifier<?> sortMovie(Pageable pageable) {
         if (!pageable.getSort().isEmpty()) {
