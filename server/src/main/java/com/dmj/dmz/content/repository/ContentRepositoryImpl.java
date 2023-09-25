@@ -37,6 +37,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
 
     @Override
     public Page<ContentResponse> contentFindWithSearchConditions(Pageable pageable, ContentSearchConditions contentSearchConditions) {
+        // 깔끔하게 1시작을 여기서 바꿔줌
         pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         List<Content> contentList = jpaQueryFactory.select(content)
                 .from(content)
@@ -44,8 +45,8 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .leftJoin(contentGenre.genre, genre)
                 .leftJoin(content.contentCrewList, contentCrew)
                 .leftJoin(contentCrew.person, person)
-                .leftJoin(content.contentActorList,contentActor)
-                .leftJoin(contentActor.person,person)
+                .leftJoin(content.contentActorList, contentActor)
+                .leftJoin(contentActor.person, person)
                 .leftJoin(content.contentKeywordList, contentKeyword)
                 .leftJoin(contentKeyword.keyword, keyword)
                 .leftJoin(content.contentCompanyList, contentCompany)
@@ -61,11 +62,11 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                         containsPlot(contentSearchConditions.getPlot()),
                         eqKeyword(contentSearchConditions.getKeywords()),
                         eqCompany(contentSearchConditions.getCompanies()),
-                        andPerson(contentSearchConditions.getPeople())
+                        andPerson(contentSearchConditions.getPeople()),
+                        eqChannel(contentSearchConditions.getChannels())
                 )
                 .distinct()
                 .orderBy(sortMovie(pageable))
-                // 내부는 0인데 실제는 1부터 시작이라 여기만 바꿔줌
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -85,8 +86,8 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .leftJoin(contentGenre.genre, genre)
                 .leftJoin(content.contentCrewList, contentCrew)
                 .leftJoin(contentCrew.person, person)
-                .leftJoin(content.contentActorList,contentActor)
-                .leftJoin(contentActor.person,person)
+                .leftJoin(content.contentActorList, contentActor)
+                .leftJoin(contentActor.person, person)
                 .leftJoin(content.contentKeywordList, contentKeyword)
                 .leftJoin(contentKeyword.keyword, keyword)
                 .leftJoin(content.contentCompanyList, contentCompany)
@@ -102,14 +103,13 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                         containsPlot(contentSearchConditions.getPlot()),
                         eqKeyword(contentSearchConditions.getKeywords()),
                         eqCompany(contentSearchConditions.getCompanies()),
-                        andPerson(contentSearchConditions.getPeople())
+                        andPerson(contentSearchConditions.getPeople()),
+                        eqChannel(contentSearchConditions.getChannels())
                 )
                 .distinct()
                 .fetch();
         return new PageImpl<>(contentResponseList, pageable, countQuery.size());
-
     }
-
     /* 비교용 쿼리 */
     @Override
     public List<Content> findWithSearchConditionsFetchJoin(String nameKr, String sDate, String eDate, List<String> ratingList, List<String> genreList) {
@@ -186,7 +186,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
 
-        for (String p: people) {
+        for (String p : people) {
             booleanBuilder.and(person.nameKr.eq(p));
         }
 
