@@ -12,7 +12,7 @@ export function FilterBox({ title, options, onSelect }: Props) {
   return (
     <div className={box_base}>
       <Txt weight="bold" content={title} />
-      <Spacing unit="0.5" />
+      <Spacing unit={0.5} />
       <div>
         {options.map((item, idx) => (
           <Chip key={idx} type="filter" label={item} onSelect={onSelect} />
