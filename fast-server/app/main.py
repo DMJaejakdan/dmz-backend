@@ -7,12 +7,7 @@ app = FastAPI()
 
 server_timezone = pytz.timezone('Asia/Seoul')
 
-@app.get("/data")
+@app.get("/fapi")
 def read_root():
     current_time = datetime.now(server_timezone)
     return {"message": "현재 시각: {}".format(current_time)}
-
-
-@app.get("/data/hello")
-def say_hello():
-    return "hello..."
