@@ -4,16 +4,9 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                def CURRENT_BRANCH = null
-                if (env.GIT_BRANCH) {
-                    CURRENT_BRANCH = env.GIT_BRANCH 
-                } else {
-                    CURRENT_BRANCH = 'develop'
-                }
-                
                 echo 'Clone Repository'
-                echo 'Branch : ${CURRENT_BRANCH}'
-                git branch: '${CURRENT_BRANCH}', url: 'https://lab.ssafy.com/s09-bigdata-dist-sub2/S09P22A602', credentialsId: 'gitlab_dmz_jyj2487'
+                echo 'Branch : develop'
+                git branch: 'develop', url: 'https://lab.ssafy.com/s09-bigdata-dist-sub2/S09P22A602', credentialsId: 'gitlab_dmz_jyj2487'
             }
         }
 
