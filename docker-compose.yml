@@ -20,3 +20,13 @@ services:
       - '8080:8080'
     environment:
       - TZ=Asia/Seoul
+
+  fast:
+    image: jyj2487/fast-app
+    build:
+      context: ./fast-server
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    environment:
+      - TZ=Asia/Seoul
