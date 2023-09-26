@@ -16,7 +16,6 @@ import {
 
 /**
  * @todo 이미지 없을 때 기본이미지
- * @todo chip wrap됐을 때 line height가 0임
  */
 
 interface DramaCardDataProps {
