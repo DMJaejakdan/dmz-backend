@@ -5,8 +5,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 def CURRENT_BRANCH = null
-                if (env.gitlabBranch) {
-                    CURRENT_BRANCH = env.gitlabBranch
+                if (env.GIT_BRANCH) {
+                    CURRENT_BRANCH = env.GIT_BRANCH 
                 } else {
                     CURRENT_BRANCH = 'develop'
                 }
