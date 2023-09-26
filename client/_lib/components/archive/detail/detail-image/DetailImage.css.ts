@@ -2,12 +2,12 @@ import { theme } from '#/design/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const img_container = style({
-  position: 'relative',
+  position: 'fixed',
   left: '100%',
   transform: 'translate(-100%, 0)',
   height: '100vh',
   aspectRatio: '2/3',
-  // 임시
+
   backgroundColor: 'grey',
 });
 
