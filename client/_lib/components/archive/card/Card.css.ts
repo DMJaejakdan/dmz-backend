@@ -12,15 +12,12 @@ export const SCREEN_VARIANT = styleVariants({
       maxWidth: 600,
       height: 200,
       display: 'flex',
-      // 임시
-      // border: '1px solid white',
     },
   ],
   mobile: [
     base,
     {
       position: 'relative',
-      // 마진 ok?
       margin: '0.5rem',
       borderRadius: '1.5rem',
 
@@ -45,7 +42,6 @@ export const mobile_text_container = style({
 export const text_line = style({
   display: 'flex',
   flexWrap: 'wrap',
-  // height: 'fit-content',
 });
 
 export const pc_img_container = style({
