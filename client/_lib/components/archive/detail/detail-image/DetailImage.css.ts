@@ -3,8 +3,7 @@ import { style } from '@vanilla-extract/css';
 
 export const img_container = style({
   position: 'fixed',
-  left: '100%',
-  transform: 'translate(-100%, 0)',
+  right: 0,
   height: '100vh',
   aspectRatio: '2/3',
 
