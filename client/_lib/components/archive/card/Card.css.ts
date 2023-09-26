@@ -61,6 +61,10 @@ export const mobile_img_container = style({
   borderRadius: '1.5rem',
 });
 
+export const thumbnail_img = style({
+  borderRadius: '1.5rem',
+});
+
 export const default_img = style({
   backgroundColor: theme.bg.disabled,
   width: '100%',

@@ -4,6 +4,7 @@ import { Chip } from '#/components/common/chip/Chip';
 import { Txt } from '#/components/common/txt/Txt';
 import { Spacing } from '#/components/common/spacing/Spacing';
 import {
+  thumbnail_img,
   default_img,
   pc_img_container,
   mobile_img_container,
@@ -55,9 +56,10 @@ export function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
             layout="fill"
             objectFit="cover"
             objectPosition="center"
+            className={thumbnail_img}
           />
         ) : (
-          <div className={default_img}>이미지업슴</div>
+          <div className={default_img} />
         )}
       </div>
       <Spacing type="vertical" />
