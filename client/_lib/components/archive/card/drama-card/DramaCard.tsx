@@ -15,10 +15,6 @@ import {
   text_line,
 } from '../Card.css';
 
-/**
- * @todo 이미지 없을 때 기본이미지
- */
-
 interface DramaCardDataProps {
   thumbnail: string;
   title: string;
@@ -54,7 +50,6 @@ export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
 
   return (
     <div className={SCREEN_VARIANT[screen]} {...props}>
-      {/* 썸네일 정보 */}
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -70,12 +65,9 @@ export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
         )}
       </div>
       {screen === 'pc' ? <Spacing type="vertical" /> : null}
-      {/* 텍스트 정보 */}
       <div className={textContainer}>
-        {/* 제목 */}
         <Title content={title} hn="h3" />
         <Spacing unit={lineSpace} />
-        {/* 장르 */}
         <div className={text_line}>
           {genres.map((genre, idx) => (
             <div key={idx} className={text_line}>
@@ -85,7 +77,6 @@ export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
           ))}
         </div>
         <Spacing unit={lineSpace} />
-        {/* 제작 */}
         <div className={text_line}>
           <Txt content={card.drama.label.maker} color="disabled" />
           <Spacing type="vertical" unit={txtSpace} />
@@ -97,14 +88,12 @@ export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
           ))}
         </div>
         <Spacing unit={lineSpace} />
-        {/* 연도 */}
         <div className={text_line}>
           <Txt content={card.drama.label.releaseYear} color="disabled" />
           <Spacing type="vertical" unit={txtSpace} />
           <Txt content={releaseYear.toString()} />
         </div>
         <Spacing unit={lineSpace} />
-        {/* 회차 */}
         <div className={text_line}>
           <Txt content={card.drama.label.episodeNum} color="disabled" />
           <Spacing type="vertical" unit={txtSpace} />

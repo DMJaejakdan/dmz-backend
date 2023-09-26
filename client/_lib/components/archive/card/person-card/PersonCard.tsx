@@ -47,7 +47,6 @@ export function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
   }
   return (
     <div className={SCREEN_VARIANT[screen]} {...props}>
-      {/* 썸네일 정보 */}
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -63,13 +62,10 @@ export function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
         )}
       </div>
       <Spacing type="vertical" />
-      {/* 텍스트 정보 */}
       <div className={textContainer}>
-        {/* 제목 */}
         <Title content={name} hn="h3" />
         <Spacing unit={lineSpace} />
 
-        {/* 성별, 생년 */}
         <div className={text_line}>
           <Spacing type="vertical" unit={txtIndent} />
           <Txt content={sex} color="disabled" />

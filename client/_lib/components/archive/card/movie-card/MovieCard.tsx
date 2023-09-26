@@ -47,7 +47,6 @@ export function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
   }
   return (
     <div className={SCREEN_VARIANT[screen]} {...props}>
-      {/* 썸네일 정보 */}
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -63,12 +62,9 @@ export function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
         )}
       </div>
       <Spacing type="vertical" />
-      {/* 텍스트 정보 */}
       <div className={textContainer}>
-        {/* 제목 */}
         <Title content={title} hn="h3" />
         <Spacing unit={lineSpace} />
-        {/* 장르 */}
         <div className={text_line}>
           {genres.map((genre, idx) => (
             <div key={idx} className={text_line}>
@@ -78,14 +74,12 @@ export function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
           ))}
         </div>
         <Spacing unit={lineSpace} />
-        {/* 제작 */}
         <div className={text_line}>
           <Txt content={card.movie.label.director} color="disabled" />
           <Spacing type="vertical" unit={txtSpace} />
           <Txt content={director} />
         </div>
         <Spacing unit={lineSpace} />
-        {/* 연도 */}
         <div className={text_line}>
           <Txt content={card.movie.label.releaseYaer} color="disabled" />
           <Spacing type="vertical" unit={txtSpace} />

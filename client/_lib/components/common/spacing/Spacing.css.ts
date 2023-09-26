@@ -1,8 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
-const base = style({
-  // backgroundColor: 'white',
-});
+const base = style({});
 
 export const spacingSizeVar = {
   0.25: '0.25rem',

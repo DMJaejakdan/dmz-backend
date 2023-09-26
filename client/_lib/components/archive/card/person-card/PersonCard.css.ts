@@ -1,4 +1,3 @@
-// import { theme } from '#/design/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 
 const base = style({ cursor: 'pointer' });
