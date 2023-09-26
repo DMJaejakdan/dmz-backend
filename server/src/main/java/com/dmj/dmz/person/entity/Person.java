@@ -1,7 +1,6 @@
 package com.dmj.dmz.person.entity;
 
 import com.dmj.dmz.data.response.CastCrewResponse;
-import com.dmj.dmz.data.response.CastResponse;
 import com.dmj.dmz.data.response.PersonDetailResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -40,8 +40,14 @@ public class Person {
     @Column(nullable = false)
     private String area;
 
+    @OneToMany(mappedBy = "person")
+    private List<ContentActor> contentActors;
+
+    @OneToMany(mappedBy = "person")
+    private List<ContentCrew> contentCrews;
+
     @Builder
-    public Person(Long tmdbId, String nameKr, String nameEn, String profilePath, LocalDate birth, LocalDate death, int gender, String area) {
+    public Person(Long tmdbId, String nameKr, String nameEn, String profilePath, LocalDate birth, LocalDate death, int gender, String area, List<ContentActor> contentActors, List<ContentCrew> contentCrews) {
         this.tmdbId = tmdbId;
         this.nameKr = nameKr;
         this.nameEn = nameEn;
@@ -50,6 +56,8 @@ public class Person {
         this.death = death;
         this.gender = gender;
         this.area = area;
+        this.contentActors = contentActors;
+        this.contentCrews = contentCrews;
     }
 
     public static Person toEntity(CastCrewResponse castCrewResponse, PersonDetailResponse personDetailResponse) {

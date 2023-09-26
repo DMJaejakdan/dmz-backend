@@ -1,4 +1,4 @@
-package com.dmj.dmz.person.entity.dto.request;
+package com.dmj.dmz.person.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;

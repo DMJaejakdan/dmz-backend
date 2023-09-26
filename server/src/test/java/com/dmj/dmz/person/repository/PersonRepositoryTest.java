@@ -1,9 +1,8 @@
-package com.dmj.dmz.content.repository;
+package com.dmj.dmz.person.repository;
 
 import com.dmj.dmz.config.QuerydslConfiguration;
-import com.dmj.dmz.person.entity.dto.response.PersonResponse;
-import com.dmj.dmz.person.entity.dto.request.PersonSearchConditions;
-import com.dmj.dmz.person.repository.PersonRepository;
+import com.dmj.dmz.person.dto.request.PersonSearchConditions;
+import com.dmj.dmz.person.dto.response.PersonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

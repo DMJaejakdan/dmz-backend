@@ -1,4 +1,4 @@
-package com.dmj.dmz.person.entity.dto.response;
+package com.dmj.dmz.person.dto.response;
 
 import com.dmj.dmz.person.entity.Person;
 import com.querydsl.core.annotations.QueryProjection;

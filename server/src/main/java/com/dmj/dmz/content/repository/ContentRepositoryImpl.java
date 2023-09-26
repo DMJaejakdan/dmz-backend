@@ -3,6 +3,7 @@ package com.dmj.dmz.content.repository;
 import com.dmj.dmz.content.dto.request.ContentSearchConditions;
 import com.dmj.dmz.content.dto.response.ContentResponse;
 import com.dmj.dmz.content.entity.Content;
+import com.dmj.dmz.content.entity.Content.ContentKind;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
@@ -63,7 +64,8 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                         eqKeyword(contentSearchConditions.getKeywords()),
                         eqCompany(contentSearchConditions.getCompanies()),
                         andPerson(contentSearchConditions.getPeople()),
-                        eqChannel(contentSearchConditions.getChannels())
+                        eqChannel(contentSearchConditions.getChannels()),
+                        eqKind(contentSearchConditions.getKind())
                 )
                 .distinct()
                 .orderBy(sortMovie(pageable))
@@ -104,7 +106,8 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                         eqKeyword(contentSearchConditions.getKeywords()),
                         eqCompany(contentSearchConditions.getCompanies()),
                         andPerson(contentSearchConditions.getPeople()),
-                        eqChannel(contentSearchConditions.getChannels())
+                        eqChannel(contentSearchConditions.getChannels()),
+                        eqKind(contentSearchConditions.getKind())
                 )
                 .distinct()
                 .fetch();
@@ -123,6 +126,12 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .fetch();
     }
 
+    private BooleanExpression eqKind(final ContentKind contentKind) {
+        if (contentKind == null) {
+            return null;
+        }
+        return content.kind.eq(contentKind);
+    }
     private BooleanExpression containsNameKr(final String nameKr) {
         if (!StringUtils.hasText(nameKr)) {
             return null;

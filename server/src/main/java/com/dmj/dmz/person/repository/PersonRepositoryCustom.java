@@ -1,7 +1,7 @@
 package com.dmj.dmz.person.repository;
 
-import com.dmj.dmz.person.entity.dto.response.PersonResponse;
-import com.dmj.dmz.person.entity.dto.request.PersonSearchConditions;
+import com.dmj.dmz.person.dto.response.PersonResponse;
+import com.dmj.dmz.person.dto.request.PersonSearchConditions;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
