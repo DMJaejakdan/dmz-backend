@@ -1,27 +1,54 @@
 import { theme } from '#/design/theme.css';
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
-export const media_card_base = style({
-  padding: '0.5rem',
-  minWidth: 400,
-  maxWidth: 600,
-  height: 200,
-  display: 'flex',
-  // 임시
-  border: '1px solid white',
+const base = style({});
+
+export const SCREEN_VARIANT = styleVariants({
+  pc: [
+    base,
+    {
+      padding: '0.5rem',
+      minWidth: 400,
+      maxWidth: 600,
+      height: 200,
+      display: 'flex',
+      // 임시
+      // border: '1px solid white',
+    },
+  ],
+  mobile: [
+    base,
+    {
+      position: 'relative',
+      // 마진 ok?
+      margin: '0.5rem',
+      borderRadius: '1.5rem',
+
+      textAlign: 'center',
+      width: '50%',
+      aspectRatio: '2/3',
+    },
+  ],
 });
 
-export const text_container = style({
+export const pc_text_container = style({
   width: '100%',
+});
+
+export const mobile_text_container = style({
+  padding: '1rem',
+  zIndex: 1,
+  position: 'absolute',
+  bottom: 0,
 });
 
 export const text_line = style({
   display: 'flex',
   flexWrap: 'wrap',
-  height: 'fit-content',
+  // height: 'fit-content',
 });
 
-export const img_container = style({
+export const pc_img_container = style({
   position: 'relative',
   borderRadius: '1.5rem',
   height: '100%',
@@ -30,4 +57,17 @@ export const img_container = style({
   textAlign: 'center',
 });
 
-export const default_img = style({});
+export const mobile_img_container = style({
+  position: 'absolute',
+  filter: 'brightness(50%)',
+  width: '100%',
+  height: '100%',
+  borderRadius: '1.5rem',
+});
+
+export const default_img = style({
+  backgroundColor: theme.bg.disabled,
+  width: '100%',
+  height: '100%',
+  borderRadius: '1.5rem',
+});
