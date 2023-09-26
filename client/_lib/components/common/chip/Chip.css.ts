@@ -10,6 +10,7 @@ const base = style({
   fontSize: '0.8rem',
   lineHeight: 0,
   padding: '0 0.75rem 0 0.75rem',
+  marginBottom: '0.125rem',
   color: theme.colors.white,
   fontFamily: theme.font.rg,
   fontWeight: 400,
