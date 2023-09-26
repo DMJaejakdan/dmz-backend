@@ -9,12 +9,6 @@ import {
   WIDTH_VARIANT,
 } from './Button.css';
 
-/**
- * @author 박성준
- * @todo 흰 회 검 말고 임의색을 background로 하는 건 안함
- */
-
-// 버튼 라벨, 테마, 타입, 크기, 라운드/스퀘어, 너비full
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   btnType?: 'button' | 'submit' | 'reset';

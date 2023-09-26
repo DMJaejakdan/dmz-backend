@@ -27,7 +27,7 @@ export const WEIGHT_VARIANT = styleVariants(fontWeightsVar, fontWeights => [
 
 export const SIZE_VARIANT = styleVariants(fontSizeVar, fontSize => [
   base,
-  { fontSize: fontSize, marginBottom: fontSize },
+  { fontSize: fontSize },
 ]);
 
 export const ALIGN_VARIANT = styleVariants({

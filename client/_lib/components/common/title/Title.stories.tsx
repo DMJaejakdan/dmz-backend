@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { theme } from '#/design/theme.css';
 import { Title } from './Title';
 
 const meta = {
@@ -11,6 +12,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  // todo
   args: { hn: 'h1', content: 'Title', color: 'white' },
 };

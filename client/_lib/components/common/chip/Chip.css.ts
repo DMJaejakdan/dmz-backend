@@ -10,6 +10,7 @@ const base = style({
   fontSize: '0.8rem',
   lineHeight: 0,
   padding: '0 0.75rem 0 0.75rem',
+  marginBottom: '0.125rem',
   color: theme.colors.white,
   fontFamily: theme.font.rg,
   fontWeight: 400,
@@ -28,5 +29,10 @@ export const TYPE_VARIANT = styleVariants({
       paddingRight: '0.4rem',
     },
   ],
-  suggestion: [base, { backgroundColor: theme.bg.d1 }],
+  suggestion: [base, { backgroundColor: theme.bg.d2 }],
+});
+
+export const SHAPE_VARIANT = styleVariants({
+  round: { borderRadius: 100 },
+  square: { borderRadius: '0.5rem' },
 });
