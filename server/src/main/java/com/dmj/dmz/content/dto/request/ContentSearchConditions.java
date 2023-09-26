@@ -1,5 +1,7 @@
 package com.dmj.dmz.content.dto.request;
 
+import com.dmj.dmz.content.entity.Content;
+import com.dmj.dmz.content.entity.Content.ContentKind;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -10,6 +12,7 @@ import java.util.List;
 @Builder
 @ToString
 public class ContentSearchConditions {
+    ContentKind kind;
     String nameKr;
     String sDate;
     String eDate;

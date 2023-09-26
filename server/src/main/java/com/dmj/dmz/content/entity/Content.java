@@ -51,14 +51,15 @@ public class Content {
 
     @OneToMany(mappedBy = "content")
     private List<ContentCrew> contentCrewList;
+
     // 실제로 하나임
     @OneToMany(mappedBy = "content")
     private List<DramaInfo> dramaInfo;
 
-
     // 실제로는 하나임
     @OneToMany(mappedBy = "content")
     private List<MovieInfo> movieInfo;
+
 
     @Builder
     public Content(long tmdbId, String nameKr, String nameEn, ContentKind kind, String posterPath, LocalDate releasedDate, String rating, String plot, List<ContentGenre> contentGenreList, List<ContentKeyword> contentKeywordList, List<ContentCompany> contentCompanyList, List<ContentActor> contentActorList, List<ContentCrew> contentCrewList, List<DramaInfo> dramaInfo, List<MovieInfo> movieInfo) {

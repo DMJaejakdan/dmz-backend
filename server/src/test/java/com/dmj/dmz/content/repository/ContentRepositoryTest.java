@@ -35,11 +35,12 @@ class ContentRepositoryTest {
     }
 
     @Test
-    @DisplayName("다양한 조건으로 영화 검색")
-    void movieFindBySearchConditions() {
+    @DisplayName("다양한 조건으로 컨텐츠 검색")
+    void contentFindBySearchConditions() {
         StopWatch stopWatch = new StopWatch();
         /* given */
         ContentSearchConditions contentSearchConditions = ContentSearchConditions.builder()
+                .kind(Content.ContentKind.DRAMA)
                 .nameKr(null)
 //                .sDate(null)
                 .sDate("2015-09-01")

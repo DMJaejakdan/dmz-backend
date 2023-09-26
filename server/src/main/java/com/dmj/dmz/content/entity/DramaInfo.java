@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,11 +26,15 @@ public class DramaInfo {
 
     private String channel;
 
+    @OneToMany(mappedBy = "dramaInfo")
+    private List<Episode> episodeList;
+
     @Builder
-    public DramaInfo(Content content, LocalDate endDate, String channel) {
+    public DramaInfo(Content content, LocalDate endDate, String channel, List<Episode> episodeList) {
         this.content = content;
         this.endDate = endDate;
         this.channel = channel;
+        this.episodeList = episodeList;
     }
 
     public static DramaInfo toEntity(Content content, DramaDetailResponse dramaDetailResponse) {
