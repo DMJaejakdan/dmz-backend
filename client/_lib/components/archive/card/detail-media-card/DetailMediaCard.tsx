@@ -1,6 +1,6 @@
 import { Txt } from '#/components/common/txt/Txt';
 import Image from 'next/image';
-import { card_container, img } from '../DetailCard.css';
+import { card_container, img_frame } from '../DetailCard.css';
 import { Spacing } from '#/components/common/spacing/Spacing';
 
 interface Props {
@@ -17,15 +17,15 @@ export function DetailMediaCard({
 }: Props) {
   return (
     <div className={card_container} {...props}>
-      <Image
-        src={mediaImg}
-        alt={title}
-        width={100}
-        height={150}
-        objectFit="cover"
-        objectPosition="center"
-        className={img}
-      />
+      <div className={img_frame}>
+        <Image
+          src={mediaImg}
+          alt={title}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+        />
+      </div>
       <Spacing unit={0.25} />
       <Txt content={releaseYear.toString()} color="disabled" size={14} />
       <Spacing unit={0.25} />

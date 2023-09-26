@@ -1,7 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
 export const card_container = style({
-  position: 'relative',
   display: 'flex',
   flexFlow: 'column',
   alignItems: 'center',
@@ -9,4 +8,8 @@ export const card_container = style({
   height: 'fit-content',
   cursor: 'pointer',
 });
-export const img = style({});
+export const img_frame = style({
+  position: 'relative',
+  width: 100,
+  height: 150,
+});

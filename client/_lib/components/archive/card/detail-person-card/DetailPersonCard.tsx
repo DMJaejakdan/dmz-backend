@@ -1,6 +1,6 @@
 import { Txt } from '#/components/common/txt/Txt';
 import Image from 'next/image';
-import { card_container, img } from '../DetailCard.css';
+import { card_container, img_frame } from '../DetailCard.css';
 import { Spacing } from '#/components/common/spacing/Spacing';
 
 interface Props {
@@ -21,15 +21,15 @@ export function DetailPersonCard({
 }: Props) {
   return (
     <div className={card_container} {...props}>
-      <Image
-        src={personImg}
-        alt={name}
-        width={100}
-        height={150}
-        objectFit="cover"
-        objectPosition="center"
-        className={img}
-      />
+      <div className={img_frame}>
+        <Image
+          src={personImg}
+          alt={name}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+        />
+      </div>
       <Spacing unit={0.25} />
       {fieldSection === 'actor' ? (
         <Txt content={`${role} 역`} color="disabled" size={14} />
