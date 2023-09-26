@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+elk/elasticsearch/data/nodes
+__pycache__/
