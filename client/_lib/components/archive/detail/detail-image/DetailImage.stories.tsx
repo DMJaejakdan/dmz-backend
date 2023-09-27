@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DetailImage } from './DetailImage';
 
 const meta = {
-  title: 'Archive/Detail/detail-image',
+  title: 'Archive/Detail/DetailImage',
   component: DetailImage,
   parameters: {
     layout: 'fullscreen',

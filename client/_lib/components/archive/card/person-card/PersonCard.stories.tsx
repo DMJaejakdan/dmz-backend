@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PersonCard } from './PersonCard';
 
 const meta = {
-  title: 'Archive/Card/person-card',
+  title: 'Archive/Card/PersonCard',
   component: PersonCard,
   argTypes: {},
 } satisfies Meta<typeof PersonCard>;
