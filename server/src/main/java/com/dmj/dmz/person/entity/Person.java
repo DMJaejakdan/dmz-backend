@@ -33,7 +33,7 @@ public class Person {
 
     private LocalDate death;
 
-    // 0: 남, 1: 여
+    // 0: not set, 1: 여, 2: 남
     @Column(nullable = false)
     private int gender;
 

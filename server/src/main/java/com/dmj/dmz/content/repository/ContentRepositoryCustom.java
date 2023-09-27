@@ -10,5 +10,4 @@ import java.util.List;
 
 public interface ContentRepositoryCustom {
     Page<ContentResponse> contentFindWithSearchConditions(Pageable pageable, final ContentSearchConditions contentSearchConditions);
-    List<Content> findWithSearchConditionsFetchJoin(final String nameKr, final String sDate, final String eDate, final List<String> rating, final List<String> genre);
 }

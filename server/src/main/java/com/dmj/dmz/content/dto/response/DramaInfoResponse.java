@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class DramaInfoResponse {
-    private Content content;
 
     private LocalDate endDate;
 
@@ -21,8 +20,7 @@ public class DramaInfoResponse {
 
     @QueryProjection
     @Builder
-    public DramaInfoResponse(Content content, DramaInfo dramaInfo) {
-        this.content = content;
+    public DramaInfoResponse(DramaInfo dramaInfo) {
         this.endDate = dramaInfo.getEndDate();
         this.channel = dramaInfo.getChannel();
     }

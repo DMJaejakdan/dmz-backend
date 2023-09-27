@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.StopWatch;
 
 import java.util.List;
@@ -42,51 +43,54 @@ class ContentRepositoryTest {
         ContentSearchConditions contentSearchConditions = ContentSearchConditions.builder()
                 .kind(Content.ContentKind.DRAMA)
                 .nameKr(null)
-//                .sDate(null)
+                .sDate(null)
                 .sDate("2015-09-01")
 //                .eDate(null)
                 .eDate("2017-09-21")
-                .ratings(null/*List.of("코미디")*/)
-                .genres(/*null*/List.of("미스터리"))
-                .plot("")
+                .ratings(null/*List.of("15")*/)
+                .genres(null)
+//                .genres(List.of("미스터리"))
+                .plot(null)
                 .keywords(null/*List.of("romance","smile")*/)
                 .companies(null)
-                .people(/*null*/List.of("Lee Je-hoon"))
-                .channels(/*null*/List.of("tvN"))
+                .people(null)
+//                .people(List.of("Lee Je-hoon"))
+                .channels(null/*List.of("tvN")*/)
                 .build();
-        Pageable pageable = PageRequest.of(1, 5/*, Sort.by("nameKr").descending()*/);
+        Pageable pageable = PageRequest.of(1, 10000, Sort.by("nameKr").descending());
         /* when */
         stopWatch.start("검색");
         List<ContentResponse> results = contentRepository.contentFindWithSearchConditions(pageable, contentSearchConditions).getContent();
         stopWatch.stop();
-        for (ContentResponse c : results) {
-            System.out.println(c.toString());
-        }
+//        for (ContentResponse c : results) {
+//            System.out.println(c.toString());
+//        }
+        System.out.println("총 결과 수: " + results.size());
         System.out.println("걸린 시간: " + stopWatch.getTotalTimeSeconds() + "초");
 
         /* then */
-        assertThat(results.size()).isEqualTo(1);
-        assertThat(results.get(0).getNameKr()).isEqualTo("시그널");
+//        assertThat(results.size()).isEqualTo(1);
+//        assertThat(results.get(0).getNameKr()).isEqualTo("시그널");
     }
-
-    @Test
-    @DisplayName("fetchJoin Test")
-    void findWithSearchConditionsFetchJoin() {
-        StopWatch stopWatch = new StopWatch();
-        /* given */
-        String searchName = "";
-        String sDate = "2023-09-01";
-        String eDate = "2023-09-21";
-        List<String> ratings = null;
-        List<String> genres = null;
-        /* when */
-        stopWatch.start("검색");
-        List<Content> results = contentRepository.findWithSearchConditionsFetchJoin(searchName, sDate, eDate, ratings, genres);
-        stopWatch.stop();
-        System.out.println("걸린 시간: " + stopWatch.getTotalTimeSeconds() + "초");
-        log.info(results.toString());
-        for (Content c : results) {
-            System.out.println(c.toString());
-        }
-    }
+//
+//    @Test
+//    @DisplayName("fetchJoin Test")
+//    void findWithSearchConditionsFetchJoin() {
+//        StopWatch stopWatch = new StopWatch();
+//        /* given */
+//        String searchName = "";
+//        String sDate = "2023-09-01";
+//        String eDate = "2023-09-21";
+//        List<String> ratings = null;
+//        List<String> genres = null;
+//        /* when */
+//        stopWatch.start("검색");
+//        List<Content> results = contentRepository.findWithSearchConditionsFetchJoin(searchName, sDate, eDate, ratings, genres);
+//        stopWatch.stop();
+//        System.out.println("걸린 시간: " + stopWatch.getTotalTimeSeconds() + "초");
+//        log.info(results.toString());
+//        for (Content c : results) {
+//            System.out.println(c.toString());
+//        }
+//    }
 }

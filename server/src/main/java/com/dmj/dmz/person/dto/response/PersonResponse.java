@@ -22,7 +22,7 @@ public class PersonResponse {
 
     private LocalDate death;
 
-    // 0: 남, 1: 여
+    // 0: not set, 1: 여, 2: 남
     private int gender;
 
     private String area;
