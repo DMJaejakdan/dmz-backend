@@ -1,0 +1,2 @@
+- pipeline.id: fresh_pull_index
+  path.config: "ls_confs/fresh_pull/fresh_pull_index.conf"
