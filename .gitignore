@@ -36,5 +36,12 @@ out/
 ### VS Code ###
 .vscode/
 
-elk/elasticsearch/data/nodes
+### Python
 __pycache__/
+
+### ELK
+elk/elasticsearch/data/
+!elk/elasticsearch/data/.gitkeep
+
+### env
+**/.env
