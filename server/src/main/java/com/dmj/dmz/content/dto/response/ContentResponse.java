@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.dmj.dmz.content.entity.Content.*;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
@@ -19,7 +21,7 @@ public class ContentResponse {
 
     private String nameEn;
 
-    private Content.ContentKind kind;
+    private ContentKind kind;
 
     private String posterPath;
 
@@ -37,6 +39,19 @@ public class ContentResponse {
 
     private DramaInfoResponse dramaInfoResponse;
 
+//    @QueryProjection
+//    public ContentResponse(Long tmdbId, String nameKr, String nameEn, ContentKind kind, String posterPath, LocalDate releasedDate, String rating, String plot, String genre,) {
+//        this.tmdbId = tmdbId;
+//        this.nameKr = nameKr;
+//        this.nameEn = nameEn;
+//        this.kind = kind;
+//        this.posterPath = posterPath;
+//        this.releasedDate = releasedDate;
+//        this.rating = rating;
+//        this.plot = plot;
+//        this.person = person;
+//    }
+
     @QueryProjection
     @Builder
     public ContentResponse(Content content) {
@@ -48,14 +63,18 @@ public class ContentResponse {
         this.releasedDate = content.getReleasedDate();
         this.rating = content.getRating();
         this.plot = content.getPlot();
-        for (ContentCrew cc : content.getContentCrewList()) {
-            if (kind == Content.ContentKind.MOVIE && cc.getRole().equals("Director")) {
-                this.person = cc.getPerson().getNameKr();
-            }
-            if (kind == Content.ContentKind.DRAMA && cc.getRole().equals("Writer")) {
-                this.person = cc.getPerson().getNameKr();
-            }
-        }
+        content.getContentCrewList().stream()
+                .filter(cc -> (kind == ContentKind.MOVIE && cc.getRole().equals("Director")) ||
+                        (kind == ContentKind.DRAMA && cc.getRole().equals("Writer")))
+                .findFirst().ifPresent(directorOrWriter -> this.person = directorOrWriter.getPerson().getNameKr());
+//        for (ContentCrew cc : content.getContentCrewList()) {
+//            if (kind == ContentKind.MOVIE && cc.getRole().equals("Director")) {
+//                this.person = cc.getPerson().getNameKr();
+//            }
+//            if (kind == ContentKind.DRAMA && cc.getRole().equals("Writer")) {
+//                this.person = cc.getPerson().getNameKr();
+//            }
+//        }
         content.getContentGenreList().stream().distinct().forEach(
                 genre -> this.genreResponseList.add(
                         GenreResponse.builder()
@@ -63,7 +82,7 @@ public class ContentResponse {
                                 .build()
                 )
         );
-        if (content.getKind() == Content.ContentKind.MOVIE) {
+        if (kind == ContentKind.MOVIE) {
             this.movieInfoResponse = MovieInfoResponse.builder()
                     .movieInfo(content.getMovieInfo().get(0))
                     .build();

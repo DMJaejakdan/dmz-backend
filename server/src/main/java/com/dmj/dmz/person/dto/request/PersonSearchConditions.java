@@ -14,7 +14,7 @@ import java.util.List;
 public class PersonSearchConditions {
     String nameKr;
     List<String> areas;
-    // 0: 남, 1: 여
+    // 0: not set, 1: 여, 2: 남
     List<Integer> genders;
     List<Integer> ages;
 }
