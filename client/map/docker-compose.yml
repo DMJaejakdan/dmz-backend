@@ -1,0 +1,12 @@
+version: "3"
+services:
+  map:
+    image: jyj2487/map-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Asia/Seoul
+    stdin_open: true
