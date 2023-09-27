@@ -17,5 +17,3 @@
    - [ElasticSearch](./2-4-1-elasticsearch.md)
    - [Logstash](./2-4-2-logstash.md)
    - [Kibana](./2-4-3-kibana.md)
-
-5. [Spark](./2-5-spark.md)
