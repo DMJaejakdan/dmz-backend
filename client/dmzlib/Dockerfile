@@ -6,7 +6,7 @@ RUN apk update && apk add --no-cache yarn
 
 COPY ./ ./
 
-EXPOSE 3000
+EXPOSE 3001
 
 RUN yarn install
 
