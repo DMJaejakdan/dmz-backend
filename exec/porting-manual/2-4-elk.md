@@ -44,7 +44,7 @@ ELK
 
 ---
 
-**`AccessDeniedException[/usr/share/elasticsearch/data/nodes]`가 발생한다면**
+### `AccessDeniedException[/usr/share/elasticsearch/data/nodes]`가 발생한다면
 
 볼륨 마운트 된 폴더에 접근할 수 없어서 생기는 문제
 
