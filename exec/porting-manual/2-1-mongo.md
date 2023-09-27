@@ -54,6 +54,7 @@ docker run \
     -p 27017:27017 \
     --log-opt max-size=100m \
     --log-opt max-file=5 \
+    --logpath /var/log/mongodb/mongod.log \
   mongo
 ```
 
