@@ -1,5 +1,5 @@
 import { globalFontFace, style } from '@vanilla-extract/css';
-import { theme } from '../_lib/design/theme.css';
+import theme from '../_lib/design/theme.css';
 
 const ptb = 'pretendard Bold';
 globalFontFace(ptb, {

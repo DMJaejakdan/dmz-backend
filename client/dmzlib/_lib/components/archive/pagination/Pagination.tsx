@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { PaginationButton } from './pagination-button/PaginationButton';
-import { PaginationChevron } from './pagination-chevron/PaginationChevron';
-import { Txt } from '#/components/common/txt/Txt';
+import PaginationButton from './pagination-button/PaginationButton';
+import PaginationChevron from './pagination-chevron/PaginationChevron';
+import Txt from '#/components/common/txt/Txt';
 import { pagination_container } from './Pagination.css';
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   onPageMoveRight: (pageNum: number) => void;
 }
 
-export function Pagination({
+function Pagination({
   max,
   currPage,
   shownNums = 5,
@@ -61,3 +61,4 @@ export function Pagination({
     );
   }
 }
+export default Pagination;

@@ -1,9 +1,9 @@
-import { card } from '#/constants/card';
+import card from '#/constants/card';
 import Image from 'next/image';
-import { Title } from '#/components/common/title/Title';
-import { Chip } from '#/components/common/chip/Chip';
-import { Txt } from '#/components/common/txt/Txt';
-import { Spacing } from '#/components/common/spacing/Spacing';
+import Title from '#/components/common/title/Title';
+import Chip from '#/components/common/chip/Chip';
+import Txt from '#/components/common/txt/Txt';
+import Spacing from '#/components/common/spacing/Spacing';
 import {
   SCREEN_VARIANT,
   thumbnail_img,
@@ -29,7 +29,7 @@ interface Props {
   dramaCardData: DramaCardDataProps;
 }
 
-export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
+function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
   const { thumbnail, title, genres, makers, releaseYear, episodesNum } =
     dramaCardData;
   const lineSpace = 0.25;
@@ -49,7 +49,9 @@ export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
   }
 
   return (
-    <div className={SCREEN_VARIANT[screen]} {...props}>
+    <div
+      className={SCREEN_VARIANT[screen]}
+      {...props}>
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -66,22 +68,42 @@ export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
       </div>
       {screen === 'pc' ? <Spacing type="vertical" /> : null}
       <div className={textContainer}>
-        <Title content={title} hn="h3" />
+        <Title
+          content={title}
+          hn="h3"
+        />
         <Spacing unit={lineSpace} />
         <div className={text_line}>
           {genres.map((genre, idx) => (
-            <div key={idx} className={text_line}>
-              <Chip label={genre} type="suggestion" shape="square" />
-              <Spacing type="vertical" unit={genreSpace} />
+            <div
+              key={idx}
+              className={text_line}>
+              <Chip
+                label={genre}
+                type="suggestion"
+                shape="square"
+              />
+              <Spacing
+                type="vertical"
+                unit={genreSpace}
+              />
             </div>
           ))}
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          <Txt content={card.drama.label.maker} color="disabled" />
-          <Spacing type="vertical" unit={txtSpace} />
+          <Txt
+            content={card.drama.label.maker}
+            color="disabled"
+          />
+          <Spacing
+            type="vertical"
+            unit={txtSpace}
+          />
           {makers.map((maker, idx) => (
-            <div key={idx} className={text_line}>
+            <div
+              key={idx}
+              className={text_line}>
               <Txt content={maker} />
               {idx < makers.length - 1 ? <Txt content=",&nbsp;" /> : null}
             </div>
@@ -89,17 +111,30 @@ export function DramaCard({ screen = 'pc', dramaCardData, ...props }: Props) {
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          <Txt content={card.drama.label.releaseYear} color="disabled" />
-          <Spacing type="vertical" unit={txtSpace} />
+          <Txt
+            content={card.drama.label.releaseYear}
+            color="disabled"
+          />
+          <Spacing
+            type="vertical"
+            unit={txtSpace}
+          />
           <Txt content={releaseYear.toString()} />
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          <Txt content={card.drama.label.episodeNum} color="disabled" />
-          <Spacing type="vertical" unit={txtSpace} />
+          <Txt
+            content={card.drama.label.episodeNum}
+            color="disabled"
+          />
+          <Spacing
+            type="vertical"
+            unit={txtSpace}
+          />
           <Txt content={episodesNum.toString()} />
         </div>
       </div>
     </div>
   );
 }
+export default DramaCard;

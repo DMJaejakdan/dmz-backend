@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { PaginationChevron } from './PaginationChevron';
+import PaginationChevron from './PaginationChevron';
 
 const meta = {
   title: 'Archive/Pagination/PaginationChevron/PaginationChevron',

@@ -13,7 +13,7 @@ interface Props extends HTMLAttributes<HTMLHeadingElement> {
   color?: keyof typeof COLOR_VARIANT;
 }
 
-export function Title({
+function Title({
   content,
   hn,
   align = 'start',
@@ -24,31 +24,41 @@ export function Title({
   switch (hn) {
     case 'h1':
       return (
-        <h1 className={classname} {...props}>
+        <h1
+          className={classname}
+          {...props}>
           {content}
         </h1>
       );
     case 'h2':
       return (
-        <h2 className={classname} {...props}>
+        <h2
+          className={classname}
+          {...props}>
           {content}
         </h2>
       );
     case 'h3':
       return (
-        <h3 className={classname} {...props}>
+        <h3
+          className={classname}
+          {...props}>
           {content}
         </h3>
       );
     case 'h4':
       return (
-        <h4 className={classname} {...props}>
+        <h4
+          className={classname}
+          {...props}>
           {content}
         </h4>
       );
     case 'h5':
       return (
-        <h5 className={classname} {...props}>
+        <h5
+          className={classname}
+          {...props}>
           {content}
         </h5>
       );
@@ -56,3 +66,4 @@ export function Title({
       return <></>;
   }
 }
+export default Title;

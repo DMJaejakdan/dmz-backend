@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLInputElement> {
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function Input({ placeholder, value, onInput, ...props }: Props) {
+function Input({ placeholder, value, onInput, ...props }: Props) {
   return (
     <input
       type="string"
@@ -19,3 +19,4 @@ export function Input({ placeholder, value, onInput, ...props }: Props) {
     />
   );
 }
+export default Input;

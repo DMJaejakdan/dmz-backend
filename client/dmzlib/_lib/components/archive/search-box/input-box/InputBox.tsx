@@ -1,6 +1,6 @@
-import { Input } from '#/components/common/input/Input';
-import { Spacing } from '#/components/common/spacing/Spacing';
-import { Txt } from '#/components/common/txt/Txt';
+import Input from '#/components/common/input/Input';
+import Spacing from '#/components/common/spacing/Spacing';
+import Txt from '#/components/common/txt/Txt';
 
 import { box_base } from '../SearchBox.css';
 
@@ -10,12 +10,20 @@ interface Props {
   value?: string;
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-export function InputBox({ title, placeholder, value, onInput }: Props) {
+function InputBox({ title, placeholder, value, onInput }: Props) {
   return (
     <div className={box_base}>
-      <Txt weight="bold" content={title} />
+      <Txt
+        weight="bold"
+        content={title}
+      />
       <Spacing />
-      <Input placeholder={placeholder} value={value} onInput={onInput} />
+      <Input
+        placeholder={placeholder}
+        value={value}
+        onInput={onInput}
+      />
     </div>
   );
 }
+export default InputBox;

@@ -1,4 +1,4 @@
-import { theme } from '#/design/theme.css';
+import theme from '#/design/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 
 export const tabs = style({});

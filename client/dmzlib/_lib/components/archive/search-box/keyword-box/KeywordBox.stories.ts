@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { KeywordBox } from './KeywordBox';
+import KeywordBox from './KeywordBox';
 
 const meta = {
   title: 'Archive/SearchBox/KeywordBox',

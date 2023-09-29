@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { InputBox } from './InputBox';
+import InputBox from './InputBox';
 
 const meta = {
   title: 'Archive/SearchBox/InputBox',

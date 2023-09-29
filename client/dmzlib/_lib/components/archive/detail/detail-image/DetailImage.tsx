@@ -6,7 +6,7 @@ interface Props {
   alt: string | null;
 }
 
-export function DetailImage({ detailImg, alt }: Props) {
+function DetailImage({ detailImg, alt }: Props) {
   return (
     <div className={img_container}>
       {detailImg ? (
@@ -25,3 +25,4 @@ export function DetailImage({ detailImg, alt }: Props) {
     </div>
   );
 }
+export default DetailImage;

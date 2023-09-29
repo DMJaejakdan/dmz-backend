@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DetailMediaCard } from './DetailMediaCard';
+import DetailMediaCard from './DetailMediaCard';
 
 const meta = {
   title: 'Archive/Card/DetailMediaCard',

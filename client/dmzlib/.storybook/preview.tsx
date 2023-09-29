@@ -1,5 +1,5 @@
-import type { Preview } from '@storybook/react';
 import React from 'react';
+import type { Preview } from '@storybook/react';
 import { storybook } from './preview.css';
 
 const preview: Preview = {

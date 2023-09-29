@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { Title } from '#/components/common/title/Title';
-import { Chip } from '#/components/common/chip/Chip';
-import { Txt } from '#/components/common/txt/Txt';
-import { Spacing } from '#/components/common/spacing/Spacing';
+import Title from '#/components/common/title/Title';
+import Chip from '#/components/common/chip/Chip';
+import Txt from '#/components/common/txt/Txt';
+import Spacing from '#/components/common/spacing/Spacing';
 import {
   thumbnail_img,
   default_img,
@@ -27,7 +27,7 @@ interface Props {
   personCardData: PersonCardDataProps;
 }
 
-export function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
+function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
   const { thumbnail, name, sex, birthYear, fields } = personCardData;
   const lineSpace = 0.25;
   const txtIndent = 0.25;
@@ -46,7 +46,9 @@ export function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
       break;
   }
   return (
-    <div className={SCREEN_VARIANT[screen]} {...props}>
+    <div
+      className={SCREEN_VARIANT[screen]}
+      {...props}>
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -63,23 +65,47 @@ export function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
       </div>
       <Spacing type="vertical" />
       <div className={textContainer}>
-        <Title content={name} hn="h3" />
+        <Title
+          content={name}
+          hn="h3"
+        />
         <Spacing unit={lineSpace} />
 
         <div className={text_line}>
-          <Spacing type="vertical" unit={txtIndent} />
-          <Txt content={sex} color="disabled" />
-          <Spacing type="vertical" unit={txtSpace} />
+          <Spacing
+            type="vertical"
+            unit={txtIndent}
+          />
+          <Txt
+            content={sex}
+            color="disabled"
+          />
+          <Spacing
+            type="vertical"
+            unit={txtSpace}
+          />
           {birthYear ? (
-            <Txt content={birthYear.toString()} color="disabled" />
+            <Txt
+              content={birthYear.toString()}
+              color="disabled"
+            />
           ) : null}
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
           {fields.map((genre, idx) => (
-            <div key={idx} className={text_line}>
-              <Chip label={genre} type="suggestion" shape="square" />
-              <Spacing type="vertical" unit={genreSpace} />
+            <div
+              key={idx}
+              className={text_line}>
+              <Chip
+                label={genre}
+                type="suggestion"
+                shape="square"
+              />
+              <Spacing
+                type="vertical"
+                unit={genreSpace}
+              />
             </div>
           ))}
         </div>
@@ -88,3 +114,4 @@ export function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
     </div>
   );
 }
+export default PersonCard;

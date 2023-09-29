@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { PersonCard } from './PersonCard';
+import PersonCard from './PersonCard';
 
 const meta = {
   title: 'Archive/Card/PersonCard',
