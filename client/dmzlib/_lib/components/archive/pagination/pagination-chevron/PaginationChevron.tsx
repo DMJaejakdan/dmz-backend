@@ -1,4 +1,4 @@
-import { Icon } from '#/components/common/icon/Icon';
+import Icon from '#/components/common/icon/Icon';
 import { DISABLED_VARIANT, chevron_base } from './PaginationChevron.css';
 
 type ChevronProps =
@@ -13,11 +13,7 @@ interface Props {
   onClick?: () => void;
 }
 
-export function PaginationChevron({
-  direction,
-  disabled = 'false',
-  ...props
-}: Props) {
+function PaginationChevron({ direction, disabled = 'false', ...props }: Props) {
   let chevronType: ChevronProps = 'chevronLeft';
   switch (direction) {
     case 'left':
@@ -35,12 +31,21 @@ export function PaginationChevron({
     default:
   }
   return (
-    <button className={DISABLED_VARIANT[disabled]} {...props}>
+    <button
+      className={DISABLED_VARIANT[disabled]}
+      {...props}>
       {disabled === 'false' ? (
-        <Icon type={chevronType} color="white" />
+        <Icon
+          type={chevronType}
+          color="white"
+        />
       ) : (
-        <Icon type={chevronType} color="darkgrey" />
+        <Icon
+          type={chevronType}
+          color="darkgrey"
+        />
       )}
     </button>
   );
 }
+export default PaginationChevron;

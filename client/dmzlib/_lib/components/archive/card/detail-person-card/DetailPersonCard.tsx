@@ -1,7 +1,7 @@
-import { Txt } from '#/components/common/txt/Txt';
+import Txt from '#/components/common/txt/Txt';
 import Image from 'next/image';
 import { card_container, img_frame } from '../DetailCard.css';
-import { Spacing } from '#/components/common/spacing/Spacing';
+import Spacing from '#/components/common/spacing/Spacing';
 
 interface Props {
   personImg: string;
@@ -11,7 +11,7 @@ interface Props {
   role?: string;
 }
 
-export function DetailPersonCard({
+function DetailPersonCard({
   personImg,
   name,
   fieldSection,
@@ -20,7 +20,9 @@ export function DetailPersonCard({
   ...props
 }: Props) {
   return (
-    <div className={card_container} {...props}>
+    <div
+      className={card_container}
+      {...props}>
       <div className={img_frame}>
         <Image
           src={personImg}
@@ -32,14 +34,27 @@ export function DetailPersonCard({
       </div>
       <Spacing unit={0.25} />
       {fieldSection === 'actor' ? (
-        <Txt content={`${role} 역`} color="disabled" size={14} />
+        <Txt
+          content={`${role} 역`}
+          color="disabled"
+          size={14}
+        />
       ) : (
         <div>
           {fields.map((field, idx) => (
             <>
-              <Txt key={idx} content={field} color="disabled" size={14} />
+              <Txt
+                key={idx}
+                content={field}
+                color="disabled"
+                size={14}
+              />
               {idx < fields.length - 1 ? (
-                <Txt content=",&nbsp;" color="disabled" size={14} />
+                <Txt
+                  content=",&nbsp;"
+                  color="disabled"
+                  size={14}
+                />
               ) : null}
             </>
           ))}
@@ -50,3 +65,4 @@ export function DetailPersonCard({
     </div>
   );
 }
+export default DetailPersonCard;

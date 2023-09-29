@@ -1,9 +1,9 @@
-import { card } from '#/constants/card';
+import card from '#/constants/card';
 import Image from 'next/image';
-import { Title } from '#/components/common/title/Title';
-import { Chip } from '#/components/common/chip/Chip';
-import { Txt } from '#/components/common/txt/Txt';
-import { Spacing } from '#/components/common/spacing/Spacing';
+import Title from '#/components/common/title/Title';
+import Chip from '#/components/common/chip/Chip';
+import Txt from '#/components/common/txt/Txt';
+import Spacing from '#/components/common/spacing/Spacing';
 import {
   SCREEN_VARIANT,
   thumbnail_img,
@@ -28,7 +28,7 @@ interface Props {
   movieCardData: MovieCardDataProps;
 }
 
-export function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
+function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
   const { thumbnail, title, genres, director, releaseYear } = movieCardData;
   const lineSpace = 0.25;
   const txtSpace = 0.5;
@@ -46,7 +46,9 @@ export function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
       break;
   }
   return (
-    <div className={SCREEN_VARIANT[screen]} {...props}>
+    <div
+      className={SCREEN_VARIANT[screen]}
+      {...props}>
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -63,26 +65,50 @@ export function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
       </div>
       <Spacing type="vertical" />
       <div className={textContainer}>
-        <Title content={title} hn="h3" />
+        <Title
+          content={title}
+          hn="h3"
+        />
         <Spacing unit={lineSpace} />
         <div className={text_line}>
           {genres.map((genre, idx) => (
-            <div key={idx} className={text_line}>
-              <Chip label={genre} type="suggestion" shape="square" />
-              <Spacing type="vertical" unit={genreSpace} />
+            <div
+              key={idx}
+              className={text_line}>
+              <Chip
+                label={genre}
+                type="suggestion"
+                shape="square"
+              />
+              <Spacing
+                type="vertical"
+                unit={genreSpace}
+              />
             </div>
           ))}
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          <Txt content={card.movie.label.director} color="disabled" />
-          <Spacing type="vertical" unit={txtSpace} />
+          <Txt
+            content={card.movie.label.director}
+            color="disabled"
+          />
+          <Spacing
+            type="vertical"
+            unit={txtSpace}
+          />
           <Txt content={director} />
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          <Txt content={card.movie.label.releaseYaer} color="disabled" />
-          <Spacing type="vertical" unit={txtSpace} />
+          <Txt
+            content={card.movie.label.releaseYaer}
+            color="disabled"
+          />
+          <Spacing
+            type="vertical"
+            unit={txtSpace}
+          />
           <Txt content={releaseYear.toString()} />
         </div>
         <Spacing unit={lineSpace} />
@@ -90,3 +116,4 @@ export function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
     </div>
   );
 }
+export default MovieCard;

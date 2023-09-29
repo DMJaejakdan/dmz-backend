@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { theme } from '#/design/theme.css';
-import { Title } from './Title';
+import theme from '#/design/theme.css';
+import Title from './Title';
 
 const meta = {
   title: 'Common/Title',

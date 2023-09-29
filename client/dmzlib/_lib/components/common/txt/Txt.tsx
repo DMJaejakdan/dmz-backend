@@ -14,7 +14,7 @@ interface Props {
   color?: keyof typeof COLOR_VARIANT;
 }
 
-export function Txt({
+function Txt({
   content,
   type = 'span',
   size = 16,
@@ -27,13 +27,17 @@ export function Txt({
   switch (type) {
     case 'span':
       return (
-        <span className={classname} {...props}>
+        <span
+          className={classname}
+          {...props}>
           {content}
         </span>
       );
     case 'p':
       return (
-        <p className={classname} {...props}>
+        <p
+          className={classname}
+          {...props}>
           {content}
         </p>
       );
@@ -41,3 +45,4 @@ export function Txt({
       return <></>;
   }
 }
+export default Txt;

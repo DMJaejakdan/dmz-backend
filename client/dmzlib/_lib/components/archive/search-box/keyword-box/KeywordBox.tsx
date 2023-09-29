@@ -1,22 +1,23 @@
-import { searchbox } from '#/constants/searchbox';
 import { FormEvent, useState } from 'react';
 import { box_base } from '../SearchBox.css';
-import { Chip } from '#/components/common/chip/Chip';
-import { Input } from '#/components/common/input/Input';
+import Chip from '#/components/common/chip/Chip';
+import Input from '#/components/common/input/Input';
+import searchbox from '#/constants/searchbox';
+import Txt from '#/components/common/txt/Txt';
+import Spacing from '#/components/common/spacing/Spacing';
+
 import {
   autocomplete_li,
   autocomplete_ul,
   selected_keywords,
 } from './KeywordBox.css';
-import { Txt } from '#/components/common/txt/Txt';
-import { Spacing } from '#/components/common/spacing/Spacing';
 
 interface Props {
   title: string;
   onFind: (keyword: string) => Promise<void> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
 }
 
-export function KeywordBox({ title, onFind }: Props) {
+function KeywordBox({ title, onFind }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
   const [autocompleteKwds, setAutoCompleteKwds] = useState<string[]>([]);
   const [input, setInput] = useState<string>('');
@@ -34,21 +35,28 @@ export function KeywordBox({ title, onFind }: Props) {
 
   return (
     <div className={box_base}>
-      <Txt weight="bold" content={title} />
+      <Txt
+        weight="bold"
+        content={title}
+      />
       <Spacing />
       <div>
         <div className={selected_keywords}>
           {/* 선택된 애들이 chip으로 렌더링 되어야함 */}
           {selected.map((kwd, idx) => (
-            <Chip key={idx} label={kwd} type="keyword" onDelete={delSelected} />
+            <Chip
+              key={idx}
+              label={kwd}
+              type="keyword"
+              onDelete={delSelected}
+            />
           ))}
         </div>
         <form
           onSubmit={(e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             pushSelected(input);
-          }}
-        >
+          }}>
           <Input
             placeholder={searchbox.box.button.search}
             value={input}
@@ -60,7 +68,9 @@ export function KeywordBox({ title, onFind }: Props) {
           {/* //키워드 리스트가 이 안에 들어감 */}
           <ul className={autocomplete_ul}>
             {autocompleteKwds.map((kwd, idx) => (
-              <li className={autocomplete_li} key={idx}>
+              <li
+                className={autocomplete_li}
+                key={idx}>
                 {kwd}
               </li>
             ))}
@@ -70,3 +80,4 @@ export function KeywordBox({ title, onFind }: Props) {
     </div>
   );
 }
+export default KeywordBox;

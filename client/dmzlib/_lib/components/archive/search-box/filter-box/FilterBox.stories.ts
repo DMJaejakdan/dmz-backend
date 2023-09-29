@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { FilterBox } from './FilterBox';
+import FilterBox from './FilterBox';
 
 const meta = {
   title: 'Archive/SearchBox/FilterBox',

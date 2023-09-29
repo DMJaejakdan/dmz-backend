@@ -1,4 +1,4 @@
-export const searchbox = {
+export default {
   drama: {},
   movie: {},
   person: {},

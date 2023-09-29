@@ -1,1 +1,1 @@
-export const map = {};
+export default {};

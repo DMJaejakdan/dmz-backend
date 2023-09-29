@@ -17,7 +17,7 @@ interface TabProps {
   onTabChange: () => void;
 }
 
-export function Tabs({ TabContents }: TabsProps) {
+function Tabs({ TabContents }: TabsProps) {
   const [activeIdx, setActiveIdx] = useState<number>(0);
   return (
     <>
@@ -44,8 +44,11 @@ export function Tabs({ TabContents }: TabsProps) {
 
 Tabs.Tab = function Tab({ title, active, onTabChange }: TabProps) {
   return (
-    <div className={TAB_ACTIVE_VARIANT[active]} onClick={onTabChange}>
+    <div
+      className={TAB_ACTIVE_VARIANT[active]}
+      onClick={onTabChange}>
       {title}
     </div>
   );
 };
+export default Tabs;

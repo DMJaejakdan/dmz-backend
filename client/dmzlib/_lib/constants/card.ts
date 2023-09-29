@@ -1,4 +1,4 @@
-export const card = {
+export default {
   drama: {
     label: {
       maker: '제작',

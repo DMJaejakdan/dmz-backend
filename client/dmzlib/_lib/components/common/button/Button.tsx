@@ -19,7 +19,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: keyof typeof WIDTH_VARIANT;
 }
 
-export function Button({
+function Button({
   label,
   color,
   btnType = 'button',
@@ -39,9 +39,9 @@ export function Button({
       ${SHAPE_VARIANT[shape]}
       ${WIDTH_VARIANT[width]}
       `}
-      {...props}
-    >
+      {...props}>
       {label}
     </button>
   );
 }
+export default Button;

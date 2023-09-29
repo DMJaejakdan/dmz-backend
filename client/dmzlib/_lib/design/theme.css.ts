@@ -37,7 +37,7 @@ const font_rg = style({
   fontWeight: 400,
 });
 
-export const theme = createGlobalThemeContract({
+const theme = createGlobalThemeContract({
   bg: {
     d1: 'bg-d1',
     d2: 'bg-d2',
@@ -77,6 +77,7 @@ export const theme = createGlobalThemeContract({
     bd: 'font-bd',
   },
 });
+export default theme;
 
 createGlobalTheme(':root', theme, {
   bg: {

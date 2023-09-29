@@ -1,8 +1,28 @@
-const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
-const withVanillaExtract = createVanillaExtractPlugin();
+const NextFederationPlugin = require('@module-federation/nextjs-mf');
 
-process.env.TZ = 'Asia/Seoul';
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+module.exports = {
+  webpack(config, options) {
+    const { webpack } = options;
+    if (!options.isServer) {
+      //config.cache=false
+      config.plugins.push(
+        new NextFederationPlugin({
+          name: 'frame',
+          remotes: {
+            archive:
+              'archive@http://localhost:3002/_next/static/chunks/remoteEntry.js',
+            dmzlib:
+              'dmzlib@http://localhost:3001/_next/static/chunks/remoteEntry.js',
+            // map: 'map@http://localhost:3002/_next/static/chunks/remoteEntry.js',
+          },
+          filename: 'static/chunks/remoteEntry.js',
+          exposes: {},
+          shared: {},
+          extraOptions: {},
+        })
+      );
+    }
 
-module.exports = withVanillaExtract(nextConfig);
+    return config;
+  },
+};

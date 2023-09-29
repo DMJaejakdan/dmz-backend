@@ -1,0 +1,1 @@
+(self.webpackChunkdmzlib=self.webpackChunkdmzlib||[]).push([[234],{5234:function(n,e,u){"use strict";u.r(e),u.d(e,{default:function(){return i}});var t=u(2807);u(813),u(9238);var i=function(n){let{placeholder:e,value:u,onInput:i,...c}=n;return(0,t.jsx)("input",{type:"string",value:u,onChange:i,placeholder:e,...c,className:"ioulci0"})}},9238:function(){},813:function(){}}]);
