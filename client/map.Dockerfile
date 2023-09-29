@@ -4,9 +4,13 @@ WORKDIR /app
 
 RUN apk update && apk add --no-cache yarn
 
-COPY ./ ./frame
+COPY ./map ./map
 
-COPY ../router ./router
+COPY ./router ./router
+
+RUN cd ./map
+
+WORKDIR /app/map
 
 EXPOSE 3000
 
