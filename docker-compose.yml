@@ -3,8 +3,8 @@ services:
   frame:
     image: jyj2487/frame-app
     build:
-      context: ./client/frame
-      dockerfile: Dockerfile
+      context: ./client
+      dockerfile: frame.Dockerfile
     ports:
       - "3000:3000"
     environment:
@@ -14,8 +14,8 @@ services:
   dmzlib:
     image: jyj2487/dmzlib-app
     build:
-      context: ./client/dmzlib
-      dockerfile: Dockerfile
+      context: ./client
+      dockerfile: dmzlib.Dockerfile
     ports:
       - "3001:3001"
     environment:
@@ -25,8 +25,8 @@ services:
   archive:
     image: jyj2487/archive-app
     build:
-      context: ./client/archive
-      dockerfile: Dockerfile
+      context: ./client
+      dockerfile: archive.Dockerfile
     ports:
       - "3002:3002"
     environment:
