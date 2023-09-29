@@ -816,6 +816,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/eslint-plugin-next@npm:^13.5.3":
+  version: 13.5.3
+  resolution: "@next/eslint-plugin-next@npm:13.5.3"
+  dependencies:
+    glob: 7.1.7
+  checksum: a496a194154b84c7178832ed5ecd51f7727cc9967bab91c8898310e422c27ec1774a21cc60399f72a1e7a23241b4eb5f0fe4b6357071d91c9c820790188504ba
+  languageName: node
+  linkType: hard
+
 "@next/swc-darwin-arm64@npm:13.3.1":
   version: 13.3.1
   resolution: "@next/swc-darwin-arm64@npm:13.3.1"
@@ -4220,7 +4229,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.31.7":
+"eslint-plugin-react@npm:^7.31.7, eslint-plugin-react@npm:^7.33.2":
   version: 7.33.2
   resolution: "eslint-plugin-react@npm:7.33.2"
   dependencies:
@@ -5615,6 +5624,7 @@ __metadata:
   resolution: "map@workspace:."
   dependencies:
     "@module-federation/nextjs-mf": ^7.0.8
+    "@next/eslint-plugin-next": ^13.5.3
     "@types/d3": ^7.4.0
     "@types/node": 20.5.1
     "@types/react": 18.2.20
@@ -5632,9 +5642,11 @@ __metadata:
     eslint-config-next: 13.4.19
     eslint-config-prettier: ^9.0.0
     eslint-plugin-prettier: ^5.0.0
+    eslint-plugin-react: ^7.33.2
     mini-css-extract-plugin: ^2.7.6
     mongodb: ^6.1.0
     next: 13.3.1
+    prettier: ^3.0.3
     react: 18.2.0
     react-dom: 18.2.0
     router: "file:../router"
@@ -6477,6 +6489,15 @@ __metadata:
   dependencies:
     fast-diff: ^1.1.2
   checksum: 00ce8011cf6430158d27f9c92cfea0a7699405633f7f1d4a45f07e21bf78e99895911cbcdc3853db3a824201a7c745bd49bfea8abd5fb9883e765a90f74f8392
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "prettier@npm:3.0.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
   languageName: node
   linkType: hard
 
