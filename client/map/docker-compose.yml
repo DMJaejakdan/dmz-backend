@@ -3,8 +3,8 @@ services:
   map:
     image: jyj2487/map-app
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: map.Dockerfile
     ports:
       - "3000:3000"
     environment:
