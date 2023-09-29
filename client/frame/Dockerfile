@@ -4,7 +4,9 @@ WORKDIR /app
 
 RUN apk update && apk add --no-cache yarn
 
-COPY ./ ./
+COPY ./ ./frame
+
+COPY ../router ./router
 
 EXPOSE 3000
 
