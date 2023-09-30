@@ -43,6 +43,7 @@ sudo docker run \
 ```
 
 **옵션 설명**
+
 - `-d`
 
     Docker Container를 detach 모드로 실행
@@ -78,7 +79,7 @@ sudo docker run \
 
 - `-v /usr/bin/docker-compose:/usr/bin/docker-compose`
 
-    Docker Compose 볼륨 마운트
+    Docker Compose 볼륨 마운트 => Jenkins 내부에 Docker Compose를 설치하지 않아도 사용할 수 있음
 
 - `--name jenkins`
 
@@ -191,7 +192,7 @@ pipeline {
     stage('Set Environment') {
       steps {
         echo 'Copy require file to pipeline folder'
-        sh 'cp /var/jenkins_home/util/env.yml ./server/src/main/resources/env.yml'
+        sh 'cp <Jenkins 내부의 환경변수 파일 위치> <환경변수 파일이 위치해야할 곳>'
       }
     }
 

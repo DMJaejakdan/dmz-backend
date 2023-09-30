@@ -4,7 +4,7 @@
 
 2. MySQL
 
-    본 프로젝트에서는 AWS RDS 이용함.
+   본 프로젝트에서는 AWS RDS를 이용함.
 
 3. [Server](./2-3-server.md)
 

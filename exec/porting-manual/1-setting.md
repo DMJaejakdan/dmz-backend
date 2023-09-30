@@ -118,7 +118,7 @@ sudo apt-get -y remove --purge nginx nginx-full nginx-common
 
 `/etc/nginx/conf.d/default.conf` 예시
 
-```bash
+```
 upstream frontend {
     server localhost:3000;
 }

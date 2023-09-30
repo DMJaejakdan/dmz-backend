@@ -6,7 +6,7 @@
 
 - `java` : 11
 - `Springboot` : 2.7.15
-- `queryDsl` : 5.0.0
+- `QueryDSL` : 5.0.0
 
 ### Fast API
 

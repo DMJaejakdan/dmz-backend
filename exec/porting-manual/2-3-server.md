@@ -8,4 +8,4 @@
 
 4. [Docker Compose](../../docker-compose.yml)
 
-    각 서버에서 설정한 timezone 설정과 별개로 docker container 내부의 timezone도 설정해주어야 함. (`-e TZ=Asia/Seoul`)
+   각 서버에서 설정한 timezone 설정과 별개로 docker container 내부의 timezone도 설정해주어야 함. (`-e TZ=Asia/Seoul`)

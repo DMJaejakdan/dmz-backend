@@ -9,7 +9,7 @@
 [build.gradle](../../server/build.gradle)
 ```
 jar {
-        enabled = false
+    enabled = false
 }
 ```
 
