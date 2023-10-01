@@ -75,13 +75,6 @@ services:
     depends_on:
       - elasticsearch
 
-  setup:
-    build:
-      context: ./setup
-      dockerfile: Dockerfile
-    depends_on:
-      - elasticsearch
-
 networks:
   elk:
     driver: bridge
