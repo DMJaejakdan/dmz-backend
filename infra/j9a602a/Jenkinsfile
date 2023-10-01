@@ -1,0 +1,80 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                echo 'Clone Repository'
+                echo 'Branch : develop'
+                git branch: 'develop', url: 'https://lab.ssafy.com/s09-bigdata-dist-sub2/S09P22A602', credentialsId: 'gitlab dmz'
+            }
+        }
+    
+        stage('Docker down') {
+            steps {
+                echo 'Docker compose down'
+                dir('./client/map') {
+                    sh 'sudo docker-compose down --rmi all'
+                }
+            }
+        }
+    
+        stage('Docker Build') {
+            steps {
+                echo 'docker compose build'
+                dir('./client/map') {
+				    sh 'sudo docker-compose build --no-cache'
+                }
+            }
+			post {
+				success {
+					echo 'Success to build'
+				}
+				failure {
+					echo 'Docker build failed. clear unused file'
+					sh 'sudo docker system prune -f'
+					error 'pipeline aborted'
+				}
+			}
+        }
+        
+        stage('Docker up') {
+            steps {
+                echo 'Docker compose up'
+                dir('./client/map') {
+                    sh 'sudo docker-compose up -d'
+                }
+            }
+        }  
+        
+        stage('Docker clear') {
+            steps {
+                sh 'docker system prune -f'
+            }
+        }    
+    }
+    post {
+        success {
+        	script {
+                def Author_ID = sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
+                def Author_Name = sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
+                mattermostSend (color: 'good', 
+                message: "j9a602a 배포 성공: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
+                endpoint: 'https://meeting.ssafy.com/hooks/y6pgd68gajr7prazb4ha8kgtmr', 
+                channel: 'A602_bot'
+                )
+            }
+        }
+        failure {
+        	script {
+                def Author_ID = sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
+                def Author_Name = sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
+                mattermostSend (color: 'danger', 
+                message: "j9a602a 배포 실패: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
+                endpoint: 'https://meeting.ssafy.com/hooks/y6pgd68gajr7prazb4ha8kgtmr', 
+                channel: 'A602_bot'
+                )
+            }
+        }
+    }
+}
