@@ -18,9 +18,7 @@
    docker-compose up
    ```
 3. ### ElasticSearch 컨테이너의 `kibana_system` 비밀번호 변경
-
    `kibana_system`의 비밀번호를 변경하기 위해 ElasticSearch 서비스에 아래의 API를 보냅니다. `kibana_system_password`에 .env에서 설정했던 `ELK_PASSWORD`를 대입하면 됩니다.
-
    ```bash
    curl -X POST "http://localhost:3200/_security/user/kibana_system/_password" -H "Content-Type: application/json" -d '{
      "password": "<kibana_system_password>"
