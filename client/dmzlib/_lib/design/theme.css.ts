@@ -143,3 +143,6 @@ globalStyle('ul, ol, li', {
   padding: 0,
   listStyleType: 'none',
 });
+globalStyle('svg text', {
+  fontFamily: pt,
+});
