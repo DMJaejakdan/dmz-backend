@@ -14,7 +14,7 @@ module.exports = withVanillaExtract({
               'archive@http://localhost:3002/_next/static/chunks/remoteEntry.js',
             dmzlib:
               'dmzlib@http://localhost:3001/_next/static/chunks/remoteEntry.js',
-            // map: 'map@http://localhost:3002/_next/static/chunks/remoteEntry.js',
+            map: 'map@http://localhost:3003/_next/static/chunks/remoteEntry.js',
           },
           filename: 'static/chunks/remoteEntry.js',
           exposes: {},

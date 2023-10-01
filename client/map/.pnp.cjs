@@ -31,6 +31,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@module-federation/nextjs-mf", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:7.0.8"],\
             ["@next/eslint-plugin-next", "npm:13.5.3"],\
             ["@types/d3", "npm:7.4.1"],\
+            ["@types/mongodb", "npm:4.0.7"],\
             ["@types/node", "npm:20.5.1"],\
             ["@types/react", "npm:18.2.20"],\
             ["@types/react-dom", "npm:18.2.7"],\
@@ -49,7 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:5.0.0"],\
             ["eslint-plugin-react", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:7.33.2"],\
             ["mini-css-extract-plugin", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:2.7.6"],\
-            ["mongodb", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:6.1.0"],\
+            ["mongodb", "virtual:143cb37ea32662ebfb240307415905dbcdcd555f1c505de0dab16d35aaf251aab27e5518932e28a42c2eed7cfbce1f138ceab7498b5f2cb2b53fb620dc732eb1#npm:6.1.0"],\
             ["next", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:13.3.1"],\
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
@@ -1755,6 +1756,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.199-39fe418e7a-e68d1fcbbf.zip/node_modules/@types/lodash/",\
           "packageDependencies": [\
             ["@types/lodash", "npm:4.14.199"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/mongodb", [\
+        ["npm:4.0.7", {\
+          "packageLocation": "./.yarn/cache/@types-mongodb-npm-4.0.7-143cb37ea3-10ebdfed5b.zip/node_modules/@types/mongodb/",\
+          "packageDependencies": [\
+            ["@types/mongodb", "npm:4.0.7"],\
+            ["mongodb", "virtual:143cb37ea32662ebfb240307415905dbcdcd555f1c505de0dab16d35aaf251aab27e5518932e28a42c2eed7cfbce1f138ceab7498b5f2cb2b53fb620dc732eb1#npm:6.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6985,6 +6996,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@module-federation/nextjs-mf", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:7.0.8"],\
             ["@next/eslint-plugin-next", "npm:13.5.3"],\
             ["@types/d3", "npm:7.4.1"],\
+            ["@types/mongodb", "npm:4.0.7"],\
             ["@types/node", "npm:20.5.1"],\
             ["@types/react", "npm:18.2.20"],\
             ["@types/react-dom", "npm:18.2.7"],\
@@ -7003,7 +7015,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:5.0.0"],\
             ["eslint-plugin-react", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:7.33.2"],\
             ["mini-css-extract-plugin", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:2.7.6"],\
-            ["mongodb", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:6.1.0"],\
+            ["mongodb", "virtual:143cb37ea32662ebfb240307415905dbcdcd555f1c505de0dab16d35aaf251aab27e5518932e28a42c2eed7cfbce1f138ceab7498b5f2cb2b53fb620dc732eb1#npm:6.1.0"],\
             ["next", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:13.3.1"],\
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
@@ -7284,10 +7296,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:6.1.0", {\
-          "packageLocation": "./.yarn/__virtual__/mongodb-virtual-270c6cf0f1/0/cache/mongodb-npm-6.1.0-74114fa4aa-ed60c14f0a.zip/node_modules/mongodb/",\
+        ["virtual:143cb37ea32662ebfb240307415905dbcdcd555f1c505de0dab16d35aaf251aab27e5518932e28a42c2eed7cfbce1f138ceab7498b5f2cb2b53fb620dc732eb1#npm:6.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/mongodb-virtual-9ab0ace24a/0/cache/mongodb-npm-6.1.0-74114fa4aa-ed60c14f0a.zip/node_modules/mongodb/",\
           "packageDependencies": [\
-            ["mongodb", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:6.1.0"],\
+            ["mongodb", "virtual:143cb37ea32662ebfb240307415905dbcdcd555f1c505de0dab16d35aaf251aab27e5518932e28a42c2eed7cfbce1f138ceab7498b5f2cb2b53fb620dc732eb1#npm:6.1.0"],\
             ["@aws-sdk/credential-providers", null],\
             ["@mongodb-js/saslprep", "npm:1.1.0"],\
             ["@mongodb-js/zstd", null],\
