@@ -10,6 +10,8 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class PersonResponse {
+    private Long id;
+
     private Long tmdbId;
 
     private String nameKr;
@@ -30,6 +32,7 @@ public class PersonResponse {
     @QueryProjection
     @Builder
     public PersonResponse(Person person) {
+        this.id = person.getId();
         this.tmdbId = person.getTmdbId();
         this.nameKr = person.getNameKr();
         this.nameEn = person.getNameEn();

@@ -1,7 +1,6 @@
 package com.dmj.dmz.content.dto.response;
 
 import com.dmj.dmz.content.entity.*;
-import com.dmj.dmz.person.entity.ContentCrew;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
@@ -15,6 +14,8 @@ import static com.dmj.dmz.content.entity.Content.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class ContentResponse {
+    private Long id;
+
     private Long tmdbId;
 
     private String nameKr;
@@ -55,6 +56,7 @@ public class ContentResponse {
     @QueryProjection
     @Builder
     public ContentResponse(Content content) {
+        this.id = content.getId();
         this.tmdbId = content.getTmdbId();
         this.nameKr = content.getNameKr();
         this.nameEn = content.getNameEn();
