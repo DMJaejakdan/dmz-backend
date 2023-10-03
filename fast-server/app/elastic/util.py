@@ -2,16 +2,18 @@ import logging
 import time
 
 from elasticsearch import AsyncElasticsearch
-from exception import ElasticsearchNotConnectedException
+
+from app.elastic.exception import ElasticsearchNotConnectedException
 
 
-def wait_elasticsearch(es: AsyncElasticsearch, interval=2000, max_retries=30, params=None, headers=None):
+async def wait_elasticsearch(client: AsyncElasticsearch, interval=2000, max_retries=30, params=None, headers=None):
     attempts = 0
 
     while attempts < max_retries:
         try:
-            resp = es.info(params=params, headers=headers)
+            resp = await client.info(params=params, headers=headers)
             logging.info('Connected to elasticsearch.')
+            print(resp)
             return resp
         except ElasticsearchNotConnectedException:
             logging.warning(
