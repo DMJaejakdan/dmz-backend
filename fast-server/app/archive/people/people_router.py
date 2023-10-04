@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 
-@router.get("/search")
+@router.get('/search')
 async def search(page: int | None = 0,
                  size: int | None = 10,
                  sort: str | None = None,
@@ -34,7 +34,7 @@ async def search(page: int | None = 0,
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/{person_id}")
+@router.get('/{person_id}')
 async def detail(person_id: int,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_people_index)):

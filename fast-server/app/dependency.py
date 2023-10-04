@@ -32,6 +32,10 @@ async def get_field_index():
     yield settings.FIELD_INDEX
 
 
+async def get_genre_index():
+    yield settings.GENRE_INDEX
+
+
 async def get_client():
     try:
         yield client
