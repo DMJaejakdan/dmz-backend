@@ -36,7 +36,6 @@ async def search(page: int | None = 0,
     try:
         result = await client.search(index=index, query=condition.get_query(),
                                      from_=condition.from_, size=condition.size)
-
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

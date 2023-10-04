@@ -56,7 +56,7 @@ class SearchCondition(BaseModel):
         query['bool']['filter'] = []
 
         if self.name:
-            column = 'name_en' if self.name.isascii() else 'name_en'
+            column = 'name_en' if self.name.isascii() else 'name_kr'
             wildcard = {'wildcard': {column: f'*{self.name}*'}}
             query['bool']['should'].append(wildcard)
 
