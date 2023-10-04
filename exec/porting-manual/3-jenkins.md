@@ -89,7 +89,6 @@ sudo docker run \
 
 ```bash
 docker exec -it jenkins bash
-
 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
@@ -175,7 +174,7 @@ apt-get -y install docker-ce
 
 본 프로젝트에서는 **Declarative Pipeline**로 script를 작성함.
 
-[Jenkinsfile](../../infra/j9a602/Jenkinsfile)
+**Jenkinsfile**
 
 ```groovy
 pipeline {

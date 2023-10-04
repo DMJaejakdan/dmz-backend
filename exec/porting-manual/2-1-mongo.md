@@ -4,7 +4,7 @@
 
 1. 최초 실행 시 사용자와 데이터를 생성하도록 설정하기
 
-    [./mongo/initdb.d/mongo-init.sh](../../mongo/initdb.d/mongo-init.sh)
+    **./mongo/initdb.d/mongo-init.sh**
     
     ```shell
     #!/bin/bash
