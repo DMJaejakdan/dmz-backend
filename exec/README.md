@@ -19,3 +19,7 @@
 7. 데이터 흐름도
 
     ![데이터 흐름도](./img/data-flow.png)
+
+8. ERD
+
+    ![ERD](./img/erd.png)
