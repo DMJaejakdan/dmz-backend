@@ -42,7 +42,7 @@ async def search(page: int | None = 0,
 
 
 @router.get("/{movie_id}")
-async def search(movie_id: int,
+async def detail(movie_id: int,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_movie_index)):
     try:
