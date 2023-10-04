@@ -12,9 +12,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 
 function PaginationButton({ btnNum, active = 'false', ...props }: Props) {
   return (
-    <button
-      className={PAGE_ACTIVE_VARIANT[active]}
-      {...props}>
+    <button className={PAGE_ACTIVE_VARIANT[active]} {...props}>
       {active === 'true' ? (
         <Txt
           content={btnNum.toString()}
@@ -23,10 +21,7 @@ function PaginationButton({ btnNum, active = 'false', ...props }: Props) {
           align="center"
         />
       ) : (
-        <Txt
-          content={btnNum.toString()}
-          align="center"
-        />
+        <Txt content={btnNum.toString()} align="center" />
       )}
     </button>
   );

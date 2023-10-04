@@ -31,19 +31,11 @@ function PaginationChevron({ direction, disabled = 'false', ...props }: Props) {
     default:
   }
   return (
-    <button
-      className={DISABLED_VARIANT[disabled]}
-      {...props}>
+    <button className={DISABLED_VARIANT[disabled]} {...props}>
       {disabled === 'false' ? (
-        <Icon
-          type={chevronType}
-          color="white"
-        />
+        <Icon type={chevronType} color="white" />
       ) : (
-        <Icon
-          type={chevronType}
-          color="darkgrey"
-        />
+        <Icon type={chevronType} color="darkgrey" />
       )}
     </button>
   );
