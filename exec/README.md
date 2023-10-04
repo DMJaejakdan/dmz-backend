@@ -2,19 +2,17 @@
 
 1. [포팅 매뉴얼](./porting-manual/porting-manual.md)
 
-2. [MySQL 덤프 파일](./data-dump/mysql-dump)
+2. [Data Dump](./data-dump/README.md)
 
-3. [MongoDB 덤프 파일](./data-dump/mongo-dump)
+3. 시연 시나리오
 
-4. 시연 시나리오
+4. 발표 자료
 
-5. 발표 자료
-
-6. 시스템 아키텍쳐
+5. 시스템 아키텍쳐
 
     ![시스템 아키텍쳐](./img/system-architecture.png)
 
-7. 사용 기술 스택
+6. 사용 기술 스택
 
     ![사용 기술 스택](./img/tools.png)
 
