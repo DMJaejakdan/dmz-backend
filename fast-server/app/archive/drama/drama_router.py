@@ -7,7 +7,7 @@ from app.archive.drama.constants import SearchCondition, get_detail_query
 
 
 router = APIRouter(
-    prefix='/fapi/drama'
+    prefix='/fapi/v1/drama'
 )
 
 

@@ -7,7 +7,7 @@ from app.archive.people.constants import SearchCondition, get_detail_query
 
 
 router = APIRouter(
-    prefix='/fapi/people'
+    prefix='/fapi/v1/people'
 )
 
 

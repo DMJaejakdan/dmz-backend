@@ -7,7 +7,7 @@ from app.archive.movie.constants import SearchCondition, get_detail_query
 
 
 router = APIRouter(
-    prefix='/fapi/movie'
+    prefix='/fapi/v1/movie'
 )
 
 

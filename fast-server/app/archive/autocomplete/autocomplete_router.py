@@ -9,7 +9,7 @@ from app.archive.autocomplete.constants import *
 
 
 router = APIRouter(
-    prefix='/fapi/auto'
+    prefix='/fapi/v1/auto'
 )
 
 
