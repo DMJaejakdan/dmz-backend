@@ -5,6 +5,7 @@ from app.dependency import get_drama_index, get_client
 
 from app.archive.drama.constants import SearchCondition, get_detail_query
 
+
 router = APIRouter(
     prefix='/fapi/drama'
 )

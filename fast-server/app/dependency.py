@@ -28,6 +28,10 @@ async def get_people_index():
     yield settings.PEOPLE_INDEX
 
 
+async def get_field_index():
+    yield settings.FIELD_INDEX
+
+
 async def get_client():
     try:
         yield client
