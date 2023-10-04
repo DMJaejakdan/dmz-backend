@@ -14,7 +14,6 @@ router = APIRouter(
 @router.get('/search')
 async def search(page: int | None = 0,
                  size: int | None = 10,
-                 sort: str | None = None,
                  name: str | None = None,
                  fields: str | None = None,
                  genders: str | None = None,
@@ -22,7 +21,7 @@ async def search(page: int | None = 0,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_people_index)):
 
-    condition = SearchCondition(page=page, size=size, sort=sort,
+    condition = SearchCondition(page=page, size=size,
                                 name=name, fields=fields,
                                 genders=genders, ages=ages)
 
