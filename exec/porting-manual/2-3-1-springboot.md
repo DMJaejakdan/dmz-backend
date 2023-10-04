@@ -26,6 +26,20 @@ EXPOSE 8080
 
 ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-Duser.timezone=Asia/Seoul", "-jar", "app.jar"]
 ```
+
+2. 환경 변수
+
+**./server/src/main/resources/env.yml**에 작성
+
+Jenkins를 사용하는 경우 **Jenkins 내부**에 작성
+
+```yaml
+RDS_DB_URL: <RDS DB URL>
+RDS_DB_USERNAME: <RDS DB Username>
+RDS_DB_PASSWORD: <RDS DB Password>
+TMDB_API_KEY: <TMDB API Key>
+```
+
 ---
 
 ### jar 파일 생성 시 `*plain.jar`을 생성하지 않도록 설정하기
