@@ -25,7 +25,7 @@ async def fields(client: AsyncElasticsearch = Depends(get_client),
 
 @router.get('/people/{name}')
 async def people(name: str,
-                 client: AsyncElasticsearch = Depends(get_client()),
+                 client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_people_index)):
     try:
         result = await client.search(index=index, query=get_people_query(name))
@@ -36,7 +36,7 @@ async def people(name: str,
 
 @router.get('/{video_type}/genres/{genre}')
 async def genres(video_type: VideoType, genre: str,
-                 client: AsyncElasticsearch = Depends(get_client()),
+                 client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_genre_index)):
     try:
         query = get_match_query(genre, video_type)
@@ -48,7 +48,7 @@ async def genres(video_type: VideoType, genre: str,
 
 @router.get('/{video_type}/keywords/{keyword}')
 async def keywords(video_type: VideoType, keyword: str,
-                   client: AsyncElasticsearch = Depends(get_client()),
+                   client: AsyncElasticsearch = Depends(get_client),
                    index: str = Depends(get_keyword_index)):
     try:
         query = get_match_query(keyword, video_type)
@@ -60,7 +60,7 @@ async def keywords(video_type: VideoType, keyword: str,
 
 @router.get('/{video_type}/companies/{company}')
 async def companies(video_type: VideoType, company: str,
-                    client: AsyncElasticsearch = Depends(get_client()),
+                    client: AsyncElasticsearch = Depends(get_client),
                     index: str = Depends(get_company_index)):
     try:
         query = get_match_query(company, video_type)
@@ -72,7 +72,7 @@ async def companies(video_type: VideoType, company: str,
 
 @router.get('/channels/{channel}')
 async def channels(channel: str,
-                   client: AsyncElasticsearch = Depends(get_client()),
+                   client: AsyncElasticsearch = Depends(get_client),
                    index: str = Depends(get_channel_index)):
     try:
         query = get_channel_query(channel)
