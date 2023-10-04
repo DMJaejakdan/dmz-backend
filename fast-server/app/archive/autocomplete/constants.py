@@ -34,3 +34,14 @@ def get_match_query(name: str, video_type: VideoType) -> dict:
     query['bool']['must'].append(match)
 
     return query
+
+
+def get_channel_query(channel: str) -> dict:
+    query = dict()
+    query['bool'] = dict()
+    query['bool']['must'] = []
+
+    prefix = {'prefix': {'name': channel}}
+    query['bool']['must'].append(prefix)
+
+    return query

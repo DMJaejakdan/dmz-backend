@@ -15,6 +15,7 @@
    COMPANY_INDEX='company'
    RATING_INDEX='rating'
    FIELD_INDEX='field'
+   CHANNEL_INDEX='channel'
    ```
 2. FastAPI 실행
    Dockerfile 참조

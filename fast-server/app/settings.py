@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     COMPANY_INDEX: str
     RATING_INDEX: str
     FIELD_INDEX: str
+    CHANNEL_INDEX: str
 
     class Config:
         env_file = '.env'

@@ -3,7 +3,7 @@ from elasticsearch import AsyncElasticsearch
 
 from app.dependency import get_field_index, get_people_index, \
     get_genre_index, get_keyword_index, get_company_index, \
-    get_client
+    get_channel_index, get_client
 
 from app.archive.autocomplete.constants import *
 
@@ -58,12 +58,24 @@ async def keywords(video_type: VideoType, keyword: str,
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get('/{video_type}/company/{company}')
+@router.get('/{video_type}/companies/{company}')
 async def companies(video_type: VideoType, company: str,
                     client: AsyncElasticsearch = Depends(get_client()),
                     index: str = Depends(get_company_index)):
     try:
         query = get_match_query(company, video_type)
+        result = await client.search(index=index, query=query)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/channels/{channel}')
+async def channels(channel: str,
+                   client: AsyncElasticsearch = Depends(get_client()),
+                   index: str = Depends(get_channel_index)):
+    try:
+        query = get_channel_query(channel)
         result = await client.search(index=index, query=query)
         return result
     except Exception as e:
