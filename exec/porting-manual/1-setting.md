@@ -12,9 +12,7 @@ sudo apt-get upgrade # 인스턴스에 설치된 패키지들을 최신 버전�
 ### EC2 Timezone 설정
 
 ```bash
-date # Mon Sep 11 01:45:45 UTC 2023
 sudo timedatectl set-timezone Asia/Seoul
-date # Mon Sep 11 10:45:55 KST 2023
 ```
 
 ### UFW 설정
@@ -59,7 +57,7 @@ sudo npm install -g yarn
 
 ## Java 설치
 
-**Java 11** 버전 사용
+본 프로젝트에서는 **Java 11** 버전을 사용함.
 
 ### 패키지 설치
 
@@ -79,7 +77,8 @@ vi /etc/profile
 # 파일 맨 끝에 입력
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
-source /etc/profile # 환경변수 설정 적용
+# 환경변수 설정 적용
+source /etc/profile
 
 echo $JAVA_HOME # /usr/lib/jvm/java-11-openjdk-amd64
 ```
@@ -164,19 +163,14 @@ sudo service nginx restart
 ## SSL 설정하기 w/ `certbot`
 
 ```bash
-# snap을 이용하여 core 설치 -> snap을 최신 버전으로 유지하기 위해 설치
 sudo snap install core
 
-# core를 refresh 해준다.
 sudo snap refresh core
 
-# 기존에 잘못된 certbot이 설치되어있을 수도 있으니 삭제 해준다.
 sudo apt remove certbot
 
-# certbot 설치
 sudo snap install --classic certbot
 
-# certbot 명령을 로컬에서 실행할 수 있도록 snap의 certbot 파일을 로컬의 cerbot과 링크(연결) 시켜준다. -s 옵션은 심볼릭링크를 하겠다는 것.
 ln -s /snap/bin/certbot /usr/bin/certbot
 
 # 인증서 발급
@@ -201,6 +195,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update && sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 docker -v
+
 
 # Docker 그룹에 사용자 추가
 sudo usermod -aG docker ubuntu

@@ -4,13 +4,14 @@
 
 ### Springboot
 
-- `java` : 11
+- `Java` : 11
 - `Springboot` : 2.7.15
 - `QueryDSL` : 5.0.0
 
+
 ### Fast API
 
-- `python`: 3.11
+- `python` : 3.11
 - [requirements.txt](../../fast-server/requirements.txt)
 
 ### ELK
@@ -31,27 +32,27 @@
 ### 빌드 및 패키지 매니저
 
 - `Yarn` : 3.6.2 (pnp)
-- `webpack` : 5.88.2
+- `Webpack` : 5.88.2
 
-### frame (j9a602:3000)
+### frame 
 
-dmzlib, archive, map 모듈에 원격으로 dependency 공유
+dmzlib, archive, map 모듈과 원격으로 아래의 디펜던시 공유
 
 - `Next` : 13.4.19
 - `React` : 18.2.0
 - `TypeScript` : 5.1.6
 - `vanilla-extract` : 1.13.0
 
-### dmzlib (j9a602:3001)
+### dmzlib 
 
 - `Storybook` : 7.3.2
 
-### archive (j9a602:3002)
+### archive 
 
-### map (j9a602a:3000)
+### map 
 
-- `visx` : 3.3.0
-- `react-query` : 버전 미정
+- `D3` : 7.8.5
+- `MongoDB` : 6.1.0
 
 ---
 
@@ -75,6 +76,7 @@ dmzlib, archive, map 모듈에 원격으로 dependency 공유
 ## IDE
 
 - `IntelliJ` : 2023.1.3
+- `PyCharm` : 2023.1.3
 - `Visual Studio code` : 1.82.2
 - `MySQL Workbench` : 8.0.33
 - `PostMan` : 10.18.2
