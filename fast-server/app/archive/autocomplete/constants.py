@@ -10,20 +10,6 @@ def get_field_query() -> dict:
     return {'match_all': {}}
 
 
-def get_genre_query(genre: str, video_type: VideoType) -> dict:
-    query = dict()
-    query['bool'] = dict()
-    query['bool']['must'] = []
-
-    prefix = {'prefix': {'name': genre}}
-    query['bool']['must'].append(prefix)
-
-    match = {'match': {video_type.value: True}}
-    query['bool']['must'].append(match)
-
-    return query
-
-
 def get_people_query(name: str) -> dict:
     query = dict()
     query['bool'] = dict()
@@ -32,5 +18,19 @@ def get_people_query(name: str) -> dict:
     column = 'name_en' if name.isascii() else 'name_kr'
     prefix = {'prefix': {column: name}}
     query['bool']['must'].append(prefix)
+
+    return query
+
+
+def get_match_query(name: str, video_type: VideoType) -> dict:
+    query = dict()
+    query['bool'] = dict()
+    query['bool']['must'] = []
+
+    prefix = {'prefix': {'name': name}}
+    query['bool']['must'].append(prefix)
+
+    match = {'match': {video_type.value: True}}
+    query['bool']['must'].append(match)
 
     return query

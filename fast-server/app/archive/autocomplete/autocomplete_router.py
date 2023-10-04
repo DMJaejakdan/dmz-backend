@@ -21,24 +21,36 @@ async def fields(client: AsyncElasticsearch = Depends(get_client),
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get('/{video_type}/genres/{genre}')
-async def genres(video_type: VideoType, genre: str,
-                 client: AsyncElasticsearch = Depends(get_client()),
-                 index: str = Depends(get_genre_index)):
-    try:
-        query = get_genre_query(genre, video_type)
-        result = await client.search(index=index, query=query)
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
 @router.get('/people/{name}')
 async def people(name: str,
                  client: AsyncElasticsearch = Depends(get_client()),
                  index: str = Depends(get_people_index)):
     try:
         result = await client.search(index=index, query=get_people_query(name))
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/{video_type}/genres/{genre}')
+async def genres(video_type: VideoType, genre: str,
+                 client: AsyncElasticsearch = Depends(get_client()),
+                 index: str = Depends(get_genre_index)):
+    try:
+        query = get_match_query(genre, video_type)
+        result = await client.search(index=index, query=query)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/{video_type}/keywords/{keyword}')
+async def keywords(video_type: VideoType, keyword: str,
+                   client: AsyncElasticsearch = Depends(get_client()),
+                   index: str = Depends(get_genre_index)):
+    try:
+        query = get_match_query(keyword, video_type)
+        result = await client.search(index=index, query=query)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
