@@ -22,3 +22,15 @@ def get_genre_query(genre: str, video_type: VideoType) -> dict:
     query['bool']['must'].append(match)
 
     return query
+
+
+def get_people_query(name: str) -> dict:
+    query = dict()
+    query['bool'] = dict()
+    query['bool']['must'] = []
+
+    column = 'name_en' if name.isascii() else 'name_kr'
+    prefix = {'prefix': {column: name}}
+    query['bool']['must'].append(prefix)
+
+    return query
