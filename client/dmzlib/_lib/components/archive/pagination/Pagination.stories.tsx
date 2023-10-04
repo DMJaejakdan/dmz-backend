@@ -13,8 +13,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    max: 10,
+    max: 12,
     currPage: 1,
-    shownNums: 5,
+    centerShownNums: 5,
   },
 };

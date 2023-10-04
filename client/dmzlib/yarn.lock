@@ -12668,10 +12668,10 @@ __metadata:
 
 "router@file:../router::locator=dmzlib%40workspace%3A.":
   version: 1.0.0
-  resolution: "router@file:../router#../router::hash=dc0060&locator=dmzlib%40workspace%3A."
+  resolution: "router@file:../router#../router::hash=bece58&locator=dmzlib%40workspace%3A."
   dependencies:
     feather-route-matcher: 4.0.0
-  checksum: 222a60ccdce7839448ac42c1324897f93b6f2a6451abe0dcd71c93c1353c3bd299d3c08dee12f3ce79a4c4e68528ac02a8e46f57383d2286b058eea4a0bd4c7a
+  checksum: 1faa551620d918fa672d158f2e279cc2c18930dfdab7de1d0d22ee3861000fafa66b018263e527c15bae8791c139a017df2b815b2b0107f48533fdec86c8b539
   languageName: node
   linkType: hard
 

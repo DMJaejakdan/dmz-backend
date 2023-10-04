@@ -58,7 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:7c284fca53c8cb5fea70b6e1903c435152e7ec32f0d8988081544eeef5f30a200f37dbda4ad991e30a2f200b901e405987b44d0070dd68bc5a2e758b7a827672#npm:18.2.0"],\
-            ["router", "file:../router#../router::hash=dc0060&locator=dmzlib%40workspace%3A."],\
+            ["router", "file:../router#../router::hash=bece58&locator=dmzlib%40workspace%3A."],\
             ["storybook", "npm:7.4.5"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:7c284fca53c8cb5fea70b6e1903c435152e7ec32f0d8988081544eeef5f30a200f37dbda4ad991e30a2f200b901e405987b44d0070dd68bc5a2e758b7a827672#npm:5.80.0"]\
@@ -9958,7 +9958,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:7c284fca53c8cb5fea70b6e1903c435152e7ec32f0d8988081544eeef5f30a200f37dbda4ad991e30a2f200b901e405987b44d0070dd68bc5a2e758b7a827672#npm:18.2.0"],\
-            ["router", "file:../router#../router::hash=dc0060&locator=dmzlib%40workspace%3A."],\
+            ["router", "file:../router#../router::hash=bece58&locator=dmzlib%40workspace%3A."],\
             ["storybook", "npm:7.4.5"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:7c284fca53c8cb5fea70b6e1903c435152e7ec32f0d8988081544eeef5f30a200f37dbda4ad991e30a2f200b901e405987b44d0070dd68bc5a2e758b7a827672#npm:5.80.0"]\
@@ -16279,10 +16279,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["router", [\
-        ["file:../router#../router::hash=dc0060&locator=dmzlib%40workspace%3A.", {\
-          "packageLocation": "./.yarn/cache/router-file-62c8398b60-222a60ccdc.zip/node_modules/router/",\
+        ["file:../router#../router::hash=bece58&locator=dmzlib%40workspace%3A.", {\
+          "packageLocation": "./.yarn/cache/router-file-4342c1c94c-1faa551620.zip/node_modules/router/",\
           "packageDependencies": [\
-            ["router", "file:../router#../router::hash=dc0060&locator=dmzlib%40workspace%3A."],\
+            ["router", "file:../router#../router::hash=bece58&locator=dmzlib%40workspace%3A."],\
             ["feather-route-matcher", "npm:4.0.0"]\
           ],\
           "linkType": "HARD"\
