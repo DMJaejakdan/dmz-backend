@@ -78,3 +78,7 @@ class SearchCondition(BaseModel):
                 query['bool']['filter'].append({'range': range})
 
         return query
+
+
+def get_detail_query(person_id: int) -> dict:
+    return {'ids': {'values': [str(person_id)]}}
