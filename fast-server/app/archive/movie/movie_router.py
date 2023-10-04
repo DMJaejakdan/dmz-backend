@@ -4,7 +4,7 @@ from elasticsearch import AsyncElasticsearch
 from app.dependency import get_movie_index, get_client
 
 from app.archive.movie.queries import SearchCondition, get_detail_query
-from app.archive.movie.responses import convert_detail_from
+from app.archive.movie.responses import convert_list_from, convert_detail_from
 
 
 router = APIRouter(
@@ -34,9 +34,9 @@ async def search(page: int | None = 0,
                                 s_date=s_date, e_date=e_date)
 
     try:
-        result = await client.search(index=index, query=condition.get_query(),
-                                     from_=condition.from_, size=condition.size)
-        return result
+        response = await client.search(index=index, query=condition.get_query(),
+                                       from_=condition.from_, size=condition.size)
+        return convert_list_from(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -47,7 +47,6 @@ async def detail(movie_id: int,
                  index: str = Depends(get_movie_index)):
     try:
         response = await client.search(index=index, query=get_detail_query(movie_id))
-        result = convert_detail_from(response.body)
-        return result
+        return convert_detail_from(response.body)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

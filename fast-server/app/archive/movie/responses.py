@@ -6,7 +6,6 @@ from app.archive.exception import NotFoundException
 
 class MovieDetail:
 
-    tmdb_id: int
     name_kr: str
     name_en: str
     poster_path: str
@@ -25,7 +24,7 @@ class MovieDetail:
     def __init__(self, detail: dict):
         self.source = detail['_source']
 
-    def parse(self) -> dict:
+    def parse(self, details: bool = False) -> dict:
         self.name_kr = self.source['name_kr']
         self.name_en = self.source['name_en']
         self.poster_path = self.source['poster_path'] if len(self.source['poster_path']) > 0 else None
@@ -50,10 +49,10 @@ class MovieDetail:
         self.crews = []
         self._parse_people(self.crews, 'crew')
 
-        return self._to_dict()
+        if details:
+            return self._details_to_dict()
 
-    def _parse_date(self, target: str) -> str:
-        return None if target == '1500-01-01' else target
+        return self._to_dict()
 
     def _parse_iteratively(self, target: list, field: str):
         for value in self.source[field]:
@@ -68,7 +67,7 @@ class MovieDetail:
             person['profile_path'] = value['profile_path'] if len(value['profile_path']) > 0 else None
             target.append(person)
 
-    def _to_dict(self):
+    def _details_to_dict(self) -> dict:
         result = dict()
         result['name_kr'] = self.name_kr
         result['name_en'] = self.name_en
@@ -85,11 +84,38 @@ class MovieDetail:
         result['crews'] = self.crews
         return result
 
+    def _to_dict(self) -> dict:
+        result = dict()
+        result['name'] = self.name_kr
+        result['poster_path'] = self.poster_path
+
+        if not self.released_date:
+            result['released_date'] = None
+        else:
+            result['released_date'] = f'{self.released_date.split("-")[0]}년'
+
+        result['genres'] = self.genres
+        result['actors'] = [actor['name'] for actor in self.actors]
+        result['crews'] = [crew['name'] for crew in self.crews]
+        return result
+
+
+def convert_list_from(response: dict) -> dict:
+    hits = response['hits']['hits']
+
+    try:
+        result = {'movies': []}
+        for hit in hits:
+            result['movies'].append(MovieDetail(hit).parse())
+        return result
+    except NotFoundException as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 def convert_detail_from(response: dict) -> dict:
     hits = response['hits']['hits']
 
     try:
-        return MovieDetail(hits[0]).parse()
+        return MovieDetail(hits[0]).parse(details=True)
     except NotFoundException as e:
         raise HTTPException(status_code=500, detail=str(e))
