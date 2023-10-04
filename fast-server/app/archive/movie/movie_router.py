@@ -3,7 +3,8 @@ from elasticsearch import AsyncElasticsearch
 
 from app.dependency import get_movie_index, get_client
 
-from app.archive.movie.constants import SearchCondition, get_detail_query
+from app.archive.movie.queries import SearchCondition, get_detail_query
+from app.archive.movie.responses import convert_detail_from
 
 
 router = APIRouter(
@@ -45,7 +46,8 @@ async def detail(movie_id: int,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_movie_index)):
     try:
-        result = await client.search(index=index, query=get_detail_query(movie_id))
+        response = await client.search(index=index, query=get_detail_query(movie_id))
+        result = convert_detail_from(response.body)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
