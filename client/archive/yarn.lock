@@ -5161,10 +5161,10 @@ __metadata:
 
 "router@file:../router::locator=archive%40workspace%3A.":
   version: 1.0.0
-  resolution: "router@file:../router#../router::hash=d15b99&locator=archive%40workspace%3A."
+  resolution: "router@file:../router#../router::hash=dc0060&locator=archive%40workspace%3A."
   dependencies:
     feather-route-matcher: 4.0.0
-  checksum: 89064710260b43a9cc0b711d77e925429aba8908d1b50814940ced98ba57228fa30d484a94ef7b376c20bba3055be874317056b1d2b1577a2186773bded62163
+  checksum: 222a60ccdce7839448ac42c1324897f93b6f2a6451abe0dcd71c93c1353c3bd299d3c08dee12f3ce79a4c4e68528ac02a8e46f57383d2286b058eea4a0bd4c7a
   languageName: node
   linkType: hard
 

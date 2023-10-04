@@ -49,7 +49,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:18.2.0"],\
-            ["router", "file:../router#../router::hash=d15b99&locator=archive%40workspace%3A."],\
+            ["router", "file:../router#../router::hash=dc0060&locator=archive%40workspace%3A."],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:5.80.0"]\
           ],\
@@ -2144,7 +2144,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:18.2.0"],\
-            ["router", "file:../router#../router::hash=d15b99&locator=archive%40workspace%3A."],\
+            ["router", "file:../router#../router::hash=dc0060&locator=archive%40workspace%3A."],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:5.80.0"]\
           ],\
@@ -6204,10 +6204,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["router", [\
-        ["file:../router#../router::hash=d15b99&locator=archive%40workspace%3A.", {\
-          "packageLocation": "./.yarn/cache/router-file-2de28f4b3b-8906471026.zip/node_modules/router/",\
+        ["file:../router#../router::hash=dc0060&locator=archive%40workspace%3A.", {\
+          "packageLocation": "./.yarn/cache/router-file-97efc5fbca-222a60ccdc.zip/node_modules/router/",\
           "packageDependencies": [\
-            ["router", "file:../router#../router::hash=d15b99&locator=archive%40workspace%3A."],\
+            ["router", "file:../router#../router::hash=dc0060&locator=archive%40workspace%3A."],\
             ["feather-route-matcher", "npm:4.0.0"]\
           ],\
           "linkType": "HARD"\
