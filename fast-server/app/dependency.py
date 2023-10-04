@@ -36,6 +36,14 @@ async def get_genre_index():
     yield settings.GENRE_INDEX
 
 
+async def get_keyword_index():
+    yield settings.KEYWORD_INDEX
+
+
+async def get_company_index():
+    yield settings.COMPANY_INDEX
+
+
 async def get_client():
     try:
         yield client

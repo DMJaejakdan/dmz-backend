@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from elasticsearch import AsyncElasticsearch
 
-from app.dependency import get_field_index, get_genre_index, get_people_index, get_client
+from app.dependency import get_field_index, get_people_index, \
+    get_genre_index, get_keyword_index, get_company_index, \
+    get_client
 
 from app.archive.autocomplete.constants import *
 
@@ -47,9 +49,21 @@ async def genres(video_type: VideoType, genre: str,
 @router.get('/{video_type}/keywords/{keyword}')
 async def keywords(video_type: VideoType, keyword: str,
                    client: AsyncElasticsearch = Depends(get_client()),
-                   index: str = Depends(get_genre_index)):
+                   index: str = Depends(get_keyword_index)):
     try:
         query = get_match_query(keyword, video_type)
+        result = await client.search(index=index, query=query)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/{video_type}/company/{company}')
+async def companies(video_type: VideoType, company: str,
+                    client: AsyncElasticsearch = Depends(get_client()),
+                    index: str = Depends(get_company_index)):
+    try:
+        query = get_match_query(company, video_type)
         result = await client.search(index=index, query=query)
         return result
     except Exception as e:
