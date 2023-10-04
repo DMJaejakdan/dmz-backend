@@ -6,6 +6,13 @@ class Settings(BaseSettings):
     PORT: int = 8000
     ELASTIC_USERNAME: str
     ELASTIC_PASSWORD: str
+    MOVIE_INDEX: str
+    DRAMA_INDEX: str
+    PEOPLE_INDEX: str
+    GENRE_INDEX: str
+    KEYWORD_INDEX: str
+    COMPANY_INDEX: str
+    RATING_INDEX: str
 
     class Config:
         env_file = '.env'
