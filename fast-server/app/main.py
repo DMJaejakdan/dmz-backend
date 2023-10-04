@@ -2,7 +2,6 @@ import pytz
 
 from fastapi import FastAPI
 from datetime import datetime
-from fastapi_elasticsearch import ElasticsearchAPIQueryBuilder
 
 from app.dependency import close_client
 
@@ -19,8 +18,6 @@ app.include_router(movie_router.router)
 app.include_router(drama_router.router)
 app.include_router(people_router.router)
 app.include_router(autocomplete_router.router)
-
-query_builder = ElasticsearchAPIQueryBuilder()
 
 
 @app.get('/fapi')

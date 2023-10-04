@@ -5,12 +5,13 @@ from app.dependency import get_drama_index, get_client
 
 from app.archive.drama.constants import SearchCondition, get_detail_query
 
+
 router = APIRouter(
     prefix='/fapi/drama'
 )
 
 
-@router.get("/search")
+@router.get('/search')
 async def search(page: int | None = 0,
                  size: int | None = 10,
                  sort: str | None = None,
@@ -41,8 +42,8 @@ async def search(page: int | None = 0,
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/{drama_id}")
-async def search(drama_id: int,
+@router.get('/{drama_id}')
+async def detail(drama_id: int,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_drama_index)):
     try:
