@@ -13,8 +13,6 @@ function ArchivePage() {
       </Head>
 
       <div className="hero">
-        <h1>Shop Page</h1>
-        <h3 className="title">This is a federated page owned by archive</h3>
         <Button label="ㅋㅋ" color="black" />
       </div>
     </div>

@@ -6,7 +6,7 @@ RUN apk update && apk add --no-cache yarn
 
 COPY ./map ./map
 
-COPY ./router ./router
+COPY ./shared ./shared
 
 RUN cd ./map
 

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdmzlib=self.webpackChunkdmzlib||[]).push([[626],{3626:function(e,a,l){l.r(a),a.default={drama:{label:{maker:"제작",releaseYear:"연도",episodeNum:"회차"}},movie:{label:{director:"감독",releaseYaer:"연도"}},person:{label:{}}}}}]);
