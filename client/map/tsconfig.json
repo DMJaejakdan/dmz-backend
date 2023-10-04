@@ -30,7 +30,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "map/tile/FDG.jsx"
+    "../shared/libs.d.ts"
   ],
   "exclude": ["node_modules"]
 }

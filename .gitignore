@@ -80,12 +80,3 @@ elk/elasticsearch/data/
 # typescript
 **/*.tsbuildinfo
 **/next-env.d.ts
-
-# zero-install
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
