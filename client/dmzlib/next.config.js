@@ -56,7 +56,7 @@ module.exports = withVanillaExtract({
             './KeywordBox':
               './_lib/components/archive/search-box/keyword-box/KeywordBox.tsx',
             //tabs
-            './KeywordBox': './_lib/components/archive/tabs/Tabs.tsx',
+            './Tabs': './_lib/components/archive/tabs/Tabs.tsx',
             //map
             //search
           },
