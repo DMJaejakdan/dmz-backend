@@ -20,6 +20,10 @@ async def get_movie_index():
     yield settings.MOVIE_INDEX
 
 
+async def get_drama_index():
+    yield settings.DRAMA_INDEX
+
+
 async def get_client():
     try:
         yield client
