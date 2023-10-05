@@ -36,15 +36,15 @@
                 "type": "integer"
             },
             "genre": {
-                "type": "object",
+                "type": "nested",
                 "properties": {
                     "name": {
-                        "type": "keyword"
+                        "type": "text"
                     }
                 }
             },
             "keyword": {
-                "type": "object",
+                "type": "nested",
                 "properties": {
                     "name": {
                         "type": "text"
@@ -52,7 +52,7 @@
                 }
             },
             "company": {
-                "type": "object",
+                "type": "nested",
                 "properties": {
                     "name": {
                         "type": "text"

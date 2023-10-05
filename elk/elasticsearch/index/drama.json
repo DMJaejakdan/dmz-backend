@@ -37,7 +37,7 @@
                 "type": "integer"
             },
             "episode": {
-                "type": "object",
+                "type": "nested",
                 "properties": {
                     "nth": {
                         "type": "integer"
@@ -51,7 +51,7 @@
                 "type": "text"
             },
             "genre": {
-                "type": "object",
+                "type": "nested",
                 "properties": {
                     "name": {
                         "type": "text"
@@ -59,7 +59,7 @@
                 }
             },
             "keyword": {
-                "type": "object",
+                "type": "nested",
                 "properties": {
                     "name": {
                         "type": "text"
@@ -67,7 +67,7 @@
                 }
             },
             "company": {
-                "type": "object",
+                "type": "nested",
                 "properties": {
                     "name": {
                         "type": "text"

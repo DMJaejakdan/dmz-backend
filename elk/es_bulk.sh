@@ -19,3 +19,11 @@ curl -X POST -u elastic:$ELK_PASSWORD "http://localhost:3200/channel/_bulk?prett
 echo ""
 curl -X POST -u elastic:$ELK_PASSWORD "http://localhost:3200/field/_bulk?pretty" -H "Content-Type: application/x-ndjson" --data-binary @$BULK_PATH/field.json
 echo ""
+curl -X POST -u elastic:$ELK_PASSWORD "http://localhost:3200/movie/_bulk?pretty" -H "Content-Type: application/x-ndjson" --data-binary @$BULK_PATH/movie.json
+echo ""
+curl -X POST -u elastic:$ELK_PASSWORD "http://localhost:3200/drama/_bulk?pretty" -H "Content-Type: application/x-ndjson" --data-binary @$BULK_PATH/drama.json
+echo ""
+curl -X POST -u elastic:$ELK_PASSWORD "http://localhost:3200/people/_bulk?pretty" -H "Content-Type: application/x-ndjson" --data-binary @$BULK_PATH/people1.json
+echo ""
+curl -X POST -u elastic:$ELK_PASSWORD "http://localhost:3200/people/_bulk?pretty" -H "Content-Type: application/x-ndjson" --data-binary @$BULK_PATH/people2.json
+echo ""
