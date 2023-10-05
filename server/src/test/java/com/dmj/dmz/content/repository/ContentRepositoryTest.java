@@ -72,25 +72,4 @@ class ContentRepositoryTest {
 //        assertThat(results.size()).isEqualTo(1);
 //        assertThat(results.get(0).getNameKr()).isEqualTo("시그널");
     }
-//
-//    @Test
-//    @DisplayName("fetchJoin Test")
-//    void findWithSearchConditionsFetchJoin() {
-//        StopWatch stopWatch = new StopWatch();
-//        /* given */
-//        String searchName = "";
-//        String sDate = "2023-09-01";
-//        String eDate = "2023-09-21";
-//        List<String> ratings = null;
-//        List<String> genres = null;
-//        /* when */
-//        stopWatch.start("검색");
-//        List<Content> results = contentRepository.findWithSearchConditionsFetchJoin(searchName, sDate, eDate, ratings, genres);
-//        stopWatch.stop();
-//        System.out.println("걸린 시간: " + stopWatch.getTotalTimeSeconds() + "초");
-//        log.info(results.toString());
-//        for (Content c : results) {
-//            System.out.println(c.toString());
-//        }
-//    }
 }

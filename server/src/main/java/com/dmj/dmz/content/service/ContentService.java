@@ -19,10 +19,6 @@ public class ContentService {
     public ContentService(ContentRepository contentRepository) {
         this.contentRepository = contentRepository;
     }
-
-    public List<ContentAutoResponse> getContentAutoResult(String word) {
-        return contentRepository.contentStartWith(word);
-    }
     public List<GenreAutoResponse> genreStartWith(String genrePre) {
         return contentRepository.genreStartWith(genrePre);
     }

@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface ContentRepositoryCustom {
     Page<ContentResponse> contentFindWithSearchConditions(Pageable pageable, final ContentSearchConditions contentSearchConditions);
-    List<ContentAutoResponse> contentStartWith(final String word);
     List<GenreAutoResponse> genreStartWith(final String genrePre);
     List<PersonAutoResponse> personStartWith(final String personPre);
     List<KeywordAutoResponse> keywordStartWith(final String keywordPre);
