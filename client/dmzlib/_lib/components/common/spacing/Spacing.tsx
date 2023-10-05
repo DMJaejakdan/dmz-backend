@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Spacing = memo(function Spacing({
-  type = 'horizontal',
+  type = 'vertical',
   unit = 1,
 }: Props) {
   return (
