@@ -1,7 +1,7 @@
-import { getGraphData } from '@/map/hooks/getMapData';
+// import { getGraphData } from '@/map/hooks/getMapData';
 import FDG from '@/map/tile/FDG';
-import { MongoClient } from 'mongodb';
-import { GetServerSideProps } from 'next';
+// import { MongoClient } from 'mongodb';
+// import { GetServerSideProps } from 'next';
 
 function Segment({ vertices, edges }: { vertices: any; edges: any }) {
   return (
@@ -58,8 +58,8 @@ function Graph({ vertices, edges }: { vertices: any; edges: any }) {
 //     revalidate: 86400,
 //   };
 // }
-Segment.getServerSideProps() {
-  const { vertices, edges } = await getGraphData(limit, skip);
-  return {props: {vertices, edges}}
-}
+// Segment.getServerSideProps() {
+//   const { vertices, edges } = await getGraphData(limit, skip);
+//   return {props: {vertices, edges}}
+// }
 export default Segment;
