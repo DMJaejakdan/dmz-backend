@@ -8,7 +8,8 @@ import Icon from '#/components/common/icon/Icon';
 interface Props {
   title: string;
   placeholder?: string;
-  value?: string;
+  value_f?: string;
+  value_t?: string;
   inputId_f: string;
   inputName_f: string;
   inputId_t: string;
@@ -19,7 +20,8 @@ interface Props {
 function DateBox({
   title,
   placeholder = 'YYYYMM',
-  value,
+  value_f,
+  value_t,
   onFrom,
   onTo,
   inputId_f,
@@ -36,7 +38,7 @@ function DateBox({
           inputId={inputId_f}
           inputName={inputName_f}
           placeholder={placeholder}
-          value={value}
+          value={value_f}
           onInput={onFrom}
         />
         <Spacing type="horizontal" />
@@ -46,7 +48,7 @@ function DateBox({
           inputId={inputId_t}
           inputName={inputName_t}
           placeholder={placeholder}
-          value={value}
+          value={value_t}
           onInput={onTo}
         />
       </Flex>
