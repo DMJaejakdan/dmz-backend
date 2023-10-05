@@ -12,7 +12,7 @@ const contentSearch = async (req: NextApiRequest, res: NextApiResponse) => {
     story = '',
     company = '',
   } = req.query;
-  const baseUrl = `${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/api/content/search`;
+
   const params = [];
   params.push('kind=MOVIE');
   if (movieTitle) params.push(`nameKr=${movieTitle}`);
@@ -25,7 +25,9 @@ const contentSearch = async (req: NextApiRequest, res: NextApiResponse) => {
   if (company) params.push(`companies=${company}`);
   params.push(`page=${page}`, 'size=20', 'sort=nameKr,des');
 
-  const Url = `${baseUrl}?${params.join('&')}`;
+  const Url = `${process.env.NEXT_PUBLIC_ROOT}/api/content/search?${params.join(
+    '&'
+  )}`;
   try {
     const response = await fetch(Url);
     const data = await response.json();

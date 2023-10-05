@@ -5,7 +5,7 @@ const autocomplete = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/api/content/auto/${type}?${type}Pre=${genrePre}`
+      `${process.env.NEXT_PUBLIC_ROOT}/api/content/auto/${type}?${type}Pre=${genrePre}`
     );
     const data = await response.json();
 

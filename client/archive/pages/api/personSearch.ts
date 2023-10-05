@@ -10,9 +10,9 @@ const personSearch = async (req: NextApiRequest, res: NextApiResponse) => {
   if (page) params.push(`page=${page}`);
   params.push(`page=${page}`, 'size=20', 'sort=nameKr,des');
 
-  const Url = `${
-    process.env.NEXT_PUBLIC_ROOT
-  }/dmzarchive/api/person/search?${params.join('&')}`;
+  const Url = `${process.env.NEXT_PUBLIC_ROOT}/api/person/search?${params.join(
+    '&'
+  )}`;
   try {
     const response = await fetch(Url);
     const data = await response.json();
