@@ -54,10 +54,16 @@ class MovieDetail:
         return self._to_dict()
 
     def _parse_iteratively(self, target: list, field: str):
+        if not self.source.get(field):
+            return
+
         for value in self.source[field]:
             target.append(value.get('name'))
 
     def _parse_people(self, target: list, field: str):
+        if not self.source.get(field):
+            return
+
         for value in self.source[field]:
             person = dict()
             person['id'] = value.get('tmdb_id')
