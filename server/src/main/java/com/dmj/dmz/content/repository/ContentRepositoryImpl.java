@@ -1,17 +1,13 @@
 package com.dmj.dmz.content.repository;
 
 import com.dmj.dmz.content.dto.request.ContentSearchConditions;
-import com.dmj.dmz.content.dto.response.ContentPageDto;
-import com.dmj.dmz.content.dto.response.ContentPageDto2;
-import com.dmj.dmz.content.dto.response.ContentResponse;
-import com.dmj.dmz.content.entity.Content;
+import com.dmj.dmz.content.dto.response.*;
 import com.dmj.dmz.content.entity.Content.ContentKind;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +24,6 @@ import static com.dmj.dmz.content.entity.QContentCompany.contentCompany;
 import static com.dmj.dmz.content.entity.QContentGenre.contentGenre;
 import static com.dmj.dmz.content.entity.QDramaInfo.dramaInfo;
 import static com.dmj.dmz.content.entity.QGenre.genre;
-import static com.dmj.dmz.content.entity.QMovieInfo.movieInfo;
 import static com.dmj.dmz.keyword.entity.QContentKeyword.contentKeyword;
 import static com.dmj.dmz.keyword.entity.QKeyword.keyword;
 import static com.dmj.dmz.person.entity.QContentActor.contentActor;
@@ -97,6 +92,103 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
         return new PageImpl<>(contentResponseList, pageable, countQuery.size());
     }
 
+    @Override
+    public List<ContentAutoResponse> contentStartWith(String word) {
+        Pageable pageable = PageRequest.of(0, 5, Sort.by("nameKr").ascending());
+        List<AutoPageDto> autoContentList = jpaQueryFactory.select(
+                        Projections.fields(AutoPageDto.class,
+                                content.id,
+                                content.nameKr)
+                )
+                .from(content)
+                .where(startWithWord(word))
+                .orderBy(content.nameKr.asc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        List<Long> contentIds = autoContentList.stream().map(AutoPageDto::getId).collect(Collectors.toList());
+        return jpaQueryFactory.select(
+                        Projections.fields(ContentAutoResponse.class, content.nameKr)
+                )
+                .from(content)
+                .where(content.id.in(contentIds))
+                .orderBy(content.nameKr.asc())
+                .fetch();
+    }
+
+    @Override
+    public List<GenreAutoResponse> genreStartWith(String genrePre) {
+        return jpaQueryFactory.select(
+                        Projections.fields(GenreAutoResponse.class, genre.id, genre.name)
+                )
+                .from(genre)
+                .where(genre.name.startsWith(genrePre))
+                .orderBy(genre.name.asc())
+                .limit(5)
+                .fetch();
+    }
+
+    @Override
+    public List<PersonAutoResponse> personStartWith(String personPre) {
+        return jpaQueryFactory.select(
+                        Projections.fields(PersonAutoResponse.class, person.id, person.nameKr, person.birth)
+                )
+                .from(person)
+                .where(person.nameKr.startsWith(personPre))
+                .orderBy(person.nameKr.asc())
+                .limit(5)
+                .fetch();
+    }
+
+    @Override
+    public List<KeywordAutoResponse> keywordStartWith(String keywordPre) {
+        return jpaQueryFactory.select(
+                        Projections.fields(KeywordAutoResponse.class, keyword.id, keyword.word)
+                )
+                .from(keyword)
+                .where(keyword.word.startsWith(keywordPre))
+                .orderBy(keyword.word.asc())
+                .limit(5)
+                .fetch();
+    }
+
+    @Override
+    public List<CompanyAutoResponse> companyStartWith(String companyPre) {
+        return jpaQueryFactory.select(
+                        Projections.fields(CompanyAutoResponse.class, company.id, company.name)
+                )
+                .from(company)
+                .where(company.name.startsWith(companyPre))
+                .orderBy(company.name.asc())
+                .limit(5)
+                .fetch();
+    }
+
+    // 리스트 반환으로 변경
+    @Override
+    public List<RatingResponse> getRatings() {
+        return jpaQueryFactory.select(
+                        Projections.fields(RatingResponse.class, content.rating)
+                )
+                .from(content)
+                .orderBy(content.rating.asc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<ChannelAutoResponse> channelStartWith(String channelPre) {
+        return jpaQueryFactory.select(
+                        Projections.fields(ChannelAutoResponse.class, dramaInfo.channel)
+                )
+                .from(dramaInfo)
+                .where(dramaInfo.channel.startsWith(channelPre))
+                .orderBy(dramaInfo.channel.asc())
+                .limit(5)
+                .distinct()
+                .fetch();
+    }
+
     private <T> JPAQuery<T> joinQueryFactory(JPAQuery<T> jpaQuery, ContentSearchConditions contentSearchConditions) {
         if (contentSearchConditions.getGenres() != null) {
             jpaQuery.leftJoin(content.contentGenreList, contentGenre)
@@ -120,6 +212,10 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
             jpaQuery.leftJoin(content.dramaInfo, dramaInfo);
         }
         return jpaQuery;
+    }
+
+    private BooleanExpression startWithWord(String word) {
+        return content.nameKr.startsWith(word);
     }
 
     private BooleanExpression eqKind(final ContentKind contentKind) {
