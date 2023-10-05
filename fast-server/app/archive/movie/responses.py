@@ -8,6 +8,7 @@ class MovieDetail:
 
     movie: dict
     str_fields: List[str]
+    int_fields: List[str]
     list_fields: List[str]
     people_fields: List[str]
     source: dict
@@ -18,25 +19,27 @@ class MovieDetail:
         self._init_movie()
 
     def _init_movie(self):
-        self.str_fields = ['name_kr', 'name_en', 'poster_path', 'released_date',
-                           'rating', 'plot', 'box_office', 'running_time']
+        self.str_fields = ['name_kr', 'name_en', 'poster_path',
+                           'released_date', 'rating', 'plot']
+        self.int_fields = ['box_office', 'running_time']
         self.list_fields = ['genre', 'keyword', 'company']
         self.people_fields = ['actor', 'crew']
 
-        for field in self.str_fields:
+        for field in self.str_fields + self.int_fields:
             self.movie[field] = None
 
-        for field in self.list_fields:
-            self.movie[field] = []
-
-        for field in self.people_fields:
+        for field in self.list_fields + self.people_fields:
             self.movie[field] = []
 
     def parse(self, details: bool = False) -> dict:
         for field in self.str_fields:
             if self.source.get(field) == 'unknown':
                 continue
+            self.movie[field] = self.source.get(field)
 
+        for field in self.int_fields:
+            if self.source.get(field) == -1:
+                continue
             self.movie[field] = self.source.get(field)
 
         for field in self.list_fields:
@@ -57,7 +60,7 @@ class MovieDetail:
     def _parse_people(self, target: list, field: str):
         for value in self.source[field]:
             person = dict()
-            person['tmdb_id'] = value.get('tmdb_id')
+            person['id'] = value.get('tmdb_id')
             person['name'] = value.get('name')
             person['role'] = value.get('role')
             person['profile_path'] = value.get('profile_path')
