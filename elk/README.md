@@ -25,10 +25,12 @@
    }'
    ```
 4. ### Elasticsearch에 index 추가
-   Elasticsearch에 genre, keyword, company, channel, field, movie, drama, people index를 추가합니다. 인덱스를 추가하기 위한 curl API는 `es_index.sh`로, 이 파일을 실행하면 ES에 인덱스가 등록됩니다. 각 인덱스에 대한 정보는 `./elasticsearch/index`에 있습니다.
+   Elasticsearch에 `genre`, `keyword`, `company`, `channel`, `field`, `movie`, `drama`, `people` index를 추가합니다. 인덱스를 추가하기 위한 curl API는 `es_index.sh`로, 이 파일을 실행하면 ES에 인덱스가 등록됩니다. 각 인덱스에 대한 정보는 `./elasticsearch/index`에 있습니다.
    ```bash
    source es_index.sh
    ```
 5. ### Elasticsearch에 bulk로 데이터 삽입
-
-   
+   Elasticsearch의 각 인덱스에 데이터를 삽입합니다. Bulk API를 이용해 대량의 데이터를 한 번에 삽입하며, 각 인덱스마다 curl API를 호출하기 위해 `es_bulk.sh`를 실행합니다.
+   ```bash
+   source es_bash.sh
+   ```
