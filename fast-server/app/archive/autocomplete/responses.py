@@ -3,27 +3,14 @@ from fastapi import HTTPException
 from app.archive.exception import NotFoundException
 
 
-def fields_from(response: dict) -> dict:
+def response_from(response: dict, field: str, name: str) -> dict:
     hits = response['hits']['hits']
-    result = {'fields': []}
+    result = {field: []}
 
     try:
         for hit in hits:
-            new_row = {'id': hit['_id'], 'name': hit['_source']['name_kr']}
-            result['fields'].append(new_row)
-        return result
-    except NotFoundException as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-def genres_from(response: dict) -> dict:
-    hits = response['hits']['hits']
-    result = {'genres': []}
-
-    try:
-        for hit in hits:
-            new_row = {'id': hit['_id'], 'name': hit['_source']['name']}
-            result['genres'].append(new_row)
+            new_row = {'id': hit['_id'], 'name': hit['_source'][name]}
+            result[field].append(new_row)
         return result
     except NotFoundException as e:
         raise HTTPException(status_code=500, detail=str(e))

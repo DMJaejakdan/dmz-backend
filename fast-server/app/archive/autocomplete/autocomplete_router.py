@@ -6,7 +6,7 @@ from app.dependency import get_field_index, get_people_index, \
     get_channel_index, get_client
 
 from app.archive.autocomplete.queries import *
-from app.archive.autocomplete.responses import fields_from, genres_from
+from app.archive.autocomplete.responses import response_from
 
 
 router = APIRouter(
@@ -19,7 +19,7 @@ async def fields(client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_field_index)):
     try:
         response = await client.search(index=index, query=get_field_query())
-        return fields_from(response)
+        return response_from(response, 'fields', 'name_kr')
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -42,7 +42,7 @@ async def genres(video_type: VideoType, genre: str,
     try:
         query = get_match_query(genre, video_type)
         response = await client.search(index=index, query=query)
-        return genres_from(response)
+        return response_from(response, 'genres', 'name')
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -53,8 +53,8 @@ async def keywords(video_type: VideoType, keyword: str,
                    index: str = Depends(get_keyword_index)):
     try:
         query = get_match_query(keyword, video_type)
-        result = await client.search(index=index, query=query)
-        return result
+        response = await client.search(index=index, query=query)
+        return response_from(response, 'keywords', 'name')
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -65,8 +65,8 @@ async def companies(video_type: VideoType, company: str,
                     index: str = Depends(get_company_index)):
     try:
         query = get_match_query(company, video_type)
-        result = await client.search(index=index, query=query)
-        return result
+        response = await client.search(index=index, query=query)
+        return response_from(response, 'companies', 'name')
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -78,6 +78,6 @@ async def channels(channel: str,
     try:
         query = get_channel_query(channel)
         response = await client.search(index=index, query=query)
-        return response
+        return response_from(response, 'channels', 'name')
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
