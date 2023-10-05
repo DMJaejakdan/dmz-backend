@@ -121,7 +121,9 @@ declare module 'dmzlib/FilterBox' {
   export interface Props {
     title: string;
     options: string[];
-    onSelect: () => void;
+    inputId: string;
+    inputName: string;
+    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
   export default FilterBox;
 }
@@ -175,6 +177,7 @@ declare module 'dmzlib/KeywordBox' {
   export interface Props {
     title: string;
     onFind: (keyword: string) => Promise<void> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
+    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
   export default FilterBox;
 }
