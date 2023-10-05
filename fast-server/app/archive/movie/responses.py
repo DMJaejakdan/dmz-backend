@@ -22,6 +22,8 @@ class MovieDetail:
         self.list_fields = ['genre', 'keyword', 'company']
         self.people_fields = ['actor', 'crew']
 
+        self.movie['id'] = self.source['tmdb_id']
+
         for field in self.str_fields + self.int_fields:
             self.movie[field] = None
 
@@ -72,7 +74,7 @@ class MovieDetail:
     def _to_dict(self) -> dict:
         result = dict()
 
-        general_fields = ['name_kr', 'poster_path', 'genre']
+        general_fields = ['id', 'name_kr', 'poster_path', 'genre']
         date_field = 'released_date'
         people_fields = ['actor', 'crew']
 
