@@ -55,7 +55,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:18.2.0"],\
-            ["router", "file:../router#../router::hash=d15b99&locator=map%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=904ae0&locator=map%40workspace%3A."],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:5.80.0"]\
           ],\
@@ -7020,7 +7020,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:18.2.0"],\
-            ["router", "file:../router#../router::hash=d15b99&locator=map%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=904ae0&locator=map%40workspace%3A."],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:dcb0c9b8ff1e5e4d4988b81505412b21236a8704162cc569c4fc62a43fc4d0081d26ebdf4d5356b7f619eadf4c34ba4a0b68d02b581ac0ca8613c1fc24816de2#npm:5.80.0"]\
           ],\
@@ -8337,16 +8337,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["router", [\
-        ["file:../router#../router::hash=d15b99&locator=map%40workspace%3A.", {\
-          "packageLocation": "./.yarn/cache/router-file-bf06da6723-8906471026.zip/node_modules/router/",\
-          "packageDependencies": [\
-            ["router", "file:../router#../router::hash=d15b99&locator=map%40workspace%3A."],\
-            ["feather-route-matcher", "npm:4.0.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["run-applescript", [\
         ["npm:5.0.0", {\
           "packageLocation": "./.yarn/cache/run-applescript-npm-5.0.0-ea4b8840dd-d00c2dbfa5.zip/node_modules/run-applescript/",\
@@ -8496,6 +8486,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["define-data-property", "npm:1.1.0"],\
             ["functions-have-names", "npm:1.2.3"],\
             ["has-property-descriptors", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["shared", [\
+        ["file:../shared#../shared::hash=904ae0&locator=map%40workspace%3A.", {\
+          "packageLocation": "./.yarn/cache/shared-file-63743ec273-82e63bec59.zip/node_modules/shared/",\
+          "packageDependencies": [\
+            ["shared", "file:../shared#../shared::hash=904ae0&locator=map%40workspace%3A."],\
+            ["feather-route-matcher", "npm:4.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

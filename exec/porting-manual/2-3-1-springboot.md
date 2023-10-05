@@ -1,13 +1,51 @@
 # Server - Springboot
 
-1. [Dockerfile](../../server/Dockerfile)
+1. **Dockerfile**
+```docker
+FROM gradle:7.4-jdk11-alpine AS builder
+
+WORKDIR /app
+
+COPY build.gradle settings.gradle /app/
+
+RUN gradle cleanQuerydslSourceDir
+
+RUN gradle clean build -Pprofile=prod -x test --parallel --continue > /dev/null 2>&1 || true
+
+COPY ./ ./
+
+RUN gradle build -Pprofile=prod -x test --parallel
+
+FROM openjdk:11-jdk
+
+WORKDIR /app
+
+COPY --from=builder /app/build/libs/*.jar /app/app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-Duser.timezone=Asia/Seoul", "-jar", "app.jar"]
+```
+
+2. 환경 변수
+
+**./server/src/main/resources/env.yml**에 작성
+
+Jenkins를 사용하는 경우 **Jenkins 내부**에 작성
+
+```yaml
+RDS_DB_URL: <RDS DB URL>
+RDS_DB_USERNAME: <RDS DB Username>
+RDS_DB_PASSWORD: <RDS DB Password>
+TMDB_API_KEY: <TMDB API Key>
+```
 
 ---
 
 ### jar 파일 생성 시 `*plain.jar`을 생성하지 않도록 설정하기
 
-[build.gradle](../../server/build.gradle)
-```
+**build.gradle**
+```gradle
 jar {
     enabled = false
 }

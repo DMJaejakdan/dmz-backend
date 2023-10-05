@@ -3091,7 +3091,7 @@ __metadata:
     prettier: ^3.0.3
     react: 18.2.0
     react-dom: 18.2.0
-    router: "file:../router"
+    shared: "file:../shared"
     typescript: ^5.2.2
     webpack: 5.80.0
   languageName: unknown
@@ -5158,15 +5158,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"router@file:../router::locator=frame%40workspace%3A.":
-  version: 1.0.0
-  resolution: "router@file:../router#../router::hash=dc0060&locator=frame%40workspace%3A."
-  dependencies:
-    feather-route-matcher: 4.0.0
-  checksum: 222a60ccdce7839448ac42c1324897f93b6f2a6451abe0dcd71c93c1353c3bd299d3c08dee12f3ce79a4c4e68528ac02a8e46f57383d2286b058eea4a0bd4c7a
-  languageName: node
-  linkType: hard
-
 "run-applescript@npm:^5.0.0":
   version: 5.0.0
   resolution: "run-applescript@npm:5.0.0"
@@ -5298,6 +5289,15 @@ __metadata:
     functions-have-names: ^1.2.3
     has-property-descriptors: ^1.0.0
   checksum: 4975d17d90c40168eee2c7c9c59d023429f0a1690a89d75656306481ece0c3c1fb1ebcc0150ea546d1913e35fbd037bace91372c69e543e51fc5d1f31a9fa126
+  languageName: node
+  linkType: hard
+
+"shared@file:../shared::locator=frame%40workspace%3A.":
+  version: 1.0.0
+  resolution: "shared@file:../shared#../shared::hash=904ae0&locator=frame%40workspace%3A."
+  dependencies:
+    feather-route-matcher: 4.0.0
+  checksum: 82e63bec5987a14b29d00c18bf617c2bed7aba02536636aa2dc57b735bcfead7779b818f9060c1b0b960865a9cdfd4ef770bf30ddf5e5493a8069d21721950d9
   languageName: node
   linkType: hard
 

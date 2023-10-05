@@ -6,7 +6,7 @@ RUN apk update && apk add --no-cache yarn
 
 COPY ./dmzlib ./dmzlib
 
-COPY ./router ./router
+COPY ./shared ./shared
 
 RUN cd ./dmzlib
 

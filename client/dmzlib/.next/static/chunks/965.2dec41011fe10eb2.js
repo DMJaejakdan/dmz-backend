@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdmzlib=self.webpackChunkdmzlib||[]).push([[965],{6965:function(e,s,u){u.r(s),s.default={drama:"드라마",movie:"영화",person:"인물"}}}]);
