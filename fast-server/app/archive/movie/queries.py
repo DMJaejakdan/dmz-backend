@@ -1,9 +1,8 @@
-from pydantic import BaseModel
 from datetime import datetime
 from typing import List, Optional, Any
 
 
-class SearchCondition(BaseModel):
+class SearchCondition:
     page: int
     size: int
 
@@ -26,9 +25,8 @@ class SearchCondition(BaseModel):
                  name: str | None = None, plot: str | None = None, people: str | None = None,
                  genres: str | None = None, keywords: str | None = None,
                  companies: str | None = None, ratings: str | None = None,
-                 s_date: str | None = None, e_date: str | None = None, **data: Any):
+                 s_date: str | None = None, e_date: str | None = None):
 
-        super().__init__(**data)
         self.page = page
         self.size = size
         self.name = name

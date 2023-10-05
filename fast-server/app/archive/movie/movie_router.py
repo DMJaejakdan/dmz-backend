@@ -5,7 +5,7 @@ from app.dependency import get_movie_index, get_client
 
 from app.archive.exception import NotFoundException
 from app.archive.movie.queries import SearchCondition, get_detail_query
-from app.archive.movie.responses import convert_list_from, convert_detail_from
+from app.archive.movie.responses import list_from, detail_from
 
 
 router = APIRouter(
@@ -37,7 +37,7 @@ async def search(page: int | None = 0,
     try:
         response = await client.search(index=index, query=condition.get_query(),
                                        from_=condition.from_, size=condition.size)
-        return convert_list_from(response)
+        return list_from(response)
     except NotFoundException as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -48,6 +48,6 @@ async def detail(movie_id: int,
                  index: str = Depends(get_movie_index)):
     try:
         response = await client.search(index=index, query=get_detail_query(movie_id))
-        return convert_detail_from(response.body)
+        return detail_from(response.body)
     except NotFoundException as e:
         raise HTTPException(status_code=500, detail=str(e))
