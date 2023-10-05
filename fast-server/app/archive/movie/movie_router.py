@@ -3,18 +3,18 @@ from elasticsearch import AsyncElasticsearch
 
 from app.dependency import get_movie_index, get_client
 
-from app.archive.movie.constants import SearchCondition, get_detail_query
+from app.archive.movie.queries import SearchCondition, get_detail_query
+from app.archive.movie.responses import convert_list_from, convert_detail_from
 
 
 router = APIRouter(
-    prefix='/fapi/movie'
+    prefix='/fapi/v1/movie'
 )
 
 
 @router.get('/search')
 async def search(page: int | None = 0,
                  size: int | None = 10,
-                 sort: str | None = None,
                  name: str | None = None,
                  plot: str | None = None,
                  people: str | None = None,
@@ -27,16 +27,16 @@ async def search(page: int | None = 0,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_movie_index)):
 
-    condition = SearchCondition(page=page, size=size, sort=sort,
+    condition = SearchCondition(page=page, size=size,
                                 name=name, plot=plot, people=people,
                                 genres=genres, keywords=keywords,
                                 companies=companies, ratings=ratings,
                                 s_date=s_date, e_date=e_date)
 
     try:
-        result = await client.search(index=index, query=condition.get_query(),
-                                     from_=condition.from_, size=condition.size)
-        return result
+        response = await client.search(index=index, query=condition.get_query(),
+                                       from_=condition.from_, size=condition.size)
+        return convert_list_from(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -46,7 +46,7 @@ async def detail(movie_id: int,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_movie_index)):
     try:
-        result = await client.search(index=index, query=get_detail_query(movie_id))
-        return result
+        response = await client.search(index=index, query=get_detail_query(movie_id))
+        return convert_detail_from(response.body)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

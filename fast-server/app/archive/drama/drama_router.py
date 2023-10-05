@@ -7,14 +7,13 @@ from app.archive.drama.constants import SearchCondition, get_detail_query
 
 
 router = APIRouter(
-    prefix='/fapi/drama'
+    prefix='/fapi/v1/drama'
 )
 
 
 @router.get('/search')
 async def search(page: int | None = 0,
                  size: int | None = 10,
-                 sort: str | None = None,
                  name: str | None = None,
                  plot: str | None = None,
                  people: str | None = None,
@@ -28,7 +27,7 @@ async def search(page: int | None = 0,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_drama_index)):
 
-    condition = SearchCondition(page=page, size=size, sort=sort,
+    condition = SearchCondition(page=page, size=size,
                                 name=name, plot=plot, people=people,
                                 channels=channels, genres=genres, keywords=keywords,
                                 companies=companies, ratings=ratings,

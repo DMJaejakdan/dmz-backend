@@ -44,6 +44,10 @@ async def get_company_index():
     yield settings.COMPANY_INDEX
 
 
+async def get_channel_index():
+    yield settings.CHANNEL_INDEX
+
+
 async def get_client():
     try:
         yield client

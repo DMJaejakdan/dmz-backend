@@ -7,21 +7,19 @@ from typing import List, Any
 class SearchCondition(BaseModel):
     page: int | None = 0
     size: int | None = 5
-    sort: List[str] | None = None
 
     name: str | None = None
     fields: List[str] | None = None
     genders: List[str] | None = None
     ages: List[int] | None = None
 
-    def __init__(self, page: int | None = 0, size: int | None = 10, sort: str | None = None,
+    def __init__(self, page: int | None = 0, size: int | None = 10,
                  name: str | None = None, fields: str | None = None,
                  genders: str | None = None, ages: str | None = None, **data: Any):
 
         super().__init__(**data)
         self.page = page
         self.size = size
-        self.sort = None if not sort else sort.split(',')
         self.name = name
         self.fields = None if not fields else fields.split(',')
         self.genders = None if not genders else genders.split(',')

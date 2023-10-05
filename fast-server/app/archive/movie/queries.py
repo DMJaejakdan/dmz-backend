@@ -6,7 +6,6 @@ from typing import List, Optional, Any
 class SearchCondition(BaseModel):
     page: int | None = 0
     size: int | None = 5
-    sort: List[str] | None = None
 
     name: str | None = None
     plot: str | None = None
@@ -23,7 +22,7 @@ class SearchCondition(BaseModel):
 
     from_: int = 0
 
-    def __init__(self, page: int | None = 0, size: int | None = 10, sort: str | None = None,
+    def __init__(self, page: int | None = 0, size: int | None = 10,
                  name: str | None = None, plot: str | None = None, people: str | None = None,
                  genres: str | None = None, keywords: str | None = None,
                  companies: str | None = None, ratings: str | None = None,
@@ -32,7 +31,6 @@ class SearchCondition(BaseModel):
         super().__init__(**data)
         self.page = page
         self.size = size
-        self.sort = None if not sort else sort.split(',')
         self.name = name
         self.plot = plot
         self.people = None if not people else people.split(',')
