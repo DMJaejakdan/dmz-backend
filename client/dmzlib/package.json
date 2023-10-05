@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "rm -rf .next &&  next dev -p 3001",
     "build": "rm -rf .next && next telemetry disable && next build",
-    "start": "next start -p 3001",
+    "start": "next start",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
