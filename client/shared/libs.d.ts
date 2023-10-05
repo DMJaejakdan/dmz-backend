@@ -130,6 +130,8 @@ declare module 'dmzlib/InputBox' {
   const InputBox: React.LazyExoticComponent<React.FC<Props>>;
   export interface Props {
     title: string;
+    inputId: string;
+    inputName: string;
     placeholder: string;
     value?: string;
     onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -141,7 +143,10 @@ declare module 'dmzlib/KeywordBox' {
   const KeywordBox: React.LazyExoticComponent<React.FC<Props>>;
   export interface Props {
     title: string;
+    inputId: string;
+    inputName: string;
     onFind: (keyword: string) => Promise<void> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
+    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
   export default KeywordBox;
 }
@@ -178,7 +183,12 @@ declare module 'dmzlib/DateBox' {
   export interface Props {
     title: string;
     placeholder?: string;
-    value?: string;
+    value_f?: string;
+    value_t?: string;
+    inputId_f: string;
+    inputName_f: string;
+    inputId_t: string;
+    inputName_t: string;
     onFrom: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onTo: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
