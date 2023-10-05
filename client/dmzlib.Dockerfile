@@ -12,7 +12,7 @@ RUN cd ./dmzlib
 
 WORKDIR /app/dmzlib
 
-EXPOSE 3002
+EXPOSE 3001
 
 RUN yarn install
 
