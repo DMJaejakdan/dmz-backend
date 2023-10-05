@@ -16,7 +16,7 @@ export const Primary: Story = {
     personImg: '',
     name: '이름',
     fieldSection: 'maker',
-    fields: ['연출', '각본', '연기'],
+    fields: '연출',
     role: '박성준',
   },
 };

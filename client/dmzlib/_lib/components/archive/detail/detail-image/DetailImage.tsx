@@ -3,26 +3,31 @@ import { img_container, img, grad } from './DetailImage.css';
 
 interface Props {
   detailImg: string;
-  alt: string | null;
+  alt: string;
 }
 
 function DetailImage({ detailImg, alt }: Props) {
-  return (
-    <div className={img_container}>
-      {detailImg ? (
+  try {
+    return (
+      <div className={img_container}>
+        <span>뭐냐고</span>
+
         <Image
           src={detailImg}
-          alt={alt + '이미지'}
+          alt={alt}
           layout="fill"
           objectFit="cover"
           objectPosition="center"
           className={img}
         />
-      ) : (
-        <div className={img} />
-      )}
-      <div className={grad} />
-    </div>
-  );
+
+        <div className={grad} />
+      </div>
+    );
+  } catch (error) {
+    console.error('Error rendering image:', error);
+    return null; // Or render a placeholder image/error message
+  }
 }
+
 export default DetailImage;

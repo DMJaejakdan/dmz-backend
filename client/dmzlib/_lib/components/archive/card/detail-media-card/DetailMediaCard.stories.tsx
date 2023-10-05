@@ -15,6 +15,5 @@ export const Primary: Story = {
   args: {
     mediaImg: '',
     title: '제목',
-    releaseYear: 1997,
   },
 };
