@@ -5,15 +5,21 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Clone Repository'
-                echo 'Branch : develop'
-                git branch: 'develop', url: 'https://lab.ssafy.com/s09-bigdata-dist-sub2/S09P22A602', credentialsId: 'gitlab dmz'
+                git branch: '<배포할 Branch>', url: '<Clone 받을 Git 주소>', credentialsId: '<Jenkins에 등록한 Credentials ID>'
+            }
+        }
+        
+        stage('Set Environment') {
+            steps {
+                echo 'Copy require file to pipeline folder'
+				sh 'cp <Jenkins 내부에 위치한 환경변수 파일 위치> <복사할 위치>'
             }
         }
     
         stage('Docker down') {
             steps {
                 echo 'Docker compose down'
-                dir('./client/map') {
+                dir('<docker compose 파일이 위치한 곳>') {
                     sh 'sudo docker-compose down --rmi all'
                 }
             }
@@ -22,7 +28,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo 'docker compose build'
-                dir('./client/map') {
+                dir('<docker compose 파일이 위치한 곳>') {
 				    sh 'sudo docker-compose build --no-cache'
                 }
             }
@@ -41,7 +47,7 @@ pipeline {
         stage('Docker up') {
             steps {
                 echo 'Docker compose up'
-                dir('./client/map') {
+                dir('<docker compose 파일이 위치한 곳>') {
                     sh 'sudo docker-compose up -d'
                 }
             }
@@ -59,9 +65,9 @@ pipeline {
                 def Author_ID = sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
                 def Author_Name = sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
                 mattermostSend (color: 'good', 
-                message: "j9a602a 배포 성공: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
-                endpoint: 'https://meeting.ssafy.com/hooks/y6pgd68gajr7prazb4ha8kgtmr', 
-                channel: 'A602_bot'
+                message: "배포 성공: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
+                endpoint: '<Mattermost Endpoint URL>', 
+                channel: '<Mattermost Channel Name>'
                 )
             }
         }
@@ -70,9 +76,9 @@ pipeline {
                 def Author_ID = sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
                 def Author_Name = sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
                 mattermostSend (color: 'danger', 
-                message: "j9a602a 배포 실패: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
-                endpoint: 'https://meeting.ssafy.com/hooks/y6pgd68gajr7prazb4ha8kgtmr', 
-                channel: 'A602_bot'
+                message: "배포 실패: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
+                endpoint: '<Mattermost Endpoint URL>', 
+                channel: '<Mattermost Channel Name>'
                 )
             }
         }
