@@ -17,8 +17,10 @@
 //     </>
 //   );
 // }
-
-// export default Segment;
+function Segment() {
+  return <></>;
+}
+export default Segment;
 
 // export async function getStaticPaths() {
 //   const client = await MongoClient.connect(
