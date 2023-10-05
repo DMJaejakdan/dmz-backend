@@ -30,7 +30,7 @@ declare module 'dmzlib/Tabs' {
   export default Tabs;
 }
 declare module 'dmzlib/Nav' {
-  const Nav: React.LazyExoticComponent<React.FC<Props>;
+  const Nav: React.LazyExoticComponent<React.FC<Props>>;
   interface Props {
     text: string;
   }
