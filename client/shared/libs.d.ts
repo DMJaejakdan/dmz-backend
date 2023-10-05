@@ -1,6 +1,13 @@
 //테마 및 상수변수 타입 설정
-declare module 'archive/ArchivePage' {}
-declare module 'map/MapPage' {}
+declare module 'archive/ArchivePage' {
+  const ArchivePage: React.LazyExoticComponent<React.FC>;
+  export default ArchivePage;
+}
+
+declare module 'map/MapPage' {
+  const MapPage: React.LazyExoticComponent<React.FC>;
+  export default MapPage;
+}
 declare module 'dmzlib/theme' {
   const theme: {};
   export default theme;

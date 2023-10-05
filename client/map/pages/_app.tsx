@@ -1,4 +1,6 @@
 import { AppProps } from 'next/app';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 const Nav = dynamic(() => import('dmzlib/Nav'), { ssr: false });
 function MyApp({ Component, pageProps }: AppProps) {
@@ -13,5 +15,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-import Link from 'next/link';
-import dynamic from 'next/dynamic';

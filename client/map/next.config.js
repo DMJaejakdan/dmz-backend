@@ -12,26 +12,16 @@ module.exports = withVanillaExtract({
           name: 'map',
           filename: 'static/chunks/remoteEntry.js',
           remotes: {
-            dmzlib: `dmzlib@${provess.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
+            dmzlib: `dmzlib@${process.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
           },
           exposes: {
-            './Map': './pages/map/container.tsx',
+            './Map': './pages/container.tsx',
           },
           shared: {
             next: {
               eager: true,
               singleton: true,
               requiredVersion: '^13.3.0',
-            },
-            react: {
-              eager: true,
-              singleton: true,
-              requiredVersion: '^18.2.0',
-            },
-            'react-dom': {
-              eager: true,
-              singleton: true,
-              requiredVersion: '^18.2.0',
             },
             '@vanilla-extract/css': {
               eager: true,
