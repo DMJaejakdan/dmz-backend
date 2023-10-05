@@ -5,7 +5,8 @@ from app.dependency import get_field_index, get_people_index, \
     get_genre_index, get_keyword_index, get_company_index, \
     get_channel_index, get_client
 
-from app.archive.autocomplete.constants import *
+from app.archive.autocomplete.queries import *
+from app.archive.autocomplete.responses import fields_from
 
 
 router = APIRouter(
@@ -17,8 +18,8 @@ router = APIRouter(
 async def fields(client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_field_index)):
     try:
-        result = await client.search(index=index, query=get_field_query())
-        return result
+        response = await client.search(index=index, query=get_field_query())
+        return fields_from(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -76,7 +77,7 @@ async def channels(channel: str,
                    index: str = Depends(get_channel_index)):
     try:
         query = get_channel_query(channel)
-        result = await client.search(index=index, query=query)
-        return result
+        response = await client.search(index=index, query=query)
+        return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
