@@ -11,10 +11,10 @@ module.exports = withVanillaExtract({
           name: 'frame',
           remotes: {
             archive:
-              'archive@http://localhost:3002/_next/static/chunks/remoteEntry.js',
+              `archive@${provess.env.NEXT_PUBLIC_ROOT}/dmzarchive/_next/static/chunks/remoteEntry.js`,
             dmzlib:
-              'dmzlib@http://localhost:3001/_next/static/chunks/remoteEntry.js',
-            map: 'map@http://localhost:3003/_next/static/chunks/remoteEntry.js',
+              `dmzlib@${provess.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
+            map: `map@${provess.env.NEXT_PUBLIC_ROOT2}/dmzmap/_next/static/chunks/remoteEntry.js`,
           },
           filename: 'static/chunks/remoteEntry.js',
           exposes: {},
