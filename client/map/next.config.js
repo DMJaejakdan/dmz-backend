@@ -2,9 +2,7 @@ const NextFederationPlugin = require('@module-federation/nextjs-mf');
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
 const withVanillaExtract = createVanillaExtractPlugin();
 module.exports = withVanillaExtract({
-  experimental: {
-    largePageDataBytes: 128 * 1000000,
-  },
+  basePath: '/dmzmap',
   webpack(config, options) {
     if (!options.isServer) {
       config.plugins.push(

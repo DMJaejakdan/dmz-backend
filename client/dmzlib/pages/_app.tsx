@@ -1,4 +1,4 @@
-// import App, { AppContext, AppProps } from 'next/app';
+import App, { AppContext, AppProps } from 'next/app';
 
 function MyApp() {
   return (
@@ -7,9 +7,9 @@ function MyApp() {
     </>
   );
 }
-// MyApp.getInitialProps = async (ctx: AppContext) => {
-//   const appProps = await App.getInitialProps(ctx);
-//   return appProps;
-// };
+MyApp.getInitialProps = async (ctx: AppContext) => {
+  const appProps = await App.getInitialProps(ctx);
+  return appProps;
+};
 
 export default MyApp;

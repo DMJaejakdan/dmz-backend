@@ -5,6 +5,7 @@ module.exports = withVanillaExtract({
   images: {
     domains: ['image.tmdb.org'],
   },
+  basePath: '/dmzarchive',
   webpack(config, options) {
     if (!options.isServer) {
       config.plugins.push(

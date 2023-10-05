@@ -17,7 +17,7 @@ module.exports = withVanillaExtract({
       },
     ];
   },
-
+  basePath: '/dmzlib',
   webpack(config, options) {
     if (!options.isServer) {
       config.plugins.push(
