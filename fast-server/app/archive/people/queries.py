@@ -13,6 +13,8 @@ class SearchCondition(BaseModel):
     genders: List[str] | None = None
     ages: List[int] | None = None
 
+    from_: int = 0
+
     def __init__(self, page: int | None = 0, size: int | None = 10,
                  name: str | None = None, fields: str | None = None,
                  genders: str | None = None, ages: str | None = None, **data: Any):
@@ -79,4 +81,4 @@ class SearchCondition(BaseModel):
 
 
 def get_detail_query(person_id: int) -> dict:
-    return {'ids': {'values': [str(person_id)]}}
+    return {'bool': {'must': {'match': {'tmdb_id': person_id}}}}
