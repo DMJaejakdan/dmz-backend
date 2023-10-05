@@ -4,8 +4,6 @@ import { useState } from 'react';
 import moviesearch from '@/constants/moviesearch';
 
 const Button = dynamic(() => import('dmzlib/Button'), { ssr: false });
-const Title = dynamic(() => import('dmzlib/Title'), { ssr: false });
-const Icon = dynamic(() => import('dmzlib/Icon'), { ssr: false });
 const Spacing = dynamic(() => import('dmzlib/Spacing'), { ssr: false });
 const Flex = dynamic(() => import('dmzlib/Flex'), { ssr: false });
 const InputBox = dynamic(() => import('dmzlib/InputBox'), {
