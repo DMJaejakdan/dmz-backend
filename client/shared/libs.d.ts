@@ -64,7 +64,6 @@ declare module 'dmzlib/DetailMediaCard' {
   export interface Props {
     mediaImg: string;
     title: string;
-    releaseYear: number;
   }
   export default DetailMediaCard;
 }
@@ -75,7 +74,7 @@ declare module 'dmzlib/DetailPersonCard' {
     personImg: string;
     name: string;
     fieldSection: 'maker' | 'actor';
-    fields: string[];
+    fields?: string;
     role?: string;
   }
   export default DetailPersonCard;
@@ -122,7 +121,7 @@ declare module 'dmzlib/DetailImage' {
   const DetailImage: React.LazyExoticComponent<React.FC<Props>>;
   export interface Props {
     detailImg: string;
-    alt: string | null;
+    alt: string;
   }
   export default DetailImage;
 }
@@ -215,9 +214,10 @@ declare module 'dmzlib/DateBox' {
 declare module 'dmzlib/Flex' {
   const Flex: React.LazyExoticComponent<React.FC<Props>>;
   export interface Props {
-    direction: keyof typeof DIRECTION_VARIANT;
+    direction?: keyof typeof DIRECTION_VARIANT;
     justify: keyof typeof JUSTIFY_VARIANT;
     align: keyof typeof ALIGN_VARIANT;
+    wrap?: keyof typeof WRAP_VARIANT;
     children: ReactNode;
   }
   export default Flex;

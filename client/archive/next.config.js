@@ -2,6 +2,9 @@ const NextFederationPlugin = require('@module-federation/nextjs-mf');
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
 const withVanillaExtract = createVanillaExtractPlugin();
 module.exports = withVanillaExtract({
+  images: {
+    domains: ['image.tmdb.org'],
+  },
   webpack(config, options) {
     if (!options.isServer) {
       config.plugins.push(

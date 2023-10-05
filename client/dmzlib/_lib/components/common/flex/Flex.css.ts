@@ -19,3 +19,8 @@ export const ALIGN_VARIANT = styleVariants({
   end: { alignItems: 'end' },
   stretch: { alignItems: 'stretch' },
 });
+
+export const WRAP_VARIANT = styleVariants({
+  none: { flexWrap: 'nowrap' },
+  wrap: { flexWrap: 'wrap' },
+});

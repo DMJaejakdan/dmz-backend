@@ -1,13 +1,13 @@
 import Txt from '#/components/common/txt/Txt';
 import Image from 'next/image';
-import { card_container, img_frame } from '../DetailCard.css';
+import { card_container, img_frame, txt_frame } from '../DetailCard.css';
 import Spacing from '#/components/common/spacing/Spacing';
 
 interface Props {
   personImg: string;
   name: string;
   fieldSection: 'maker' | 'actor';
-  fields: string[];
+  fields?: string;
   role?: string;
 }
 
@@ -20,9 +20,7 @@ function DetailPersonCard({
   ...props
 }: Props) {
   return (
-    <div
-      className={card_container}
-      {...props}>
+    <div className={card_container} {...props}>
       <div className={img_frame}>
         <Image
           src={personImg}
@@ -34,34 +32,24 @@ function DetailPersonCard({
       </div>
       <Spacing unit={0.25} />
       {fieldSection === 'actor' ? (
-        <Txt
-          content={`${role} 역`}
-          color="disabled"
-          size={14}
-        />
+        <Txt content={`${role} 역`} color="disabled" size={14} />
       ) : (
         <div>
-          {fields.map((field, idx) => (
+          <Txt content={fields as string} color="disabled" size={14} />
+          {/* {fields.map((field, idx) => (
             <>
-              <Txt
-                key={idx}
-                content={field}
-                color="disabled"
-                size={14}
-              />
+              <Txt key={idx} content={field} color="disabled" size={14} />
               {idx < fields.length - 1 ? (
-                <Txt
-                  content=",&nbsp;"
-                  color="disabled"
-                  size={14}
-                />
+                <Txt content=",&nbsp;" color="disabled" size={14} />
               ) : null}
             </>
-          ))}
+          ))} */}
         </div>
       )}
       <Spacing unit={0.25} />
-      <Txt content={name} />
+      <div className={txt_frame}>
+        <Txt content={name} align="center" />
+      </div>
     </div>
   );
 }
