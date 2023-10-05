@@ -5295,10 +5295,10 @@ __metadata:
 
 "shared@file:../shared::locator=archive%40workspace%3A.":
   version: 1.0.0
-  resolution: "shared@file:../shared#../shared::hash=b1c423&locator=archive%40workspace%3A."
+  resolution: "shared@file:../shared#../shared::hash=b0ba9c&locator=archive%40workspace%3A."
   dependencies:
     feather-route-matcher: 4.0.0
-  checksum: 186dee09999357668e216d8a71db617b639c2fd0c21c9de9aec1f3866241b8d6c8ff7d64340b64b9c6669fdc522f05fc815bcef89569a6a415b36257520818a9
+  checksum: 7b229d0592f9f48edad82683f5bc9406040330b076bb937b2cee68cace8e33f22de6662e99aaf63bb20b019f4fdac4d6ac6b0a8b4621c547c2e3d016ce0a95df
   languageName: node
   linkType: hard
 
