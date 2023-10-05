@@ -15,14 +15,15 @@
     ```yaml
     version: '3'
     services:
-        <service-name>:
-            image: <image-name>
-            build:
-                context: <folder-name>
-                dockerfile: <Dockerfile-name>
-            ports:
-                - <port>
-            environment:
-                - TZ=Asia/Seoul
-            stdin_open: true
+      <service-name>:
+        container_name: <container-name>
+        image: <image-name>
+        build:
+          context: <folder-name>
+          dockerfile: <Dockerfile-name>
+        ports:
+          - <port>
+        environment:
+          - TZ=Asia/Seoul
+        stdin_open: true
     ```

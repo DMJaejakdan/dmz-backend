@@ -10,6 +10,6 @@
 
     **MongoDB Shell로 Dump Data 복구하는 법**
     
-    ```shell
+    ```bash
     mongorestore --host 호스트 --port 포트 -u 계정명 -p 비번 --drop 드랍할_DB --db 복구하려는_DB <덤프 파일 위치>
     ```

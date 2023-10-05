@@ -6,21 +6,21 @@
 
     **./mongo/initdb.d/mongo-init.sh**
     
-    ```shell
+    ```bash
     #!/bin/bash
     set -e
 
     mongosh <<EOF
     use $MONGO_INITDB_DATABASE;
     db.createUser({
-    user: "$MONGO_USER",
-    pwd: "$MONGO_PASSWORD", 
-    roles: [
-        {
-        role: "readWrite",
-        db: "$MONGO_INITDB_DATABASE",
-        },
-    ],
+        user: "$MONGO_USER",
+        pwd: "$MONGO_PASSWORD", 
+        roles: [
+            {
+                role: "readWrite",
+                db: "$MONGO_INITDB_DATABASE",
+            },
+        ],
     });
     db.createCollection("test");
     db.test.insert([

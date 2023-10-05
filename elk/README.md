@@ -32,5 +32,5 @@
 5. ### Elasticsearch에 bulk로 데이터 삽입
    Elasticsearch의 각 인덱스에 데이터를 삽입합니다. Bulk API를 이용해 대량의 데이터를 한 번에 삽입하며, 각 인덱스마다 curl API를 호출하기 위해 `es_bulk.sh`를 실행합니다.
    ```bash
-   source es_bash.sh
+   source es_bulk.sh
    ```
