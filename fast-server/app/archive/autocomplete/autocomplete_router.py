@@ -6,7 +6,7 @@ from app.dependency import get_field_index, get_people_index, \
     get_channel_index, get_client
 
 from app.archive.autocomplete.queries import *
-from app.archive.autocomplete.responses import fields_from
+from app.archive.autocomplete.responses import fields_from, genres_from
 
 
 router = APIRouter(
@@ -41,8 +41,8 @@ async def genres(video_type: VideoType, genre: str,
                  index: str = Depends(get_genre_index)):
     try:
         query = get_match_query(genre, video_type)
-        result = await client.search(index=index, query=query)
-        return result
+        response = await client.search(index=index, query=query)
+        return genres_from(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

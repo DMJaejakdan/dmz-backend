@@ -14,3 +14,16 @@ def fields_from(response: dict) -> dict:
         return result
     except NotFoundException as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+def genres_from(response: dict) -> dict:
+    hits = response['hits']['hits']
+    result = {'genres': []}
+
+    try:
+        for hit in hits:
+            new_row = {'id': hit['_id'], 'name': hit['_source']['name']}
+            result['genres'].append(new_row)
+        return result
+    except NotFoundException as e:
+        raise HTTPException(status_code=500, detail=str(e))
