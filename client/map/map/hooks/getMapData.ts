@@ -1,11 +1,7 @@
 import { MongoClient } from 'mongodb';
 export async function getGraphData(limit: number, skip: number = 0) {
   const client = await MongoClient.connect(
-    'mongodb://root:ssafy.j9a602.dmz@j9a602.p.ssafy.io:27017',
-    {
-      connectTimeoutMS: 100000000,
-      socketTimeoutMS: 100000000,
-    }
+    'mongodb://root:ssafy.j9a602.dmz@j9a602.p.ssafy.io:27017'
   );
   const db = client.db('DMZ');
   const edgeCollection = db.collection('edge');
@@ -23,61 +19,62 @@ export async function getGraphData(limit: number, skip: number = 0) {
     .toArray();
 
   client.close();
-
+  //TODO: 랜덤 번호 찍어서, 거기서 뻗어나가는 간선과 해당하는 정점 로드
+  //정점 클릭하면, 거기서 뻗어나가는 간선과 해당하는 정점 추가로 로드
   return {
     vertices: JSON.parse(JSON.stringify(vertices)),
     edges: JSON.parse(JSON.stringify(edges)),
   };
 }
 
-export const getVerticesAndEdges = async (
-  start: number,
-  end: number
-): Promise<{ vertices: Vertex[]; edges: Edge[] }> => {
-  const client = await MongoClient.connect(
-    'mongodb://root:ssafy.j9a602.dmz@j9a602.p.ssafy.io:27017',
-    {
-      connectTimeoutMS: 100000000,
-      socketTimeoutMS: 100000000,
-    }
-  );
+// export const getVerticesAndEdges = async (
+//   start: number,
+//   end: number
+// ): Promise<{ vertices: Vertex[]; edges: Edge[] }> => {
+//   const client = await MongoClient.connect(
+//     'mongodb://root:ssafy.j9a602.dmz@j9a602.p.ssafy.io:27017',
+//     {
+//       connectTimeoutMS: 100000000,
+//       socketTimeoutMS: 100000000,
+//     }
+//   );
 
-  const db = client.db('DMZ');
+//   const db = client.db('DMZ');
 
-  // Vertices 데이터 가져오기
-  const vertexCollection = db.collection('vertex');
-  const verticesData = await vertexCollection
-    .find({
-      vertexId: {
-        $gte: start,
-        $lte: end,
-      },
-    })
-    .toArray();
+//   // Vertices 데이터 가져오기
+//   const vertexCollection = db.collection('vertex');
+//   const verticesData = await vertexCollection
+//     .find({
+//       vertexId: {
+//         $gte: start,
+//         $lte: end,
+//       },
+//     })
+//     .toArray();
 
-  const vertices = verticesData[0]
-    ? JSON.parse(JSON.stringify(verticesData))
-    : [];
+//   const vertices = verticesData[0]
+//     ? JSON.parse(JSON.stringify(verticesData))
+//     : [];
 
-  // 위에서 얻은 vertices의 vertexId를 사용하여 edges 데이터 가져오기
-  const edgeCollection = db.collection('edge');
-  const vertexIds = vertices.map((v: Vertex) => v.vertexId);
+//   // 위에서 얻은 vertices의 vertexId를 사용하여 edges 데이터 가져오기
+//   const edgeCollection = db.collection('edge');
+//   const vertexIds = vertices.map((v: Vertex) => v.vertexId);
 
-  const edgesData = await edgeCollection
-    .find({
-      from: { $in: vertexIds },
-      type: 'content-content',
-    })
-    .sort({ weight: -1 })
-    .limit(5 * vertexIds.length) // 각 vertexId당 3개의 edge를 가져옴
-    .toArray();
+//   const edgesData = await edgeCollection
+//     .find({
+//       from: { $in: vertexIds },
+//       type: 'content-content',
+//     })
+//     .sort({ weight: -1 })
+//     .limit(5 * vertexIds.length) // 각 vertexId당 3개의 edge를 가져옴
+//     .toArray();
 
-  const edges = edgesData[0] ? JSON.parse(JSON.stringify(edgesData)) : [];
+//   const edges = edgesData[0] ? JSON.parse(JSON.stringify(edgesData)) : [];
 
-  client.close();
+//   client.close();
 
-  return { vertices, edges };
-};
+//   return { vertices, edges };
+// };
 
 // export const getVertices = async (
 //   start: number,

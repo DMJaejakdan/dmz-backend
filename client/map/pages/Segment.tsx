@@ -1,26 +1,23 @@
-// import { getGraphData } from '@/map/hooks/getMapData';
-// import FDG from '@/map/tile/FDG';
-// import { MongoClient } from 'mongodb';
+import { getGraphData } from '@/map/hooks/getMapData';
+import FDG from '@/map/tile/FDG';
+import { MongoClient } from 'mongodb';
+import { GetServerSideProps } from 'next';
 
-// function Segment({ vertices, edges }: { vertices: any; edges: any }) {
-//   return (
-//     <>
-//       <Graph vertices={vertices} edges={edges} />
-//     </>
-//   );
-// }
-// function Graph({ vertices, edges }: { vertices: any; edges: any }) {
-//   console.log('데이터 그래프에 로드됨');
-//   return (
-//     <>
-//       <FDG vertices={vertices} edges={edges} />
-//     </>
-//   );
-// }
-function Segment() {
-  return <></>;
+function Segment({ vertices, edges }: { vertices: any; edges: any }) {
+  return (
+    <>
+      <Graph vertices={vertices} edges={edges} />
+    </>
+  );
 }
-export default Segment;
+function Graph({ vertices, edges }: { vertices: any; edges: any }) {
+  console.log('데이터 그래프에 로드됨');
+  return (
+    <>
+      <FDG vertices={vertices} edges={edges} />
+    </>
+  );
+}
 
 // export async function getStaticPaths() {
 //   const client = await MongoClient.connect(
@@ -61,3 +58,8 @@ export default Segment;
 //     revalidate: 86400,
 //   };
 // }
+Segment.getServerSideProps() {
+  const { vertices, edges } = await getGraphData(limit, skip);
+  return {props: {vertices, edges}}
+}
+export default Segment;
