@@ -1,4 +1,4 @@
-import { CS, ContentResponse } from './api/route';
+import { CS, ContentResponse } from './api/_methods';
 import Link from 'next/link';
 import { NextPageContext } from 'next';
 
@@ -7,7 +7,7 @@ function ResultsPage({ data }: ContentResponse) {
     <div>
       {data.map((content, idx) => (
         <div key={idx}>
-          <Link href={`detail/movie/${content.id}`}>ㅋㅋ</Link>
+          <Link href={`detail/movie/${content.id}`}>{content.nameKr}</Link>
           <br />
         </div>
       ))}

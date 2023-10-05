@@ -8,7 +8,7 @@ export const tab_wrapper = style({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '430px',
+  maxWidth: '380px',
 });
 
 export const tab_content = style({

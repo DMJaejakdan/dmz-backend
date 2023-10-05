@@ -4,6 +4,20 @@ const withVanillaExtract = createVanillaExtractPlugin();
 process.env.TZ = 'Asia/Seoul';
 
 module.exports = withVanillaExtract({
+  async headers() {
+    return [
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+    ];
+  },
+
   webpack(config, options) {
     if (!options.isServer) {
       config.plugins.push(
@@ -30,6 +44,7 @@ module.exports = withVanillaExtract({
             './Spacing': './_lib/components/common/spacing/Spacing.tsx',
             './Title': './_lib/components/common/title/Title.tsx',
             './Txt': './_lib/components/common/txt/Txt.tsx',
+            './Nav': './_lib/components/common/nav/Nav.tsx',
             //archive
             //card
             './DetailMediaCard':

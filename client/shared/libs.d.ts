@@ -15,9 +15,24 @@ declare module 'dmzlib/searchbox' {
   const searchbox: {};
   export default searchbox;
 }
-declare module 'dmzlib/tabs' {
-  const tabs: {};
-  export default tabs;
+declare module 'dmzlib/Tabs' {
+  const Tabs: React.LazyExoticComponent<React.FC<TabsProps>>;
+  export interface TabContent {
+    title: string;
+    children: JSX.Element;
+  }
+  
+  export interface TabsProps {
+    TabContents: TabContent[];
+  }
+  export default Tabs;
+}
+declare module 'dmzlib/Nav' {
+  const Nav: React.LazyExoticComponent<React.FC<Props>;
+  interface Props {
+    text: string;
+  }
+  export default Nav;
 }
 //컴포넌트 타입 설정
 declare module 'dmzlib/Button' {

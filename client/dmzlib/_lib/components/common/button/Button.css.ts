@@ -20,7 +20,7 @@ export const COLOR_VARIANT = styleVariants({
   grey: [
     base,
     {
-      backgroundColor: theme.colors.grey,
+      backgroundColor: theme.colors.darkgrey,
       border: theme.border.transparent,
       color: theme.txt.white,
     },

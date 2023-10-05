@@ -3,6 +3,7 @@ function MapFrame() {
   return (
     <>
       <div>
+        지도입니다
         {/* <Tile vertices={vertices ? vertices : []} edges={edges} /> */}
       </div>
     </>

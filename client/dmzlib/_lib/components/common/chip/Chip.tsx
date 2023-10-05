@@ -30,6 +30,7 @@ function Chip({ type, label, shape = 'round', onSelect, onDelete }: Props) {
             <Icon
               type="close"
               color="white"
+              cursor="pointer"
               onClick={() => onDelete && onDelete(label)}
             />
           </span>

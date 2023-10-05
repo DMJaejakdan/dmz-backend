@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "rm -rf .next && next dev -p 3002",
     "build": "rm -rf .next && next build",
-    "start": "next start -p 3002"
+    "start": "next start"
   },
   "dependencies": {
     "@module-federation/nextjs-mf": "^7.0.8",
@@ -14,7 +14,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "shared": "file:../shared",
-    "swr": "^2.2.4",
     "webpack": "5.80.0"
   },
   "devDependencies": {
@@ -33,6 +32,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.2",
     "mini-css-extract-plugin": "^2.7.6",
+    "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
   "packageManager": "yarn@3.6.3"

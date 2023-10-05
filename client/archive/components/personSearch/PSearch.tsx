@@ -1,35 +1,89 @@
 import dynamic from 'next/dynamic';
-import { SHOW_VARIANT } from './PSearch.css';
-import { useState } from 'react';
-import moviesearch from '@/constants/moviesearch';
-
+import { FormEvent } from 'react';
+import PERSON_SEARCH from '@/constants/PERSON_SEARCH';
+import { AC } from '@/pages/api/_methods';
+import { useRouter } from 'next/router';
 const Button = dynamic(() => import('dmzlib/Button'), { ssr: false });
 const Spacing = dynamic(() => import('dmzlib/Spacing'), { ssr: false });
-const Flex = dynamic(() => import('dmzlib/Flex'), { ssr: false });
+
 const InputBox = dynamic(() => import('dmzlib/InputBox'), {
   ssr: false,
 });
 const KeywordBox = dynamic(() => import('dmzlib/KeywordBox'), {
   ssr: false,
 });
-const FilterBox = dynamic(() => import('dmzlib/FilterBox'), {
-  ssr: false,
-});
+
 const DateBox = dynamic(() => import('dmzlib/DateBox'), { ssr: false });
-async function onSearch() {
-  'use server';
-}
 
-function MovieSearch() {
-  const [display, setDisplay] = useState<'hide' | 'show'>('hide');
-  return <></>;
-}
-
-MovieSearch.getInitialProps = async () => {
-  const API = await fetch('https://swapi.dev/api/people/1').then(res =>
-    res.json()
+function PSearch() {
+  const router = useRouter();
+  async function searchMovie(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const queryString = new URLSearchParams(
+      formData.entries() as any
+    ).toString();
+    const redirectUrl = `/result?${queryString}`;
+    // 리디렉션 실행
+    router.push(redirectUrl);
+  }
+  return (
+    <>
+      <form onSubmit={searchMovie}>
+        <InputBox
+          title={PERSON_SEARCH.title.personName}
+          placeholder={PERSON_SEARCH.placeholder.personName}
+          onInput={() => {}}
+          inputId="title"
+          inputName="title"
+        />
+        <Spacing />
+        <KeywordBox
+          title={PERSON_SEARCH.title.job}
+          onFind={input => AC('genre', input)}
+          onInput={() => null}
+          inputId="area"
+          inputName="area"
+        />
+        <Spacing />
+        <KeywordBox
+          title={PERSON_SEARCH.title.gender}
+          onFind={input => AC('person', input)}
+          onInput={() => null}
+          inputId="genders"
+          inputName="genders"
+        />
+        <Spacing />
+        <KeywordBox
+          title={PERSON_SEARCH.title.ages}
+          onFind={input => AC('title', input)}
+          onInput={() => null}
+          inputId="ages"
+          inputName="ages"
+        />
+        <Spacing />
+        <DateBox
+          title={PERSON_SEARCH.title.time}
+          inputId_f="personDateF"
+          inputName_f="personDateF"
+          inputId_t="personDateT"
+          inputName_t="personDateT"
+          onFrom={() => null}
+          onTo={() => null}
+        />
+        <Spacing unit={2} />
+        <Button
+          btnType="submit"
+          shape="square"
+          size="large"
+          width="full"
+          color="white"
+          label={PERSON_SEARCH.button.search}
+        />
+        <Spacing />
+      </form>
+    </>
   );
-  return API;
-};
+}
 
-export default MovieSearch;
+export default PSearch;

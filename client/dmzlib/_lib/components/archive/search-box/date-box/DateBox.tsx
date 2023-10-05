@@ -19,7 +19,7 @@ interface Props {
 }
 function DateBox({
   title,
-  placeholder = 'YYYYMM',
+  placeholder = 'YYYY-MM-DD',
   value_f,
   value_t,
   onFrom,

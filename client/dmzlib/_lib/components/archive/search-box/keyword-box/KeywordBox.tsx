@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { box_base } from '../SearchBox.css';
 import Chip from '#/components/common/chip/Chip';
 import Input from '#/components/common/input/Input';
@@ -23,7 +23,6 @@ interface Props {
 function KeywordBox({ title, onFind, onInput, inputId, inputName }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
   const [autocompleteKwds, setAutoCompleteKwds] = useState<unknown[]>([]);
-
   const [input, setInput] = useState<string>('');
 
   const pushSelected = (kwd: string) => setSelected([...selected, kwd]);
@@ -48,8 +47,7 @@ function KeywordBox({ title, onFind, onInput, inputId, inputName }: Props) {
           name={inputName}
         />
         <div className={selected_keywords}>
-          {/* 선택된 애들이 chip으로 렌더링 되어야함 */}
-          {selected.length &&
+          {selected.length > 0 ? (
             selected.map((kwd, idx) => (
               <Chip
                 key={idx}
@@ -57,26 +55,37 @@ function KeywordBox({ title, onFind, onInput, inputId, inputName }: Props) {
                 type="keyword"
                 onDelete={delSelected}
               />
-            ))}
+            ))
+          ) : (
+            <Chip label="검색어를 추가하세요" type="suggestion" />
+          )}
         </div>
-
+        <Spacing unit={0.5} />
         <Input
           placeholder={searchbox.box.button.search}
           value={input}
           onInput={e => setInput(e.target.value)}
         />
 
-        <Spacing />
         <div>
           {/* //키워드 리스트가 이 안에 들어감 */}
-          <ul className={autocomplete_ul}>
-            {autocompleteKwds.length > 0 &&
-              autocompleteKwds.map((kwd: unknown, idx: number) => (
-                <li className={autocomplete_li} key={idx}>
-                  {JSON.stringify(kwd)}
+          {autocompleteKwds.length > 0 && (
+            <ul className={autocomplete_ul}>
+              {autocompleteKwds.map((kwd: any, idx: number) => (
+                <li
+                  className={autocomplete_li}
+                  key={idx}
+                  onClick={() => {
+                    pushSelected(kwd.name ? kwd.name : kwd.nameKr);
+                    setAutoCompleteKwds([]);
+                    setInput('');
+                  }}
+                >
+                  {kwd.name ? kwd.name : kwd.nameKr}
                 </li>
               ))}
-          </ul>
+            </ul>
+          )}
         </div>
       </div>
     </div>

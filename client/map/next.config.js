@@ -13,7 +13,7 @@ module.exports = withVanillaExtract({
           filename: 'static/chunks/remoteEntry.js',
           remotes: {
             dmzlib:
-              'dmzlib@http://localhost:3001/_next/static/chunks/remoteEntry.js',
+            `dmzlib@${provess.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
           },
           exposes: {
             './Map': './pages/map/container.tsx',
