@@ -147,7 +147,7 @@ declare module 'dmzlib/KeywordBox' {
     title: string;
     inputId: string;
     inputName: string;
-    onFind: (keyword: string) => Promise<void> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
+    onFind: (input: string) => Promise<unknown[]>;
     onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
   export default KeywordBox;
@@ -172,15 +172,6 @@ declare module 'dmzlib/Tabs' {
   export default Tabs;
 }
 
-declare module 'dmzlib/KeywordBox' {
-  const FilterBox: React.LazyExoticComponent<React.FC<Props>>;
-  export interface Props {
-    title: string;
-    onFind: (keyword: string) => Promise<void> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
-    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  }
-  export default FilterBox;
-}
 declare module 'dmzlib/DateBox' {
   const DateBox: React.LazyExoticComponent<React.FC<Props>>;
   export interface Props {

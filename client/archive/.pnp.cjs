@@ -48,7 +48,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:13.3.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:18.2.0"],\
-            ["shared", "file:../shared#../shared::hash=6a2ec2&locator=archive%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=339790&locator=archive%40workspace%3A."],\
+            ["swr", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:2.2.4"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:5.80.0"]\
           ],\
@@ -2142,7 +2143,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:13.3.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:18.2.0"],\
-            ["shared", "file:../shared#../shared::hash=6a2ec2&locator=archive%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=339790&locator=archive%40workspace%3A."],\
+            ["swr", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:2.2.4"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:5.80.0"]\
           ],\
@@ -6337,10 +6339,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shared", [\
-        ["file:../shared#../shared::hash=6a2ec2&locator=archive%40workspace%3A.", {\
-          "packageLocation": "./.yarn/cache/shared-file-f2daa670d6-c787badd23.zip/node_modules/shared/",\
+        ["file:../shared#../shared::hash=339790&locator=archive%40workspace%3A.", {\
+          "packageLocation": "./.yarn/cache/shared-file-a43ddf74f8-a650f65cc8.zip/node_modules/shared/",\
           "packageDependencies": [\
-            ["shared", "file:../shared#../shared::hash=6a2ec2&locator=archive%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=339790&locator=archive%40workspace%3A."],\
             ["feather-route-matcher", "npm:4.0.0"]\
           ],\
           "linkType": "HARD"\
@@ -6682,6 +6684,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/supports-preserve-symlinks-flag-npm-1.0.0-f17c4d0028-53b1e247e6.zip/node_modules/supports-preserve-symlinks-flag/",\
           "packageDependencies": [\
             ["supports-preserve-symlinks-flag", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["swr", [\
+        ["npm:2.2.4", {\
+          "packageLocation": "./.yarn/cache/swr-npm-2.2.4-5bec6d25f9-d1398f89fd.zip/node_modules/swr/",\
+          "packageDependencies": [\
+            ["swr", "npm:2.2.4"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:2.2.4", {\
+          "packageLocation": "./.yarn/__virtual__/swr-virtual-2059fa8df2/0/cache/swr-npm-2.2.4-5bec6d25f9-d1398f89fd.zip/node_modules/swr/",\
+          "packageDependencies": [\
+            ["swr", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:2.2.4"],\
+            ["@types/react", "npm:18.2.20"],\
+            ["client-only", "npm:0.0.1"],\
+            ["react", "npm:18.2.0"],\
+            ["use-sync-external-store", "virtual:2059fa8df2ca72141b9d172947e998c6213e423b42d5797c98c3432974cf5587d5dbfb04ea3b33f009cc82ddd23a6e6413cd40c7b8fc1977b29211b5ad57d944#npm:1.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7036,6 +7062,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["uri-js", "npm:4.4.1"],\
             ["punycode", "npm:2.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["use-sync-external-store", [\
+        ["npm:1.2.0", {\
+          "packageLocation": "./.yarn/cache/use-sync-external-store-npm-1.2.0-44f75d2564-5c639e0f8d.zip/node_modules/use-sync-external-store/",\
+          "packageDependencies": [\
+            ["use-sync-external-store", "npm:1.2.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:2059fa8df2ca72141b9d172947e998c6213e423b42d5797c98c3432974cf5587d5dbfb04ea3b33f009cc82ddd23a6e6413cd40c7b8fc1977b29211b5ad57d944#npm:1.2.0", {\
+          "packageLocation": "./.yarn/__virtual__/use-sync-external-store-virtual-64f258f7b7/0/cache/use-sync-external-store-npm-1.2.0-44f75d2564-5c639e0f8d.zip/node_modules/use-sync-external-store/",\
+          "packageDependencies": [\
+            ["use-sync-external-store", "virtual:2059fa8df2ca72141b9d172947e998c6213e423b42d5797c98c3432974cf5587d5dbfb04ea3b33f009cc82ddd23a6e6413cd40c7b8fc1977b29211b5ad57d944#npm:1.2.0"],\
+            ["@types/react", "npm:18.2.20"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\

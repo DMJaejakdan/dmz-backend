@@ -1,15 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import MovieSearch from '@/components/MovieSearch';
-
-const Button = dynamic(() => import('dmzlib/Button'), { ssr: false });
+import MovieSearch from '@/components/movieSearch/MSearch';
 
 function ArchivePage() {
   return (
     <div>
       <Head>
-        <title>ARCHIVE</title>
+        <title>드라마영화지도 - 아카이브 검색</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -19,11 +17,5 @@ function ArchivePage() {
     </div>
   );
 }
-//아래에서 ssr될 데이터를 가져와야 합니다
-ArchivePage.getInitialProps = async () => {
-  const API = await fetch('https://swapi.dev/api/people/1').then(res =>
-    res.json()
-  );
-  return API;
-};
+
 export default ArchivePage;
