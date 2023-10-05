@@ -2,7 +2,7 @@ const NextFederationPlugin = require('@module-federation/nextjs-mf');
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
 const withVanillaExtract = createVanillaExtractPlugin();
 module.exports = withVanillaExtract({
-  basePath: '/',
+  basePath: '',
   webpack(config, options) {
     const { webpack } = options;
     if (!options.isServer) {
