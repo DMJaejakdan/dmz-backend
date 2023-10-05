@@ -12,8 +12,7 @@ module.exports = withVanillaExtract({
           name: 'map',
           filename: 'static/chunks/remoteEntry.js',
           remotes: {
-            dmzlib:
-            `dmzlib@${provess.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
+            dmzlib: `dmzlib@${provess.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
           },
           exposes: {
             './Map': './pages/map/container.tsx',

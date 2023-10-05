@@ -1,4 +1,6 @@
 //테마 및 상수변수 타입 설정
+declare module 'archive/ArchivePage' {}
+declare module 'map/MapPage' {}
 declare module 'dmzlib/theme' {
   const theme: {};
   export default theme;
