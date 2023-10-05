@@ -17,7 +17,7 @@ services:
       context: ./client
       dockerfile: dmzlib.Dockerfile
     ports:
-      - "3001:3001"
+      - "3001:3000"
     environment:
       - TZ=Asia/Seoul
     stdin_open: true
@@ -28,7 +28,7 @@ services:
       context: ./client
       dockerfile: archive.Dockerfile
     ports:
-      - "3002:3002"
+      - "3002:3000"
     environment:
       - TZ=Asia/Seoul
     stdin_open: true
