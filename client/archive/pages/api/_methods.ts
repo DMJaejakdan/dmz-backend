@@ -1,11 +1,11 @@
 export async function AC(type: string, input: string) {
-  const url = `/api/autocomplete?type=${type}&genrePre=${input}`;
+  const url = `${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/api/autocomplete?type=${type}&genrePre=${input}`;
   const data = await fetch(url).then(res => res.json());
   return data;
 }
 
 export async function CS(queries: {}) {
-  console.log(queries);
+  //k:v 쌍으로 있는 쿼리들을 쿼리 스트링으로 풀어줌
   const string = Object.entries(queries)
     .filter(
       ([_, value]) => value !== undefined && value !== null && value !== ''
@@ -17,6 +17,7 @@ export async function CS(queries: {}) {
   return data;
 }
 export async function PS(queries: {}) {
+  //k:v 쌍으로 있는 쿼리들을 쿼리 스트링으로 풀어줌
   const string = Object.entries(queries)
     .filter(
       ([_, value]) => value !== undefined && value !== null && value !== ''
@@ -54,7 +55,25 @@ export interface ContentResponse {
     totalPages: number;
   };
 }
-
+export interface PersonResponse {
+  data: {
+    id: number;
+    tmdbId: number;
+    nameKr: string;
+    nameEn: string;
+    profilePath: string;
+    birth: string;
+    death: null;
+    gender: number;
+    area: string;
+  }[];
+  pageInfo: {
+    page: number;
+    size: number;
+    totalElements: number;
+    totalPages: number;
+  };
+}
 export interface Genre {
   id: number;
   name: string;

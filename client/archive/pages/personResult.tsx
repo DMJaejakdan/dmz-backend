@@ -7,7 +7,7 @@ function ResultsPage({ data }: ContentResponse) {
     <div>
       {data.map((content, idx) => (
         <div key={idx}>
-          <Link href={`detail/movie/${content.id}`}>{content.nameKr}</Link>
+          <Link href={`/detail/movie/${content.id}`}>{content.nameKr}</Link>
           <br />
         </div>
       ))}
