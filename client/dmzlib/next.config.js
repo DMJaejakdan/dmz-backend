@@ -24,6 +24,7 @@ module.exports = withVanillaExtract({
             //common
             './Button': './_lib/components/common/button/Button.tsx',
             './Chip': './_lib/components/common/chip/Chip.tsx',
+            './Flex': './_lib/components/common/flex/Flex.tsx',
             './Icon': './_lib/components/common/icon/Icon.tsx',
             './Input': './_lib/components/common/input/Input.tsx',
             './Spacing': './_lib/components/common/spacing/Spacing.tsx',
@@ -49,6 +50,8 @@ module.exports = withVanillaExtract({
             './PaginationChevron':
               './_lib/components/archive/pagination/pagination-chevron/PaginationChevron.tsx',
             //search-box
+            './DateBox':
+              './_lib/components/archive/search-box/date-box/DateBox.tsx',
             './FilterBox':
               './_lib/components/archive/search-box/filter-box/FilterBox.tsx',
             './InputBox':
