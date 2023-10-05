@@ -14,11 +14,13 @@ import {
 
 interface Props {
   title: string;
+  inputId: string;
+  inputName: string;
   onFind: (keyword: string) => Promise<string[]> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function KeywordBox({ title, onFind, onInput }: Props) {
+function KeywordBox({ title, onFind, onInput, inputId, inputName }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
   const [autocompleteKwds, setAutoCompleteKwds] = useState<string[]>([]);
   const [input, setInput] = useState<string>('');
@@ -57,7 +59,8 @@ function KeywordBox({ title, onFind, onInput }: Props) {
           <Input
             placeholder={searchbox.box.button.search}
             value={input}
-            id={'keyword'}
+            inputId={inputId}
+            inputName={inputName}
             onInput={e => handleAutocomplete(e)}
           />
         </form>

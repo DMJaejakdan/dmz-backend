@@ -14,5 +14,9 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     title: '검색 조건을 찾아라',
+    inputId_f: 'sbif',
+    inputName_f: 'sbif',
+    inputId_t: 'sbit',
+    inputName_t: 'sbit',
   },
 };
