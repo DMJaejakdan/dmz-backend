@@ -29,8 +29,8 @@ async def people(name: str,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_people_index)):
     try:
-        result = await client.search(index=index, query=get_people_query(name))
-        return result
+        response = await client.search(index=index, query=get_people_query(name))
+        return response_from(response, 'people', 'name_kr')
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
