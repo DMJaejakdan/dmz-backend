@@ -9,3 +9,7 @@ export const COLOR_VARIANT = styleVariants({
   lightgrey: { fill: theme.colors.lightgrey },
   darkgrey: { fill: theme.colors.darkgrey },
 });
+export const CURSOR_VARIANT = styleVariants({
+  default: { cursor: 'default' },
+  pointer: { cursor: 'pointer' },
+});

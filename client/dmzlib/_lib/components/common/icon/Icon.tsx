@@ -1,14 +1,18 @@
 import { HTMLAttributes } from 'react';
-import { COLOR_VARIANT } from './Icon.css';
+import { COLOR_VARIANT, CURSOR_VARIANT } from './Icon.css';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   type: keyof typeof ICON_TYPE;
   color: keyof typeof COLOR_VARIANT;
+  cursor?: keyof typeof CURSOR_VARIANT;
 }
 
-function Icon({ type, color, ...props }: Props) {
+function Icon({ type, color, cursor = 'default', ...props }: Props) {
   return (
-    <span {...props} className={COLOR_VARIANT[color]}>
+    <span
+      {...props}
+      className={`${COLOR_VARIANT[color]} ${CURSOR_VARIANT[cursor]}`}
+    >
       <span dangerouslySetInnerHTML={{ __html: ICON_TYPE[type] }} />
     </span>
   );

@@ -1,10 +1,10 @@
 'use client';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { TAB_ACTIVE_VARIANT, tab_content, tab_wrapper } from './Tabs.css';
 
 interface TabContent {
   title: string;
-  children: ReactNode;
+  children: JSX.Element;
 }
 
 interface TabsProps {
@@ -21,7 +21,7 @@ function Tabs({ TabContents }: TabsProps) {
   const [activeIdx, setActiveIdx] = useState<number>(0);
   return (
     <>
-      <div className={tab_wrapper}>
+      <div className={`${tab_wrapper}`}>
         {TabContents.map((content, idx) => {
           return (
             <Tabs.Tab
