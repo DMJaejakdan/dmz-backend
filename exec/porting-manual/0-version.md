@@ -8,11 +8,20 @@
 - `Springboot` : 2.7.15
 - `QueryDSL` : 5.0.0
 
-
 ### Fast API
 
 - `python` : 3.11
-- [requirements.txt](../../fast-server/requirements.txt)
+- `aiohttp` : 3.8.5
+- `fastapi` : 0.103.1
+- `elasticsearch` :8.10.0
+- `nest-asyncio` : 1.5.8
+- `pydantic` : 1.10.13
+- `pydantic_core` : 2.6.3
+- `pydantic[dotenv]`
+- `python-dateutil` : 2.8.2
+- `pytz` : 2023.3.post1
+- `uvicorn` : 0.23.2
+- `requests` : 2.31.0
 
 ### ELK
 
@@ -24,8 +33,6 @@
 
 - `Spark` : 3.3.2
 - `Scala` : 2.13
-
----
 
 ## Frontend
 
@@ -54,14 +61,10 @@ dmzlib, archive, map 모듈과 원격으로 아래의 디펜던시 공유
 - `D3` : 7.8.5
 - `MongoDB` : 6.1.0
 
----
-
 ## Database
 
 - `MySQL` 8.0.33
 - `MongoDB` 7.0.1
-
----
 
 ## Infra
 
@@ -70,8 +73,6 @@ dmzlib, archive, map 모듈과 원격으로 아래의 디펜던시 공유
 - `Docker` 24.0.6
 - `Docker Compose` 2.21.0
 - `Jenkins` 2.414.1
-
----
 
 ## IDE
 

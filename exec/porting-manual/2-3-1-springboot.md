@@ -1,44 +1,45 @@
 # Server - Springboot
 
 1. **Dockerfile**
-```docker
-FROM gradle:7.4-jdk11-alpine AS builder
 
-WORKDIR /app
+    ```docker
+    FROM gradle:7.4-jdk11-alpine AS builder
 
-COPY build.gradle settings.gradle /app/
+    WORKDIR /app
 
-RUN gradle cleanQuerydslSourceDir
+    COPY build.gradle settings.gradle /app/
 
-RUN gradle clean build -Pprofile=prod -x test --parallel --continue > /dev/null 2>&1 || true
+    RUN gradle cleanQuerydslSourceDir
 
-COPY ./ ./
+    RUN gradle clean build -Pprofile=prod -x test --parallel --continue > /dev/null 2>&1 || true
 
-RUN gradle build -Pprofile=prod -x test --parallel
+    COPY ./ ./
 
-FROM openjdk:11-jdk
+    RUN gradle build -Pprofile=prod -x test --parallel
 
-WORKDIR /app
+    FROM openjdk:11-jdk
 
-COPY --from=builder /app/build/libs/*.jar /app/app.jar
+    WORKDIR /app
 
-EXPOSE 8080
+    COPY --from=builder /app/build/libs/*.jar /app/app.jar
 
-ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-Duser.timezone=Asia/Seoul", "-jar", "app.jar"]
-```
+    EXPOSE 8080
+
+    ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-Duser.timezone=Asia/Seoul", "-jar", "app.jar"]
+    ```
 
 2. 환경 변수
 
-**./server/src/main/resources/env.yml**에 작성
+    **./server/src/main/resources/env.yml**에 작성
 
-Jenkins를 사용하는 경우 **Jenkins 내부**에 작성
+    Jenkins를 사용하는 경우 **Jenkins 내부**에 작성
 
-```yaml
-RDS_DB_URL: <RDS DB URL>
-RDS_DB_USERNAME: <RDS DB Username>
-RDS_DB_PASSWORD: <RDS DB Password>
-TMDB_API_KEY: <TMDB API Key>
-```
+    ```yaml
+    RDS_DB_URL: <RDS DB URL>
+    RDS_DB_USERNAME: <RDS DB Username>
+    RDS_DB_PASSWORD: <RDS DB Password>
+    TMDB_API_KEY: <TMDB API Key>
+    ```
 
 ---
 
