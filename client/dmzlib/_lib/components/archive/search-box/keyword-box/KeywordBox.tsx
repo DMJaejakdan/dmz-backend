@@ -59,17 +59,13 @@ function KeywordBox({ title, onFind, onInput, inputId, inputName }: Props) {
               />
             ))}
         </div>
-        {/* <form
-          onSubmit={(e: FormEvent<HTMLFormElement>) => {
-            e.preventDefault();
-          }}
-        > */}
+
         <Input
           placeholder={searchbox.box.button.search}
           value={input}
           onInput={e => setInput(e.target.value)}
         />
-        {/* </form> */}
+
         <Spacing />
         <div>
           {/* //키워드 리스트가 이 안에 들어감 */}

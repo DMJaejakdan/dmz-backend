@@ -40,6 +40,9 @@ function Button({
       ${WIDTH_VARIANT[width]}
       `}
       onClick={props.onClick}
+      onSubmit={e => {
+        e.preventDefault();
+      }}
       {...props}
     >
       {label}

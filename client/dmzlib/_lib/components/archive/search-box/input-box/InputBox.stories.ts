@@ -15,5 +15,7 @@ export const Primary: Story = {
   args: {
     title: '검색 조건을 찾아라',
     placeholder: '검색어를 입력하십시오',
+    inputId: 'sbsb123',
+    inputName: 'sbsb1234',
   },
 };

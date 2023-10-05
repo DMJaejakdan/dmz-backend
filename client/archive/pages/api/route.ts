@@ -5,40 +5,45 @@ export async function AC(type: string, input: string) {
   const data = await fetch(url).then(res => res.json());
   return data;
 }
-export async function person(input: string) {
-  const url = `http://j9a602.p.ssafy.io/api/content/auto/person?personPre=${input}`;
-  const data = await fetch(url).then(res => res.json());
-  return data;
-}
-export async function keyword(input: string) {
-  const url = `http://j9a602.p.ssafy.io/api/content/auto/keyword?keywordPre=${input}`;
-  const data = await fetch(url).then(res => res.json());
-  return data;
-}
-export async function company(input: string) {
-  const url = `http://j9a602.p.ssafy.io/api/content/auto/company?companyPre=${input}`;
-  const data = await fetch(url).then(res => res.json());
-  return data;
-}
 
-export async function search(
-  title: string,
-  genre: string,
-  person: string,
-  keyword: string,
-  story: string,
-  time: string,
-  company: string,
-  ott: string,
-  grade: string
-) {
-  const router = useRouter();
-  const data = 3;
-  if (data)
-    router.push({
-      pathname: '/result',
-      query: { data },
-    });
+export async function CS(queries: {}) {
+  console.log(queries);
+  const string = Object.entries(queries)
+    .filter(
+      ([key, value]) => value !== undefined && value !== null && value !== ''
+    )
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+  console.log(string);
+  const url = `http://localhost:3002/api/contentSearch?${string}`;
+  const data = await fetch(url).then(res => res.json());
+  return data;
+}
+export interface ContentResponse {
+  data: {
+    id: number;
+    tmdbId: number;
+    nameKr: string;
+    nameEn: string;
+    kind: 'DRAMA' | 'MOVIE';
+    posterPath: string;
+    releasedDate: string;
+    rating: string;
+    plot: string;
+    person: any;
+    genreResponseList: {
+      tmdbId: number;
+      name: string;
+    }[];
+    movieInfoResponse: any;
+    dramaInfoResponse: any;
+  }[];
+  pageInfo: {
+    page: number;
+    size: number;
+    totalElements: number;
+    totalPages: number;
+  };
 }
 
 export interface Genre {
