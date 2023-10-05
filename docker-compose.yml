@@ -1,59 +1,54 @@
-version: '3'
+version: "3"
 services:
   frame:
-    container_name: frame
     image: jyj2487/frame-app
     build:
       context: ./client
       dockerfile: frame.Dockerfile
     ports:
-      - '3000:3000'
+      - "3000:3000"
     environment:
       - TZ=Asia/Seoul
     stdin_open: true
 
   dmzlib:
-    container_name: dmzlib
     image: jyj2487/dmzlib-app
     build:
       context: ./client
       dockerfile: dmzlib.Dockerfile
     ports:
-      - '3001:3001'
+      - "3001:3001"
     environment:
       - TZ=Asia/Seoul
     stdin_open: true
 
   archive:
-    container_name: archive
     image: jyj2487/archive-app
     build:
       context: ./client
       dockerfile: archive.Dockerfile
     ports:
-      - '3002:3002'
+      - "3002:3002"
     environment:
       - TZ=Asia/Seoul
     stdin_open: true
 
   springboot:
-    container_name: springboot
     image: jyj2487/spring-app
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - '8080:8080'
+      - "8080:8080"
     environment:
       - TZ=Asia/Seoul
 
   fast:
-    container_name: fast
     image: jyj2487/fast-app
     build:
       context: ./fast-server
       dockerfile: Dockerfile
     ports:
-      - '8000:8000'
+      - "8000:8000"
     environment:
       - TZ=Asia/Seoul
