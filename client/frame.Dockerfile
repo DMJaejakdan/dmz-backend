@@ -12,7 +12,7 @@ RUN cd ./frame
 
 WORKDIR /app/frame
 
-EXPOSE 3002
+EXPOSE 3000
 
 RUN yarn install
 
