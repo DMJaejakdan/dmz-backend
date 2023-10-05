@@ -1,7 +1,11 @@
 import dynamic from 'next/dynamic';
+import { SHOW_VARIANT } from './MovieSearch.css';
+import { useState } from 'react';
+import moviesearch from '@/constants/moviesearch';
 const Button = dynamic(() => import('dmzlib/Button'), { ssr: false });
 const Icon = dynamic(() => import('dmzlib/Icon'), { ssr: false });
 const Spacing = dynamic(() => import('dmzlib/Spacing'), { ssr: false });
+const Flex = dynamic(() => import('dmzlib/Flex'), { ssr: false });
 const InputBox = dynamic(() => import('dmzlib/InputBox'), {
   ssr: false,
 });
@@ -11,55 +15,82 @@ const KeywordBox = dynamic(() => import('dmzlib/KeywordBox'), {
 const FilterBox = dynamic(() => import('dmzlib/FilterBox'), {
   ssr: false,
 });
-
+const DateBox = dynamic(() => import('dmzlib/DateBox'), { ssr: false });
 async function onSearch() {
   'use server';
 }
 
 function MovieSearch() {
+  const [display, setDisplay] = useState<'hide' | 'show'>('hide');
   return (
     <>
-      <form action={onSearch}>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          console.log('abcd');
+        }}
+      >
         <InputBox
-          title="ㅋㅋ"
-          placeholder="입력해 당장"
+          title={moviesearch.title.title}
+          placeholder={moviesearch.placeholder.title}
           onInput={() => console.log('zz')}
         />
         <Spacing />
-        <KeywordBox title="장르" onFind={() => null} />
+        <KeywordBox title={moviesearch.title.genre} onFind={() => null} />
         <Spacing />
-        <KeywordBox title="출연진/스태프" onFind={() => null} />
+        <KeywordBox title={moviesearch.title.person} onFind={() => null} />
         <Spacing />
-        <KeywordBox title="키워드" onFind={() => null} />
+        <KeywordBox title={moviesearch.title.keyword} onFind={() => null} />
         <Spacing />
         <InputBox
-          title="줄거리/시놉시스"
-          placeholder="입력해 당장"
+          title={moviesearch.title.story}
+          placeholder={moviesearch.placeholder.story}
           onInput={() => console.log('zz')}
         />
         <Spacing />
-        <Button shape="square" width="full" color="white" label="검색" />
-        <Button shape="round" size="small" color="black" label="조건 더보기" />
+        <Flex direction="row" justify="center" align="center">
+          <Button
+            shape="round"
+            size="small"
+            color="black"
+            label={
+              display === 'show'
+                ? moviesearch.button.less
+                : moviesearch.button.more
+            }
+            onClick={() => setDisplay(display === 'show' ? 'hide' : 'show')}
+          />
+        </Flex>
         <Spacing unit="2" />
+        <div className={SHOW_VARIANT[display]}>
+          <Spacing />
+          {/* //개봉시기 */}
+          <DateBox
+            title={moviesearch.title.time}
+            onFrom={() => null}
+            onTo={() => null}
+          />
+          <Spacing />
+          {/* //제작투자배급사 */}
+          <KeywordBox title={moviesearch.title.company} onFind={() => null} />
+          <Spacing />
+          {/* //스트리밍 제공 */}
+          <KeywordBox title={moviesearch.title.ott} onFind={() => null} />
+          <Spacing />
+          {/* //시청등급 */}
+          <FilterBox
+            title={moviesearch.title.grade}
+            options={[]}
+            onSelect={() => console.log('ㅋㅋ')}
+          />
+        </div>
         <Spacing />
-        {/* //개봉시기 */}
-        <InputBox
-          title="개봉시기"
-          placeholder="입력해 당장"
-          onInput={() => console.log('zz')}
-        />
-        <Spacing />
-        {/* //제작투자배급사 */}
-        <KeywordBox title="제작/투자/배급사" onFind={() => null} />
-        <Spacing />
-        {/* //스트리밍 제공 */}
-        <KeywordBox title="스트리밍 제공사" onFind={() => null} />
-        <Spacing />
-        {/* //시청등급 */}
-        <FilterBox
-          title="시청등급"
-          options={[]}
-          onSelect={() => console.log('ㅋㅋ')}
+        <Button
+          shape="square"
+          size="large"
+          width="full"
+          color="white"
+          label="검색"
         />
         <Spacing />
       </form>
