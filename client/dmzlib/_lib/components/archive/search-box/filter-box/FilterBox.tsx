@@ -11,19 +11,14 @@ interface Props {
 function FilterBox({ title, options, onSelect }: Props) {
   return (
     <div className={box_base}>
-      <Txt
-        weight="bold"
-        content={title}
-      />
+      <Txt weight="bold" content={title} />
       <Spacing unit={0.5} />
       <div>
         {options.map((item, idx) => (
-          <Chip
-            key={idx}
-            type="filter"
-            label={item}
-            onSelect={onSelect}
-          />
+          <div key={idx}>
+            <Chip type="filter" label={item} onSelect={onSelect} />
+            <Spacing type="horizontal" unit={0.5} />
+          </div>
         ))}
       </div>
     </div>

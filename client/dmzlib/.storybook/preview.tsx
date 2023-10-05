@@ -14,13 +14,9 @@ const preview: Preview = {
   },
   decorators: [
     Story => (
-      <>
-        <html className={storybook}>
-          <body>
-            <Story />
-          </body>
-        </html>
-      </>
+      <div className={storybook}>
+        <Story />
+      </div>
     ),
   ],
 };

@@ -17,7 +17,8 @@ function Chip({ type, label, shape = 'round', onSelect, onDelete }: Props) {
         <div
           className={classname}
           onSelect={() => console.log(label)}
-          onClick={() => onSelect && onSelect(label)}>
+          onClick={() => onSelect && onSelect(label)}
+        >
           <span>{label}</span>
         </div>
       );

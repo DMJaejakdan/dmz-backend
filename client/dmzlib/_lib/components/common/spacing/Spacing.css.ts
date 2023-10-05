@@ -20,5 +20,5 @@ export const HORIZONTAL_VARIANT = styleVariants(spacingSizeVar, spacingSize => [
 
 export const VERTICAL_VARIANT = styleVariants(spacingSizeVar, spacingSize => [
   base,
-  { width: spacingSize, height: '100%' },
+  { height: spacingSize, width: '100%' },
 ]);

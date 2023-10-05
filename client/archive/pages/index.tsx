@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import MovieSearch from '@/components/MovieSearch';
 
 const Button = dynamic(() => import('dmzlib/Button'), { ssr: false });
 
@@ -13,7 +14,7 @@ function ArchivePage() {
       </Head>
 
       <div className="hero">
-        <Button label="ㅋㅋ" color="black" />
+        <MovieSearch />
       </div>
     </div>
   );

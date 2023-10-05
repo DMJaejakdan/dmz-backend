@@ -35,7 +35,7 @@ function Tabs({ TabContents }: TabsProps) {
       </div>
       <div className={tab_content}>
         {TabContents.map((content, idx) => {
-          if (activeIdx === idx) return <>{content.children}</>;
+          if (activeIdx === idx) return <div key={idx}>{content.children}</div>;
         })}
       </div>
     </>
@@ -44,9 +44,7 @@ function Tabs({ TabContents }: TabsProps) {
 
 Tabs.Tab = function Tab({ title, active, onTabChange }: TabProps) {
   return (
-    <div
-      className={TAB_ACTIVE_VARIANT[active]}
-      onClick={onTabChange}>
+    <div className={TAB_ACTIVE_VARIANT[active]} onClick={onTabChange}>
       {title}
     </div>
   );

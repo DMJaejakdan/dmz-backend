@@ -39,7 +39,9 @@ function Button({
       ${SHAPE_VARIANT[shape]}
       ${WIDTH_VARIANT[width]}
       `}
-      {...props}>
+      onClick={props.onClick}
+      {...props}
+    >
       {label}
     </button>
   );

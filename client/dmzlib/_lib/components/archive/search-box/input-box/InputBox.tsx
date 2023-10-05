@@ -13,16 +13,9 @@ interface Props {
 function InputBox({ title, placeholder, value, onInput }: Props) {
   return (
     <div className={box_base}>
-      <Txt
-        weight="bold"
-        content={title}
-      />
+      <Txt weight="bold" content={title} />
       <Spacing />
-      <Input
-        placeholder={placeholder}
-        value={value}
-        onInput={onInput}
-      />
+      <Input placeholder={placeholder} value={value} onInput={onInput} />
     </div>
   );
 }
