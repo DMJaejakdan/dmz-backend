@@ -68,30 +68,35 @@ class MovieDetail:
 
     def _to_dict(self) -> dict:
         result = dict()
-        result['name'] = self.name_kr
-        result['poster_path'] = self.poster_path
 
-        if not self.released_date:
-            result['released_date'] = None
-        else:
-            result['released_date'] = f'{self.released_date.split("-")[0]}년'
+        general_fields = ['name_kr', 'poster_path', 'genre']
+        date_field = 'released_date'
+        people_fields = ['actor', 'crew']
 
-        result['genres'] = self.genres
-        result['actors'] = [actor['name'] for actor in self.actors]
-        result['crews'] = [crew['name'] for crew in self.crews]
+        for field in general_fields:
+            result[field] = self.movie[field]
+
+        result['name'] = result.pop('name_kr')
+
+        d_value = self.movie[date_field]
+        result[date_field] = f'{d_value.split("-")[0]}년' if d_value else None
+
+        for field in people_fields:
+            result[field] = [elem['name'] for elem in self.movie[field]]
+
         return result
 
 
 def convert_list_from(response: dict) -> dict:
     hits = response['hits']['hits']
 
-    try:
-        result = {'movies': []}
-        for hit in hits:
-            result['movies'].append(MovieDetail(hit).parse())
-        return result
-    except NotFoundException as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    if len(hits) == 0:
+        return {'result not found': None}
+
+    result = {'movies': []}
+    for hit in hits:
+        result['movies'].append(MovieDetail(hit).parse())
+    return result
 
 
 def convert_detail_from(response: dict) -> dict:
