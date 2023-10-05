@@ -49,7 +49,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:18.2.0"],\
-            ["shared", "file:../shared#../shared::hash=b0ba9c&locator=archive%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=3267d0&locator=archive%40workspace%3A."],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:5.80.0"]\
           ],\
@@ -2144,7 +2144,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:18.2.0"],\
-            ["shared", "file:../shared#../shared::hash=b0ba9c&locator=archive%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=3267d0&locator=archive%40workspace%3A."],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:de8c6b1e4a53f8d7517250e54cba94821c65dba51e204d9a8ce93971f35e3fbfa57dc45ccde97e450aef3c57bd60351db9db656b6de251129e3849a88a72ec49#npm:5.80.0"]\
           ],\
@@ -6348,10 +6348,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shared", [\
-        ["file:../shared#../shared::hash=b0ba9c&locator=archive%40workspace%3A.", {\
-          "packageLocation": "./.yarn/cache/shared-file-4f57d713a5-7b229d0592.zip/node_modules/shared/",\
+        ["file:../shared#../shared::hash=3267d0&locator=archive%40workspace%3A.", {\
+          "packageLocation": "./.yarn/cache/shared-file-057d65b3dc-dee454eb5f.zip/node_modules/shared/",\
           "packageDependencies": [\
-            ["shared", "file:../shared#../shared::hash=b0ba9c&locator=archive%40workspace%3A."],\
+            ["shared", "file:../shared#../shared::hash=3267d0&locator=archive%40workspace%3A."],\
             ["feather-route-matcher", "npm:4.0.0"]\
           ],\
           "linkType": "HARD"\

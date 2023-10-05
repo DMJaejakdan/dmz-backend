@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const autocomplete = async (req: NextApiRequest, res: NextApiResponse) => {
   const { type, genrePre } = req.query;
 
   try {
@@ -14,3 +14,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(500).json({ error: 'Failed to fetch data' });
   }
 };
+export default autocomplete;

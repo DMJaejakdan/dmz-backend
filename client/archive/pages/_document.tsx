@@ -1,3 +1,4 @@
+import { global } from '@/components/globalStyle.css';
 import Document, {
   Html,
   Head,
@@ -16,7 +17,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body>
+        <body className={global}>
           <Main />
           <NextScript />
         </body>
