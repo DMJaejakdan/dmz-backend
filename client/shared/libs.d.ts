@@ -30,6 +30,7 @@ declare module 'dmzlib/Button' {
     size?: keyof typeof SIZE_VARIANT;
     shape?: keyof typeof SHAPE_VARIANT;
     width?: keyof typeof WIDTH_VARIANT;
+    onClick?: () => void | undefined;
   }
   export default Button;
 }
@@ -172,7 +173,27 @@ declare module 'dmzlib/KeywordBox' {
   }
   export default FilterBox;
 }
-
+declare module 'dmzlib/DateBox' {
+  const DateBox: React.LazyExoticComponent<React.FC<Props>>;
+  export interface Props {
+    title: string;
+    placeholder?: string;
+    value?: string;
+    onFrom: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onTo: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  }
+  export default DateBox;
+}
+declare module 'dmzlib/Flex' {
+  const Flex: React.LazyExoticComponent<React.FC<Props>>;
+  export interface Props {
+    direction: keyof typeof DIRECTION_VARIANT;
+    justify: keyof typeof JUSTIFY_VARIANT;
+    align: keyof typeof ALIGN_VARIANT;
+    children: ReactNode;
+  }
+  export default Flex;
+}
 declare module 'dmzlib/Chip' {
   const Chip: React.LazyExoticComponent<React.FC<Props>>;
   export interface Props {
@@ -198,6 +219,8 @@ declare module 'dmzlib/Input' {
   const Input: React.LazyExoticComponent<React.FC<Props>>;
   export interface Props extends HTMLAttributes<HTMLInputElement> {
     placeholder: string;
+    inputId?: string;
+    inputName?: string;
     value?: string;
     onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
