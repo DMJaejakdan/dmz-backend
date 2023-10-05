@@ -9,8 +9,7 @@ module.exports = withVanillaExtract({
           name: 'archive',
           filename: 'static/chunks/remoteEntry.js',
           remotes: {
-            dmzlib:
-              'dmzlib@http://localhost:3001/_next/static/chunks/remoteEntry.js',
+            dmzlib: `dmzlib@${provess.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
           },
           exposes: {
             './ArchivePage': './pages/index',

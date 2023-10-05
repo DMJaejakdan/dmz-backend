@@ -9,6 +9,7 @@ export default {
     company: '제작/투자/배급사',
     ott: '스트리밍 제공',
     grade: '시청등급',
+    channel: '방영 채널',
   },
   placeholder: {
     title: '제목',
@@ -24,6 +25,6 @@ export default {
   button: {
     more: '조건 더보기',
     less: '조건 접기',
-    search: '영화 검색',
+    search: '컨텐츠 검색',
   },
 };

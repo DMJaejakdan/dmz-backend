@@ -1,5 +1,3 @@
-import { Router, useRouter } from 'next/router';
-
 export async function AC(type: string, input: string) {
   const url = `/api/autocomplete?type=${type}&genrePre=${input}`;
   const data = await fetch(url).then(res => res.json());
@@ -10,7 +8,7 @@ export async function CS(queries: {}) {
   console.log(queries);
   const string = Object.entries(queries)
     .filter(
-      ([key, value]) => value !== undefined && value !== null && value !== ''
+      ([_, value]) => value !== undefined && value !== null && value !== ''
     )
     .map(([key, value]) => `${key}=${value}`)
     .join('&');

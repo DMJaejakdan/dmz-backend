@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic';
 import { SHOW_VARIANT } from './MSearch.css';
 import { FormEvent, useState } from 'react';
-import moviesearch from '@/constants/moviesearch';
-import { AC } from '@/pages/api/route';
-import { Router, useRouter } from 'next/router';
+import moviesearch from '@/constants/CONTENT_SEARCH';
+import { AC } from '@/pages/api/_methods';
+import { useRouter } from 'next/router';
+import CONTENT_SEARCH from '@/constants/CONTENT_SEARCH';
 const Button = dynamic(() => import('dmzlib/Button'), { ssr: false });
 const Spacing = dynamic(() => import('dmzlib/Spacing'), { ssr: false });
 const Flex = dynamic(() => import('dmzlib/Flex'), { ssr: false });
@@ -18,7 +19,7 @@ const FilterBox = dynamic(() => import('dmzlib/FilterBox'), {
 });
 const DateBox = dynamic(() => import('dmzlib/DateBox'), { ssr: false });
 
-function MovieSearch() {
+function MSearch() {
   const [display, setDisplay] = useState<'hide' | 'show'>('hide');
   const router = useRouter();
   async function searchMovie(e: FormEvent<HTMLFormElement>) {
@@ -78,7 +79,7 @@ function MovieSearch() {
           <Button
             shape="round"
             size="small"
-            color="black"
+            color="grey"
             label={
               display === 'show'
                 ? moviesearch.button.less
@@ -87,9 +88,8 @@ function MovieSearch() {
             onClick={() => setDisplay(display === 'show' ? 'hide' : 'show')}
           />
         </Flex>
-        <Spacing unit="2" />
+        <Spacing />
         <div className={SHOW_VARIANT[display]}>
-          <Spacing />
           {/* //개봉시기 */}
           <DateBox
             title={moviesearch.title.time}
@@ -122,7 +122,7 @@ function MovieSearch() {
           {/* //시청등급 */}
           <FilterBox
             title={moviesearch.title.grade}
-            options={[]}
+            options={['12', '15', '18', '전체 관람가']}
             onInput={() => {}}
             inputId="movieGrade"
             inputName="movieGrade"
@@ -135,7 +135,7 @@ function MovieSearch() {
           size="large"
           width="full"
           color="white"
-          label="검색"
+          label={CONTENT_SEARCH.button.search}
         />
         <Spacing />
       </form>
@@ -143,11 +143,11 @@ function MovieSearch() {
   );
 }
 
-MovieSearch.getInitialProps = async () => {
+MSearch.getInitialProps = async () => {
   const API = await fetch('https://swapi.dev/api/people/1').then(res =>
     res.json()
   );
   return API;
 };
 
-export default MovieSearch;
+export default MSearch;

@@ -1620,10 +1620,10 @@ __metadata:
     eslint-plugin-react: ^7.33.2
     mini-css-extract-plugin: ^2.7.6
     next: 13.3.1
+    prettier: ^3.0.3
     react: 18.2.0
     react-dom: 18.2.0
     shared: "file:../shared"
-    swr: ^2.2.4
     typescript: ^5.2.2
     webpack: 5.80.0
   languageName: unknown
@@ -1979,7 +1979,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"client-only@npm:0.0.1, client-only@npm:^0.0.1":
+"client-only@npm:0.0.1":
   version: 0.0.1
   resolution: "client-only@npm:0.0.1"
   checksum: 0c16bf660dadb90610553c1d8946a7fdfb81d624adea073b8440b7d795d5b5b08beb3c950c6a2cf16279365a3265158a236876d92bce16423c485c322d7dfaf8
@@ -4916,6 +4916,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "prettier@npm:3.0.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
+  languageName: node
+  linkType: hard
+
 "promise-retry@npm:^2.0.1":
   version: 2.0.1
   resolution: "promise-retry@npm:2.0.1"
@@ -5286,10 +5295,10 @@ __metadata:
 
 "shared@file:../shared::locator=archive%40workspace%3A.":
   version: 1.0.0
-  resolution: "shared@file:../shared#../shared::hash=339790&locator=archive%40workspace%3A."
+  resolution: "shared@file:../shared#../shared::hash=b1c423&locator=archive%40workspace%3A."
   dependencies:
     feather-route-matcher: 4.0.0
-  checksum: a650f65cc8bf0b75e44a34843fd4b2d74368dda16b1a1c673c992cfcbc4dc68ace544061c070b68b891d41e76b75f3549a63da1674feba8c247fd501d9c1f852
+  checksum: 186dee09999357668e216d8a71db617b639c2fd0c21c9de9aec1f3866241b8d6c8ff7d64340b64b9c6669fdc522f05fc815bcef89569a6a415b36257520818a9
   languageName: node
   linkType: hard
 
@@ -5586,18 +5595,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swr@npm:^2.2.4":
-  version: 2.2.4
-  resolution: "swr@npm:2.2.4"
-  dependencies:
-    client-only: ^0.0.1
-    use-sync-external-store: ^1.2.0
-  peerDependencies:
-    react: ^16.11.0 || ^17.0.0 || ^18.0.0
-  checksum: d1398f89fd68af0e0cb6100a5769b1e17c0dbe8a778898643ad28456acda64add43344754c7d919e3f2ca82854adf86ff7d465aba25a2d555bcb669e457138f8
-  languageName: node
-  linkType: hard
-
 "synckit@npm:^0.8.5":
   version: 0.8.5
   resolution: "synckit@npm:0.8.5"
@@ -5877,15 +5874,6 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
-  languageName: node
-  linkType: hard
-
-"use-sync-external-store@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "use-sync-external-store@npm:1.2.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
   languageName: node
   linkType: hard
 
