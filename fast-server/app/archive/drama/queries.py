@@ -111,4 +111,4 @@ class SearchCondition(BaseModel):
 
 
 def get_detail_query(drama_id: int) -> dict:
-    return {'ids': {'values': [str(drama_id)]}}
+    return {'bool': {'must': {'match': {'tmdb_id': drama_id}}}}

@@ -3,8 +3,8 @@ from elasticsearch import AsyncElasticsearch
 
 from app.dependency import get_drama_index, get_client
 
-from app.archive.drama.constants import SearchCondition, get_detail_query
-
+from app.archive.drama.queries import SearchCondition, get_detail_query
+from app.archive.drama.responses import list_from
 
 router = APIRouter(
     prefix='/fapi/v1/drama'
@@ -34,9 +34,9 @@ async def search(page: int | None = 0,
                                 s_date=s_date, e_date=e_date)
 
     try:
-        result = await client.search(index=index, query=condition.get_query(),
-                                     from_=condition.from_, size=condition.size)
-        return result
+        response = await client.search(index=index, query=condition.get_query(),
+                                       from_=condition.from_, size=condition.size)
+        return list_from(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
