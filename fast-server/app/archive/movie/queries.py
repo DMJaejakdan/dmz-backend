@@ -4,25 +4,25 @@ from typing import List, Optional, Any
 
 
 class SearchCondition(BaseModel):
-    page: int | None = 0
-    size: int | None = 5
+    page: int
+    size: int
 
-    name: str | None = None
-    plot: str | None = None
+    name: str
+    plot: str
 
-    people: List[str] | None = None
+    people: List[str]
 
-    genres: List[str] | None = None
-    keywords: List[str] | None = None
-    companies: List[str] | None = None
-    ratings: List[str] | None = None
+    genres: List[str]
+    keywords: List[str]
+    companies: List[str]
+    ratings: List[str]
 
-    s_date: Optional[datetime] | None = None
-    e_date: Optional[datetime] | None = None
+    s_date: Optional[datetime]
+    e_date: Optional[datetime]
 
     from_: int = 0
 
-    def __init__(self, page: int | None = 0, size: int | None = 10,
+    def __init__(self, page: int | None = 0, size: int = 10,
                  name: str | None = None, plot: str | None = None, people: str | None = None,
                  genres: str | None = None, keywords: str | None = None,
                  companies: str | None = None, ratings: str | None = None,
@@ -104,4 +104,4 @@ class SearchCondition(BaseModel):
 
 
 def get_detail_query(movie_id: int) -> dict:
-    return {'ids': {'values': [str(movie_id)]}}
+    return {'bool': {'must': {'match': {'tmdb_id': movie_id}}}}
