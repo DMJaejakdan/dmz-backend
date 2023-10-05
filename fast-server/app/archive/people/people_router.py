@@ -3,8 +3,8 @@ from elasticsearch import AsyncElasticsearch
 
 from app.dependency import get_people_index, get_client
 
-from app.archive.people.constants import SearchCondition, get_detail_query
-
+from app.archive.people.queries import SearchCondition, get_detail_query
+from app.archive.people.responses import list_from, detail_from
 
 router = APIRouter(
     prefix='/fapi/v1/people'
@@ -26,9 +26,9 @@ async def search(page: int | None = 0,
                                 genders=genders, ages=ages)
 
     try:
-        result = await client.search(index=index, query=condition.get_query(),
+        response = await client.search(index=index, query=condition.get_query(),
                                      from_=condition.from_, size=condition.size)
-        return result
+        return list_from(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -38,7 +38,7 @@ async def detail(person_id: int,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_people_index)):
     try:
-        result = await client.search(index=index, query=get_detail_query(person_id))
-        return result
+        response = await client.search(index=index, query=get_detail_query(person_id))
+        return detail_from(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
