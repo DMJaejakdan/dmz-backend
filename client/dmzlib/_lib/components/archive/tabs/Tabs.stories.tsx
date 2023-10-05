@@ -17,30 +17,15 @@ export const Primary: Story = {
     TabContents: [
       {
         title: '드라마',
-        children: (
-          <Chip
-            type="filter"
-            label="드라마"
-          />
-        ),
+        children: <Chip type="filter" label="드라마" />,
       },
       {
         title: '영화',
-        children: (
-          <Chip
-            type="filter"
-            label="영화"
-          />
-        ),
+        children: <Chip type="filter" label="영화" />,
       },
       {
         title: '인물',
-        children: (
-          <Chip
-            type="filter"
-            label="인물"
-          />
-        ),
+        children: <Chip type="filter" label="인물" />,
       },
     ],
   },

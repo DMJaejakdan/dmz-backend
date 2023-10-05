@@ -16,7 +16,8 @@ const Spacing = memo(function Spacing({
         type === 'horizontal'
           ? `${HORIZONTAL_VARIANT[unit]}`
           : `${VERTICAL_VARIANT[unit]}`
-      }></div>
+      }
+    ></div>
   );
 });
 export default Spacing;

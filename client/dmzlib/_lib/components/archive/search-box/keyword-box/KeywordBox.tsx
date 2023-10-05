@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { box_base } from '../SearchBox.css';
 import Chip from '#/components/common/chip/Chip';
 import Input from '#/components/common/input/Input';
@@ -14,49 +14,46 @@ import {
 
 interface Props {
   title: string;
-  onFind: (keyword: string) => Promise<void> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
+  onFind: (keyword: string) => Promise<string[]> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
+  onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function KeywordBox({ title, onFind }: Props) {
+function KeywordBox({ title, onFind, onInput }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
   const [autocompleteKwds, setAutoCompleteKwds] = useState<string[]>([]);
   const [input, setInput] = useState<string>('');
 
   const handleAutocomplete = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-    // const result = await onFind(inputValue)
-    //   .then(res => res.json)
-    //   .then(setAutoCompleteKeywords);
-    //자동완성 로직인데 다른데다 구현을 해야함
   };
   const pushSelected = (kwd: string) => setSelected([...selected, kwd]);
   const delSelected = (target: string) =>
     setSelected(selected.filter(kwd => kwd !== target));
 
+  //자동완성 로직
+  useEffect(() => {
+    onFind(input)?.then(setAutoCompleteKwds);
+  }, [onFind, input]);
+
   return (
     <div className={box_base}>
-      <Txt
-        weight="bold"
-        content={title}
-      />
+      <Txt weight="bold" content={title} />
       <Spacing />
       <div>
+        {/* 선택된 애들을 배열에서 풀어 문자열로 바꿈, 이 부분은 ui적으로 보이지 않음  */}
+        <input type="hidden" value={selected.join(',')} onChange={onInput} />
         <div className={selected_keywords}>
           {/* 선택된 애들이 chip으로 렌더링 되어야함 */}
           {selected.map((kwd, idx) => (
-            <Chip
-              key={idx}
-              label={kwd}
-              type="keyword"
-              onDelete={delSelected}
-            />
+            <Chip key={idx} label={kwd} type="keyword" onDelete={delSelected} />
           ))}
         </div>
         <form
           onSubmit={(e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             pushSelected(input);
-          }}>
+          }}
+        >
           <Input
             placeholder={searchbox.box.button.search}
             value={input}
@@ -68,9 +65,7 @@ function KeywordBox({ title, onFind }: Props) {
           {/* //키워드 리스트가 이 안에 들어감 */}
           <ul className={autocomplete_ul}>
             {autocompleteKwds.map((kwd, idx) => (
-              <li
-                className={autocomplete_li}
-                key={idx}>
+              <li className={autocomplete_li} key={idx}>
                 {kwd}
               </li>
             ))}
