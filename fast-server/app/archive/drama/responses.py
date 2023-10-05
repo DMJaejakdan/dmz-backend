@@ -111,3 +111,12 @@ def list_from(response: dict) -> dict:
     for hit in hits:
         result['dramas'].append(DramaDetail(hit).parse())
     return result
+
+
+def detail_from(response: dict) -> dict:
+    hits = response['hits']['hits']
+
+    if len(hits) == 0:
+        return {'result not found': None}
+
+    return DramaDetail(hits[0]).parse(details=True)

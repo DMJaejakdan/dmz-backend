@@ -4,7 +4,7 @@ from elasticsearch import AsyncElasticsearch
 from app.dependency import get_drama_index, get_client
 
 from app.archive.drama.queries import SearchCondition, get_detail_query
-from app.archive.drama.responses import list_from
+from app.archive.drama.responses import list_from, detail_from
 
 router = APIRouter(
     prefix='/fapi/v1/drama'
@@ -46,7 +46,7 @@ async def detail(drama_id: int,
                  client: AsyncElasticsearch = Depends(get_client),
                  index: str = Depends(get_drama_index)):
     try:
-        result = await client.search(index=index, query=get_detail_query(drama_id))
-        return result
+        response = await client.search(index=index, query=get_detail_query(drama_id))
+        return detail_from(response.body)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
