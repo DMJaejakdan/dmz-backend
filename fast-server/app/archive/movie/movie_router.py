@@ -3,6 +3,7 @@ from elasticsearch import AsyncElasticsearch
 
 from app.dependency import get_movie_index, get_client
 
+from app.archive.exception import NotFoundException
 from app.archive.movie.queries import SearchCondition, get_detail_query
 from app.archive.movie.responses import convert_list_from, convert_detail_from
 
@@ -37,7 +38,7 @@ async def search(page: int | None = 0,
         response = await client.search(index=index, query=condition.get_query(),
                                        from_=condition.from_, size=condition.size)
         return convert_list_from(response)
-    except Exception as e:
+    except NotFoundException as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -48,5 +49,5 @@ async def detail(movie_id: int,
     try:
         response = await client.search(index=index, query=get_detail_query(movie_id))
         return convert_detail_from(response.body)
-    except Exception as e:
+    except NotFoundException as e:
         raise HTTPException(status_code=500, detail=str(e))

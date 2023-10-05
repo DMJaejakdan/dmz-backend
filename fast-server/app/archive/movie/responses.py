@@ -6,83 +6,62 @@ from app.archive.exception import NotFoundException
 
 class MovieDetail:
 
-    name_kr: str
-    name_en: str
-    poster_path: str
-    released_date: str
-    rating: str
-    plot: str
-    box_office: str
-    running_time: str
-    genres: List[str]
-    keywords: List[str]
-    companies: List[str]
-    actors: List[str]
-    crews: List[str]
+    movie: dict
+    str_fields: List[str]
+    list_fields: List[str]
+    people_fields: List[str]
     source: dict
 
     def __init__(self, detail: dict):
+        self.movie = dict()
         self.source = detail['_source']
+        self._init_movie()
+
+    def _init_movie(self):
+        self.str_fields = ['name_kr', 'name_en', 'poster_path', 'released_date',
+                           'rating', 'plot', 'box_office', 'running_time']
+        self.list_fields = ['genre', 'keyword', 'company']
+        self.people_fields = ['actor', 'crew']
+
+        for field in self.str_fields:
+            self.movie[field] = None
+
+        for field in self.list_fields:
+            self.movie[field] = []
+
+        for field in self.people_fields:
+            self.movie[field] = []
 
     def parse(self, details: bool = False) -> dict:
-        self.name_kr = self.source['name_kr']
-        self.name_en = self.source['name_en']
-        self.poster_path = self.source['poster_path'] if len(self.source['poster_path']) > 0 else None
-        self.released_date = self.source['released_date'] if self.source['released_date'] != '1500-01-01' else None
-        self.rating = self.source['rating'] if self.source['rating'] != 'unknown' else None
-        self.plot = self.source['plot']
-        self.box_office = self.source['box_office'] if self.source['box_office'] != -1 else None
-        self.running_time = self.source['running_time'] if self.source['running_time'] == -1 else None
+        for field in self.str_fields:
+            if self.source.get(field) == 'unknown':
+                continue
 
-        self.genres = []
-        self._parse_iteratively(self.genres, 'genre')
+            self.movie[field] = self.source.get(field)
 
-        self.keywords = []
-        self._parse_iteratively(self.keywords, 'keyword')
+        for field in self.list_fields:
+            self._parse_iteratively(self.movie[field], field)
 
-        self.companies = []
-        self._parse_iteratively(self.companies, 'company')
-
-        self.actors = []
-        self._parse_people(self.actors, 'actor')
-
-        self.crews = []
-        self._parse_people(self.crews, 'crew')
+        for field in self.people_fields:
+            self._parse_people(self.movie[field], field)
 
         if details:
-            return self._details_to_dict()
+            return self.movie
 
         return self._to_dict()
 
     def _parse_iteratively(self, target: list, field: str):
         for value in self.source[field]:
-            target.append(value['name'])
+            target.append(value.get('name'))
 
     def _parse_people(self, target: list, field: str):
         for value in self.source[field]:
             person = dict()
-            person['id'] = value['id']
-            person['name'] = value['name']
-            person['role'] = value['role']
-            person['profile_path'] = value['profile_path'] if len(value['profile_path']) > 0 else None
+            person['tmdb_id'] = value.get('tmdb_id')
+            person['name'] = value.get('name')
+            person['role'] = value.get('role')
+            person['profile_path'] = value.get('profile_path')
             target.append(person)
-
-    def _details_to_dict(self) -> dict:
-        result = dict()
-        result['name_kr'] = self.name_kr
-        result['name_en'] = self.name_en
-        result['poster_path'] = self.poster_path
-        result['released_date'] = self.released_date
-        result['rating'] = self.rating
-        result['plot'] = self.plot
-        result['box_office'] = self.box_office
-        result['running_time'] = self.running_time
-        result['genres'] = self.genres
-        result['keywords'] = self.keywords
-        result['companies'] = self.companies
-        result['actors'] = self.actors
-        result['crews'] = self.crews
-        return result
 
     def _to_dict(self) -> dict:
         result = dict()
@@ -115,7 +94,7 @@ def convert_list_from(response: dict) -> dict:
 def convert_detail_from(response: dict) -> dict:
     hits = response['hits']['hits']
 
-    try:
-        return MovieDetail(hits[0]).parse(details=True)
-    except NotFoundException as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    if len(hits) == 0:
+        return {'result not found': None}
+
+    return MovieDetail(hits[0]).parse(details=True)

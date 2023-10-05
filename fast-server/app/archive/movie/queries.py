@@ -104,4 +104,4 @@ class SearchCondition(BaseModel):
 
 
 def get_detail_query(movie_id: int) -> dict:
-    return {'ids': {'values': [str(movie_id)]}}
+    return {'bool': {'must': {'match': {'tmdb_id': movie_id}}}}
