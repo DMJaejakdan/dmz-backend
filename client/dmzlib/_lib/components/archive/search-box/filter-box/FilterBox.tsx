@@ -7,9 +7,11 @@ import { box_base } from '../SearchBox.css';
 interface Props {
   title: string;
   options: string[];
+  inputId?: string;
+  inputName?: string;
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-function FilterBox({ title, options, onInput }: Props) {
+function FilterBox({ title, options, onInput, inputId, inputName }: Props) {
   const [selected, setSelected] = useState<string[]>(['']);
   return (
     <div className={box_base}>
@@ -18,6 +20,8 @@ function FilterBox({ title, options, onInput }: Props) {
       <div>
         <input
           type="hidden"
+          id={inputId}
+          name={inputName}
           value={selected.join(',')}
           onChange={e => onInput(e)}
         />
