@@ -1,7 +1,4 @@
-from fastapi import HTTPException
 from typing import List
-
-from app.archive.exception import NotFoundException
 
 
 class MovieDetail:
@@ -93,7 +90,7 @@ class MovieDetail:
         return result
 
 
-def convert_list_from(response: dict) -> dict:
+def list_from(response: dict) -> dict:
     hits = response['hits']['hits']
 
     if len(hits) == 0:
@@ -105,7 +102,7 @@ def convert_list_from(response: dict) -> dict:
     return result
 
 
-def convert_detail_from(response: dict) -> dict:
+def detail_from(response: dict) -> dict:
     hits = response['hits']['hits']
 
     if len(hits) == 0:
