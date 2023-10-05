@@ -1,6 +1,6 @@
 package com.dmj.dmz.content.dto.response;
 
-import com.dmj.dmz.content.entity.*;
+import com.dmj.dmz.content.entity.Content;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.dmj.dmz.content.entity.Content.*;
+import static com.dmj.dmz.content.entity.Content.ContentKind;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -39,19 +39,6 @@ public class ContentResponse {
     private MovieInfoResponse movieInfoResponse;
 
     private DramaInfoResponse dramaInfoResponse;
-
-//    @QueryProjection
-//    public ContentResponse(Long tmdbId, String nameKr, String nameEn, ContentKind kind, String posterPath, LocalDate releasedDate, String rating, String plot, String genre,) {
-//        this.tmdbId = tmdbId;
-//        this.nameKr = nameKr;
-//        this.nameEn = nameEn;
-//        this.kind = kind;
-//        this.posterPath = posterPath;
-//        this.releasedDate = releasedDate;
-//        this.rating = rating;
-//        this.plot = plot;
-//        this.person = person;
-//    }
 
     @QueryProjection
     @Builder

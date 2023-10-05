@@ -37,7 +37,7 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
 
     @Override
     public Page<ContentResponse> contentFindWithSearchConditions(Pageable pageable, ContentSearchConditions contentSearchConditions) {
-        // 깔끔하게 1시작을 여기서 바꿔줌
+        // 페이지 0시작 설정
         pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         OrderSpecifier<?> sort = sortContent(pageable);
         BooleanBuilder booleanBuilder = new BooleanBuilder();
@@ -53,7 +53,6 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .and(eqChannel(contentSearchConditions.getChannels()))
                 .and(eqKind(contentSearchConditions.getKind()));
 
-//      List<Content> contentList = jpaQueryFactory.select(content)
         JPAQuery<ContentPageDto> jpaQuery = jpaQueryFactory.select(
                         Projections.fields(ContentPageDto.class,
                                 content.id,
@@ -69,11 +68,6 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .limit(pageable.getPageSize())
                 .fetch();
 
-//        List<ContentResponse> contentResponseList = jpaQueryFactory.select(
-//                Projections.fields(ContentPageDto2.class,
-//                        content.tmdbId,content.nameKr,content.nameEn,content.kind,content.posterPath,content.releasedDate,content.rating,content.plot
-//                        )
-//                )
         List<Long> contentIds = contentList.stream().map(ContentPageDto::getId).collect(Collectors.toList());
         List<ContentResponse> contentResponseList = jpaQueryFactory.selectFrom(content)
                 .where(content.id.in(contentIds))
@@ -90,30 +84,6 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .distinct()
                 .fetch();
         return new PageImpl<>(contentResponseList, pageable, countQuery.size());
-    }
-
-    @Override
-    public List<ContentAutoResponse> contentStartWith(String word) {
-        Pageable pageable = PageRequest.of(0, 5, Sort.by("nameKr").ascending());
-        List<AutoPageDto> autoContentList = jpaQueryFactory.select(
-                        Projections.fields(AutoPageDto.class,
-                                content.id,
-                                content.nameKr)
-                )
-                .from(content)
-                .where(startWithWord(word))
-                .orderBy(content.nameKr.asc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-        List<Long> contentIds = autoContentList.stream().map(AutoPageDto::getId).collect(Collectors.toList());
-        return jpaQueryFactory.select(
-                        Projections.fields(ContentAutoResponse.class, content.nameKr)
-                )
-                .from(content)
-                .where(content.id.in(contentIds))
-                .orderBy(content.nameKr.asc())
-                .fetch();
     }
 
     @Override
@@ -164,7 +134,6 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
                 .fetch();
     }
 
-    // 리스트 반환으로 변경
     @Override
     public List<RatingResponse> getRatings() {
         return jpaQueryFactory.select(
@@ -300,14 +269,6 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
             return null;
         }
         return dramaInfo.channel.in(channels);
-    }
-
-    private BooleanExpression directorOrWriter(ContentKind contentKind) {
-        if (contentKind == ContentKind.MOVIE) {
-            return contentCrew.role.eq("Director");
-        } else {
-            return contentCrew.role.eq("Writer");
-        }
     }
 
     private OrderSpecifier<?> sortContent(Pageable pageable) {
