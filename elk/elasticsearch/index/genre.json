@@ -10,9 +10,6 @@
             "name": {
                 "type": "keyword"
             },
-            "display_name": {
-                "type": "keyword"
-            },
             "movie": {
                 "type": "boolean"
             },
