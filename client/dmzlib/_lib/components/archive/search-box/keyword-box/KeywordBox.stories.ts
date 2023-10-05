@@ -14,6 +14,8 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     title: '키워드를 검색하세요',
+    inputId: 'sb1',
+    inputName: 'sb1',
     onFind: () => null,
   },
 };

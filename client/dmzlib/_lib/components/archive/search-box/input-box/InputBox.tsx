@@ -8,14 +8,29 @@ interface Props {
   title: string;
   placeholder: string;
   value?: string;
+  inputId: string;
+  inputName: string;
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-function InputBox({ title, placeholder, value, onInput }: Props) {
+function InputBox({
+  title,
+  inputId,
+  inputName,
+  placeholder,
+  value,
+  onInput,
+}: Props) {
   return (
     <div className={box_base}>
       <Txt weight="bold" content={title} />
       <Spacing />
-      <Input placeholder={placeholder} value={value} onInput={onInput} />
+      <Input
+        inputId={inputId}
+        inputName={inputName}
+        placeholder={placeholder}
+        value={value}
+        onInput={onInput}
+      />
     </div>
   );
 }

@@ -15,6 +15,6 @@ export const Primary: Story = {
   args: {
     title: '검색 조건을 찾아라',
     options: ['wow', 'condition'],
-    onSelect: () => {},
+    onInput: () => {},
   },
 };

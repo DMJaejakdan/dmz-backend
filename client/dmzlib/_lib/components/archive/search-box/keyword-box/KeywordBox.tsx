@@ -14,61 +14,68 @@ import {
 
 interface Props {
   title: string;
-  onFind: (keyword: string) => Promise<string[]> | null; //타입 수정해야합니다, 자동완성 ajax 요청 함수임
+  inputId: string;
+  inputName: string;
+  onFind: (input: string) => Promise<unknown[]> | null;
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function KeywordBox({ title, onFind, onInput }: Props) {
+function KeywordBox({ title, onFind, onInput, inputId, inputName }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
-  const [autocompleteKwds, setAutoCompleteKwds] = useState<string[]>([]);
+  const [autocompleteKwds, setAutoCompleteKwds] = useState<unknown[]>([]);
+
   const [input, setInput] = useState<string>('');
 
-  const handleAutocomplete = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
   const pushSelected = (kwd: string) => setSelected([...selected, kwd]);
   const delSelected = (target: string) =>
     setSelected(selected.filter(kwd => kwd !== target));
 
   //자동완성 로직
   useEffect(() => {
-    onFind(input)?.then(setAutoCompleteKwds);
+    input !== '' && onFind(input)?.then(res => setAutoCompleteKwds(res));
   }, [onFind, input]);
-
   return (
     <div className={box_base}>
       <Txt weight="bold" content={title} />
       <Spacing />
       <div>
         {/* 선택된 애들을 배열에서 풀어 문자열로 바꿈, 이 부분은 ui적으로 보이지 않음  */}
-        <input type="hidden" value={selected.join(',')} onChange={onInput} />
+        <input
+          type="hidden"
+          value={selected.join(',')}
+          onChange={onInput}
+          id={inputId}
+          name={inputName}
+        />
         <div className={selected_keywords}>
           {/* 선택된 애들이 chip으로 렌더링 되어야함 */}
-          {selected.map((kwd, idx) => (
-            <Chip key={idx} label={kwd} type="keyword" onDelete={delSelected} />
-          ))}
+          {selected.length &&
+            selected.map((kwd, idx) => (
+              <Chip
+                key={idx}
+                label={kwd}
+                type="keyword"
+                onDelete={delSelected}
+              />
+            ))}
         </div>
-        <form
-          onSubmit={(e: FormEvent<HTMLFormElement>) => {
-            e.preventDefault();
-            pushSelected(input);
-          }}
-        >
-          <Input
-            placeholder={searchbox.box.button.search}
-            value={input}
-            id={'keyword'}
-            onInput={e => handleAutocomplete(e)}
-          />
-        </form>
+
+        <Input
+          placeholder={searchbox.box.button.search}
+          value={input}
+          onInput={e => setInput(e.target.value)}
+        />
+
+        <Spacing />
         <div>
           {/* //키워드 리스트가 이 안에 들어감 */}
           <ul className={autocomplete_ul}>
-            {autocompleteKwds.map((kwd, idx) => (
-              <li className={autocomplete_li} key={idx}>
-                {kwd}
-              </li>
-            ))}
+            {autocompleteKwds.length > 0 &&
+              autocompleteKwds.map((kwd: unknown, idx: number) => (
+                <li className={autocomplete_li} key={idx}>
+                  {JSON.stringify(kwd)}
+                </li>
+              ))}
           </ul>
         </div>
       </div>

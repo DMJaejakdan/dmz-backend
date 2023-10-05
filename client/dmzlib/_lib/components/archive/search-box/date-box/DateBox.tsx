@@ -8,27 +8,49 @@ import Icon from '#/components/common/icon/Icon';
 interface Props {
   title: string;
   placeholder?: string;
-  value?: string;
+  value_f?: string;
+  value_t?: string;
+  inputId_f: string;
+  inputName_f: string;
+  inputId_t: string;
+  inputName_t: string;
   onFrom: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onTo: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 function DateBox({
   title,
   placeholder = 'YYYYMM',
-  value,
+  value_f,
+  value_t,
   onFrom,
   onTo,
+  inputId_f,
+  inputName_f,
+  inputId_t,
+  inputName_t,
 }: Props) {
   return (
     <div className={box_base}>
       <Txt weight="bold" content={title} />
       <Spacing />
       <Flex direction="row" justify="spaceBetween" align="center">
-        <Input placeholder={placeholder} value={value} onInput={onFrom} />
+        <Input
+          inputId={inputId_f}
+          inputName={inputName_f}
+          placeholder={placeholder}
+          value={value_f}
+          onInput={onFrom}
+        />
         <Spacing type="horizontal" />
         <Icon type="moreHoriz" color="white" />
         <Spacing type="horizontal" />
-        <Input placeholder={placeholder} value={value} onInput={onTo} />
+        <Input
+          inputId={inputId_t}
+          inputName={inputName_t}
+          placeholder={placeholder}
+          value={value_t}
+          onInput={onTo}
+        />
       </Flex>
     </div>
   );
