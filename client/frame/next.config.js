@@ -10,11 +10,9 @@ module.exports = withVanillaExtract({
         new NextFederationPlugin({
           name: 'frame',
           remotes: {
-            archive:
-              `archive@${provess.env.NEXT_PUBLIC_ROOT}/dmzarchive/_next/static/chunks/remoteEntry.js`,
-            dmzlib:
-              `dmzlib@${provess.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
-            map: `map@${provess.env.NEXT_PUBLIC_ROOT2}/dmzmap/_next/static/chunks/remoteEntry.js`,
+            archive: `archive@${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/_next/static/chunks/remoteEntry.js`,
+            dmzlib: `dmzlib@${process.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
+            map: `map@${process.env.NEXT_PUBLIC_ROOT2}/dmzmap/_next/static/chunks/remoteEntry.js`,
           },
           filename: 'static/chunks/remoteEntry.js',
           exposes: {},
@@ -23,16 +21,6 @@ module.exports = withVanillaExtract({
               eager: true,
               singleton: true,
               requiredVersion: '^13.3.0',
-            },
-            react: {
-              eager: true,
-              singleton: true,
-              requiredVersion: '^18.2.0',
-            },
-            'react-dom': {
-              eager: true,
-              singleton: true,
-              requiredVersion: '^18.2.0',
             },
             '@vanilla-extract/css': {
               eager: true,
