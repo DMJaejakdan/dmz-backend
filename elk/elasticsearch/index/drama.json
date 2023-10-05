@@ -19,7 +19,11 @@
             "poster_path": {
                 "type": "text"
             },
-            "released_date": {
+            "start_date": {
+                "type": "date",
+                "format": "yyyy-mm-dd"
+            },
+            "end_date": {
                 "type": "date",
                 "format": "yyyy-mm-dd"
             },
@@ -29,17 +33,28 @@
             "plot": {
                 "type": "text"
             },
-            "box_office": {
-                "type": "long"
-            },
-            "running_time": {
+            "total_episodes": {
                 "type": "integer"
+            },
+            "episode": {
+                "type": "object",
+                "properties": {
+                    "nth": {
+                        "type": "integer"
+                    },
+                    "overview": {
+                        "type": "text"
+                    }
+                }
+            },
+            "channel": {
+                "type": "text"
             },
             "genre": {
                 "type": "object",
                 "properties": {
                     "name": {
-                        "type": "keyword"
+                        "type": "text"
                     }
                 }
             },
