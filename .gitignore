@@ -41,6 +41,7 @@ __pycache__/
 
 ### ELK
 elk/elasticsearch/data/
+elk/logs/
 !elk/elasticsearch/data/.gitkeep
 
 ### env
