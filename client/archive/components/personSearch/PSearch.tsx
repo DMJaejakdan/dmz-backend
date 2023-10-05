@@ -34,32 +34,32 @@ function PSearch() {
           title={PERSON_SEARCH.title.personName}
           placeholder={PERSON_SEARCH.placeholder.personName}
           onInput={() => {}}
-          inputId="personName"
-          inputName="personName"
+          inputId="title"
+          inputName="title"
         />
         <Spacing />
         <KeywordBox
           title={PERSON_SEARCH.title.job}
           onFind={input => AC('genre', input)}
           onInput={() => null}
-          inputId="personJob"
-          inputName="personJob"
+          inputId="area"
+          inputName="area"
         />
         <Spacing />
         <KeywordBox
           title={PERSON_SEARCH.title.gender}
           onFind={input => AC('person', input)}
           onInput={() => null}
-          inputId="personGender"
-          inputName="personGender"
+          inputId="genders"
+          inputName="genders"
         />
         <Spacing />
         <KeywordBox
           title={PERSON_SEARCH.title.ages}
           onFind={input => AC('title', input)}
           onInput={() => null}
-          inputId="personAges"
-          inputName="personAges"
+          inputId="ages"
+          inputName="ages"
         />
         <Spacing />
         <DateBox

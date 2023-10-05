@@ -12,8 +12,19 @@ export async function CS(queries: {}) {
     )
     .map(([key, value]) => `${key}=${value}`)
     .join('&');
+  const url = `${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/api/contentSearch?${string}`;
+  const data = await fetch(url).then(res => res.json());
+  return data;
+}
+export async function PS(queries: {}) {
+  const string = Object.entries(queries)
+    .filter(
+      ([_, value]) => value !== undefined && value !== null && value !== ''
+    )
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
   console.log(string);
-  const url = `http://localhost:3002/api/contentSearch?${string}`;
+  const url = `${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/api/personSearch?${string}`;
   const data = await fetch(url).then(res => res.json());
   return data;
 }
