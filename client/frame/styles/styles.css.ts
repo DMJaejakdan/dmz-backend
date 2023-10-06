@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
 
 export const base = style({
   backgroundColor: '#101015',
@@ -18,4 +18,36 @@ export const item = style({
   alignItems: 'center',
   width: '100%',
   height: '100%',
+});
+const ptb = 'pretendard Bold';
+globalFontFace(ptb, {
+  src: `url(${process.env.NEXT_PUBLIC_ROOT}/dmzlib/fonts/Pretendard-Bold.subset.woff)`,
+  fontWeight: 700,
+});
+
+const font_bd = style({
+  fontFamily: ptb,
+  fontWeight: 700,
+});
+
+const pt = 'pretendard regular';
+globalFontFace(pt, {
+  src: `url(${process.env.NEXT_PUBLIC_ROOT}/dmzlib/fonts/Pretendard-Regular.subset.woff)`,
+  fontWeight: 400,
+});
+
+const font_rg = style({
+  fontFamily: pt,
+  fontWeight: 400,
+});
+globalStyle('*', {
+  boxSizing: 'border-box',
+}); //W3C 권고안을 따라 전역 선택자 사용
+globalStyle('html, body', {
+  margin: 0,
+  padding: 0,
+  fontSize: '100%',
+});
+globalStyle('svg text', {
+  fontFamily: pt,
 });
