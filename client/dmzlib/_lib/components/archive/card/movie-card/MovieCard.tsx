@@ -46,9 +46,7 @@ function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
       break;
   }
   return (
-    <div
-      className={SCREEN_VARIANT[screen]}
-      {...props}>
+    <div className={SCREEN_VARIANT[screen]} {...props}>
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -63,52 +61,28 @@ function MovieCard({ screen = 'pc', movieCardData, ...props }: Props) {
           <div className={default_img} />
         )}
       </div>
-      <Spacing type="vertical" />
+      <Spacing type="horizontal" />
       <div className={textContainer}>
-        <Title
-          content={title}
-          hn="h3"
-        />
-        <Spacing unit={lineSpace} />
+        <Title content={title} hn="h3" />
+        <Spacing type="vertical" unit={lineSpace} />
         <div className={text_line}>
           {genres.map((genre, idx) => (
-            <div
-              key={idx}
-              className={text_line}>
-              <Chip
-                label={genre}
-                type="suggestion"
-                shape="square"
-              />
-              <Spacing
-                type="vertical"
-                unit={genreSpace}
-              />
+            <div key={idx} className={text_line}>
+              <Chip label={genre} type="suggestion" shape="square" />
+              <Spacing type="horizontal" unit={genreSpace} />
             </div>
           ))}
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          <Txt
-            content={card.movie.label.director}
-            color="disabled"
-          />
-          <Spacing
-            type="vertical"
-            unit={txtSpace}
-          />
+          <Txt content={card.movie.label.director} color="disabled" />
+          <Spacing type="horizontal" unit={txtSpace} />
           <Txt content={director} />
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          <Txt
-            content={card.movie.label.releaseYaer}
-            color="disabled"
-          />
-          <Spacing
-            type="vertical"
-            unit={txtSpace}
-          />
+          <Txt content={card.movie.label.releaseYaer} color="disabled" />
+          <Spacing type="horizontal" unit={txtSpace} />
           <Txt content={releaseYear.toString()} />
         </div>
         <Spacing unit={lineSpace} />
