@@ -17,7 +17,7 @@ const WHITE = '#FAFAFF';
 
 const ptb = 'pretendard Bold';
 globalFontFace(ptb, {
-  src: `url(${process.env.NEXT_PUBLIC_ROOT}/dmzlib/fonts/Pretendard-Bold.subset.woff)`,
+  src: `url(/dmzlib/fonts/Pretendard-Bold.subset.woff)`,
   fontWeight: 700,
 });
 
@@ -28,7 +28,7 @@ const font_bd = style({
 
 const pt = 'pretendard regular';
 globalFontFace(pt, {
-  src: `url(${process.env.NEXT_PUBLIC_ROOT}/dmzlib/fonts/Pretendard-Regular.subset.woff)`,
+  src: `url(/dmzlib/fonts/Pretendard-Regular.subset.woff)`,
   fontWeight: 400,
 });
 

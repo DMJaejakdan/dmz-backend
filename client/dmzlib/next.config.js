@@ -7,7 +7,7 @@ module.exports = withVanillaExtract({
   async headers() {
     return [
       {
-        source: '/fonts/:path*',
+        source: '/dmzlib/fonts/:path*',
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
