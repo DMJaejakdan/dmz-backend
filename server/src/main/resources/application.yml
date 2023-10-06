@@ -2,8 +2,8 @@ server:
   port: 8080
 
 spring:
-  profiles:
-    active: test
+#  profiles:
+#    active: test
 
   jackson:
     time-zone: Asia/Seoul

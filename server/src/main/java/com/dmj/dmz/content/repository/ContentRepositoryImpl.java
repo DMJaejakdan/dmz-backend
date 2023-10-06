@@ -183,10 +183,6 @@ public class ContentRepositoryImpl implements ContentRepositoryCustom {
         return jpaQuery;
     }
 
-    private BooleanExpression startWithWord(String word) {
-        return content.nameKr.startsWith(word);
-    }
-
     private BooleanExpression eqKind(final ContentKind contentKind) {
         if (contentKind == null) {
             return null;
