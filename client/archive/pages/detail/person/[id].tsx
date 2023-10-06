@@ -10,6 +10,7 @@ import {
   left_side,
   right_side,
 } from '../../../styles/DetailPage.css';
+import { NextPageContext } from 'next';
 
 const Txt = dynamic(() => import('dmzlib/Txt'), { ssr: false });
 const Title = dynamic(() => import('dmzlib/Title'), { ssr: false });
@@ -97,8 +98,11 @@ function PersonDetailPage({ personDetail }: Props) {
   );
 }
 
-PersonDetailPage.getInitialProps = async () => {
-  const personDetail = await fetch('http://j9a602.p.ssafy.io/api/person/1')
+PersonDetailPage.getInitialProps = async (context: NextPageContext) => {
+  const personId = context.query.id;
+  const personDetail = await fetch(
+    `${process.env.NEXT_PUBLIC_ROOT}/api/person/${personId}`
+  )
     .then(res => {
       return res.json();
     })
