@@ -145,7 +145,7 @@ function MovieDetailPage({ movieDetail }: Props) {
 MovieDetailPage.getInitialProps = async (context: NextPageContext) => {
   const movieId = context.query.id;
   const movieDetail = await fetch(
-    `http://j9a602.p.ssafy.io/api/content/movie/${movieId}`
+    `${process.env.NEXT_PUBLIC_ROOT}/api/content/movie/${movieId}`
   )
     .then(res => {
       return res.json();
