@@ -6,7 +6,7 @@ const Nav = dynamic(() => import('dmzlib/Nav'), { ssr: false });
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Link href={process.env.NEXT_PUBLIC_ROOT as string}>
+      <Link href="https://j9a602.p.ssafy.io/archive">
         <Nav text="드라마영화아카이브로 가기" />
       </Link>
       <Component {...pageProps} />

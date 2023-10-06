@@ -42,7 +42,7 @@ function FDG({ vertices, edges }) {
         d3
           .forceLink(links)
           .id(d => d.id)
-          .distance(300)
+          .distance(50 * Math.sqrt(d.weight))
       )
       .force('charge', d3.forceManyBody())
       .force(
@@ -81,7 +81,7 @@ function FDG({ vertices, edges }) {
     // 원을 추가
     nodeGroup
       .append('circle')
-      .attr('r', 15)
+      .attr('r', 20)
       .attr('fill', d => color(d.id));
 
     // 텍스트를 추가 (노드의 이름)
