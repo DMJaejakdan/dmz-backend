@@ -42,7 +42,7 @@ function ResultsPage({ data }: ContentResponse) {
             };
             return (
               <div key={idx}>
-                <Link href={`/dmzarchive/detail/drama/${content.id}`}>
+                <Link href={`/detail/drama/${content.id}`}>
                   <DramaCard dramaCardData={dramaCardData} />
                 </Link>
                 <br />

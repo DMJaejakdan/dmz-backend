@@ -28,7 +28,7 @@ function ResultsPage({ data }: PersonResponse) {
         }
         return (
           <div key={idx}>
-            <Link href={`/dmzarchive/detail/person/${person.id}`}>
+            <Link href={`/detail/person/${person.id}`}>
               <PersonCard
                 name={nameKr}
                 sex={gender}
