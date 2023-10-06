@@ -76,7 +76,7 @@ function KeywordBox({ title, onFind, onInput, inputId, inputName }: Props) {
                   className={autocomplete_li}
                   key={idx}
                   onClick={() => {
-                    pushSelected(kwd.name ? kwd.name : kwd.nameKr);
+                    pushSelected(kwd.name ? kwd.name : (kwd.nameKr ? kwd.nameKr : kwd.word););
                     setAutoCompleteKwds([]);
                     setInput('');
                   }}
