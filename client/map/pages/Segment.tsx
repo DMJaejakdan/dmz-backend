@@ -1,7 +1,5 @@
-// import { getGraphData } from '@/map/hooks/getMapData';
+import { getInitialGraph } from '@/map/hooks/getMapData';
 import FDG from '@/map/tile/FDG';
-// import { MongoClient } from 'mongodb';
-// import { GetServerSideProps } from 'next';
 
 function Segment({ vertices, edges }: { vertices: any; edges: any }) {
   return (
@@ -18,6 +16,13 @@ function Graph({ vertices, edges }: { vertices: any; edges: any }) {
     </>
   );
 }
+export async function getStaticProps() {
+  const { vertices, edges } = await fetch(
+    `${process.env.NEXT_PUBLIC_ROOT2}/dmzmap/api/getInitialData`
+  ).then(response => response.json());
+  return { props: { vertices, edges }, revalidate: 300 };
+}
+export default Segment;
 
 // export async function getStaticPaths() {
 //   const client = await MongoClient.connect(
@@ -58,8 +63,3 @@ function Graph({ vertices, edges }: { vertices: any; edges: any }) {
 //     revalidate: 86400,
 //   };
 // }
-// Segment.getServerSideProps() {
-//   const { vertices, edges } = await getGraphData(limit, skip);
-//   return {props: {vertices, edges}}
-// }
-export default Segment;

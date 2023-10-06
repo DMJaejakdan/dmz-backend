@@ -1,5 +1,5 @@
 export async function AC(type: string, input: string) {
-  const url = `${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/api/autocomplete?type=${type}&genrePre=${input}`;
+  const url = `${process.env.NEXT_PUBLIC_ROOT}/dmzarchive/api/autocomplete?type=${type}&keyword=${input}`;
   const data = await fetch(url).then(res => res.json());
   return data;
 }

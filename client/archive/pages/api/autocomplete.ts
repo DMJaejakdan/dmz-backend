@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const autocomplete = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { type, genrePre } = req.query;
+  const { type, keyword } = req.query;
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_ROOT}/api/content/auto/${type}?${type}Pre=${genrePre}`
+      `${process.env.NEXT_PUBLIC_ROOT}/api/content/auto/${type}?${type}Pre=${keyword}`
     );
     const data = await response.json();
 
