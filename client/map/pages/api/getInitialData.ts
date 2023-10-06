@@ -9,6 +9,6 @@ export default async function handler(
     const { vertices, edges } = await getInitialGraph();
     res.status(200).json({ vertices, edges });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({});
   }
 }
