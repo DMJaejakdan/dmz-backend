@@ -18,7 +18,7 @@ function Graph({ vertices, edges }: { vertices: any; edges: any }) {
 }
 export async function getStaticProps() {
   const { vertices, edges } = await fetch(
-    'http://localhost:3003/api/getInitialData'
+    `${process.env.NEXT_PUBLIC_ROOT2}/dmzmap/api/getInitialData`
   ).then(response => response.json());
   return { props: { vertices, edges }, revalidate: 300 };
 }
