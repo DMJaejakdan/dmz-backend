@@ -1,9 +1,12 @@
+import { base } from '@/styles/styles.css';
 import App, { AppContext, AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Component {...pageProps} />
+      <div className={base}>
+        <Component {...pageProps} />
+      </div>
     </>
   );
 }
