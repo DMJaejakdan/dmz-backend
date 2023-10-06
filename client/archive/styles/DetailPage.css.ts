@@ -26,5 +26,5 @@ export const grad = style({
   transform: 'translate(-1px, 0)',
   width: '34%',
   height: '100%',
-  background: `linear-gradient(to right, #101015, transparent)`,
+  background: 'linear-gradient(to right, #101015, transparent)',
 });
