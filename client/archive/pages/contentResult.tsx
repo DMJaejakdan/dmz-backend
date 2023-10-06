@@ -42,7 +42,7 @@ function ResultsPage({ data }: ContentResponse) {
             };
             return (
               <div key={idx}>
-                <Link href={`detail/drama/${content.id}`}>
+                <Link href={`/dmzarchive/detail/drama/${content.id}`}>
                   <DramaCard dramaCardData={dramaCardData} />
                 </Link>
                 <br />
@@ -58,7 +58,7 @@ function ResultsPage({ data }: ContentResponse) {
             };
             return (
               <div key={idx}>
-                <Link href={`detail/movie/${content.id}`}>
+                <Link href={`/dmzarchive/detail/movie/${content.id}`}>
                   <MovieCard movieCardData={movieCardData} />
                 </Link>
                 <br />
