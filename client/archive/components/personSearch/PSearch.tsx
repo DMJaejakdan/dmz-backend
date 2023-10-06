@@ -23,7 +23,7 @@ function PSearch() {
     const queryString = new URLSearchParams(
       formData.entries() as any
     ).toString();
-    const redirectUrl = `/personResult?${queryString}`;
+    const redirectUrl = `/dmzarchive/personResult?${queryString}`;
     // 리디렉션 실행
     router.push(redirectUrl);
   }

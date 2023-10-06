@@ -28,7 +28,7 @@ function MSearch() {
     const queryString = new URLSearchParams(
       formData.entries() as any
     ).toString();
-    const redirectUrl = `/contentResult?${queryString}`;
+    const redirectUrl = `/dmzarchive/contentResult?${queryString}`;
     // 리디렉션 실행
     router.push(redirectUrl);
   }
@@ -143,11 +143,11 @@ function MSearch() {
   );
 }
 
-MSearch.getInitialProps = async () => {
-  const API = await fetch('https://swapi.dev/api/people/1').then(res =>
-    res.json()
-  );
-  return API;
-};
+// MSearch.getInitialProps = async () => {
+//   const API = await fetch('https://swapi.dev/api/people/1').then(res =>
+//     res.json()
+//   );
+//   return API;
+// };
 
 export default MSearch;

@@ -10,7 +10,14 @@ export async function getInitialGraph() {
 
   // 랜덤한 정점을 가져옵니다.
   const randomVertex = await vertexCollection
-    .aggregate([{ $match: { type: 'content' } }, { $sample: { size: 1 } }])
+    .aggregate([
+      {
+        $match: {
+          $or: [{ type: 'MOVIE' }, { type: 'DRAMA' }],
+        },
+      },
+      { $sample: { size: 1 } },
+    ])
     .next();
 
   // 해당 정점에서 뻗어나가는 모든 간선을 가져옵니다.

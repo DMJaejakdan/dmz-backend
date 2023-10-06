@@ -90,7 +90,7 @@ function FDG({ vertices, edges }) {
       .text(d => d.name) // 'name'은 노드 데이터의 이름 속성입니다.
       .attr('dx', 10)
       .attr('dy', 5)
-      .attr('fill', '#FAFAFF');
+      .attr('fill', '#101015');
 
     function ticked() {
       link
@@ -124,14 +124,7 @@ function FDG({ vertices, edges }) {
     };
   }, []);
 
-  return (
-    <svg
-      ref={svgRef}
-      width="100vw"
-      height="100vh"
-      viewBox="0 0 100vw 100vh"
-    ></svg>
-  );
+  return <svg ref={svgRef} width="100vw" height="100vh"></svg>;
 }
 
 export default FDG;

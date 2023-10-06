@@ -27,7 +27,7 @@ function DSearch() {
     const queryString = new URLSearchParams(
       formData.entries() as any
     ).toString();
-    const redirectUrl = `/contentResult?${queryString}`;
+    const redirectUrl = `/dmzarchive/contentResult?${queryString}`;
     // 리디렉션 실행
     router.push(redirectUrl);
   }
