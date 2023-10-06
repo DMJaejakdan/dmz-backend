@@ -1,4 +1,3 @@
-import { getInitialGraph } from '@/map/hooks/getMapData';
 import FDG from '@/map/tile/FDG';
 
 function Segment({ vertices, edges }: { vertices: any; edges: any }) {

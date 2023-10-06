@@ -90,7 +90,7 @@ function FDG({ vertices, edges }) {
       .text(d => d.name) // 'name'은 노드 데이터의 이름 속성입니다.
       .attr('dx', 10)
       .attr('dy', 5)
-      .attr('fill', 'black');
+      .attr('fill', '#FAFAFF');
 
     function ticked() {
       link
