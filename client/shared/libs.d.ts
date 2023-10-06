@@ -30,7 +30,7 @@ declare module 'dmzlib/Tabs' {
     title: string;
     children: JSX.Element;
   }
-  
+
   export interface TabsProps {
     TabContents: TabContent[];
   }
@@ -111,8 +111,8 @@ declare module 'dmzlib/PersonCard' {
     thumbnail: string;
     name: string;
     sex: string;
-    birthYear: number | null;
-    fields: string[];
+    birthYear: string | null;
+    fields: string;
   }
   export default PersonCard;
 }

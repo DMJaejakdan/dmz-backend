@@ -18,8 +18,8 @@ export const Primary: Story = {
       thumbnail: '',
       name: '유승윤',
       sex: '남',
-      birthYear: 1234,
-      fields: ['연출', '각본', '연기'],
+      birthYear: '1234',
+      fields: '연출',
     },
   },
 };

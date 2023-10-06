@@ -18,8 +18,8 @@ interface PersonCardDataProps {
   thumbnail: string;
   name: string;
   sex: string;
-  birthYear: number | null;
-  fields: string[];
+  birthYear: string | null;
+  fields: string;
 }
 
 interface Props {
@@ -46,9 +46,7 @@ function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
       break;
   }
   return (
-    <div
-      className={SCREEN_VARIANT[screen]}
-      {...props}>
+    <div className={SCREEN_VARIANT[screen]} {...props}>
       <div className={imgContainer}>
         {thumbnail ? (
           <Image
@@ -65,49 +63,20 @@ function PersonCard({ screen = 'pc', personCardData, ...props }: Props) {
       </div>
       <Spacing type="vertical" />
       <div className={textContainer}>
-        <Title
-          content={name}
-          hn="h3"
-        />
+        <Title content={name} hn="h3" />
         <Spacing unit={lineSpace} />
 
         <div className={text_line}>
-          <Spacing
-            type="vertical"
-            unit={txtIndent}
-          />
-          <Txt
-            content={sex}
-            color="disabled"
-          />
-          <Spacing
-            type="vertical"
-            unit={txtSpace}
-          />
+          <Spacing type="vertical" unit={txtIndent} />
+          <Txt content={sex} color="disabled" />
+          <Spacing type="vertical" unit={txtSpace} />
           {birthYear ? (
-            <Txt
-              content={birthYear.toString()}
-              color="disabled"
-            />
+            <Txt content={birthYear.toString()} color="disabled" />
           ) : null}
         </div>
         <Spacing unit={lineSpace} />
         <div className={text_line}>
-          {fields.map((genre, idx) => (
-            <div
-              key={idx}
-              className={text_line}>
-              <Chip
-                label={genre}
-                type="suggestion"
-                shape="square"
-              />
-              <Spacing
-                type="vertical"
-                unit={genreSpace}
-              />
-            </div>
-          ))}
+          <Chip label={fields} type="suggestion" shape="square" />
         </div>
         <Spacing unit={lineSpace} />
       </div>

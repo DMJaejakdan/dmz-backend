@@ -53,10 +53,12 @@ function DramaDetailPage({ dramaDetail }: Props) {
         <Flex direction="column" justify="start" align="start">
           <Flex direction="row" justify="start" align="start">
             <Txt content={detail.drama.startDate} color="disabled" />
+            <Txt content="&nbsp;" />
             <Txt content={releasedDate} />
           </Flex>
           <Flex direction="row" justify="start" align="start">
             <Txt content={detail.drama.endDate} color="disabled" />
+            <Txt content="&nbsp;" />
             <Txt content={endDate} />
           </Flex>
         </Flex>
@@ -161,7 +163,7 @@ function DramaDetailPage({ dramaDetail }: Props) {
 DramaDetailPage.getInitialProps = async (context: NextPageContext) => {
   const dramaId = context.query.id;
   const dramaDetail = await fetch(
-    `http://j9a602.p.ssafy.io/api/content/drama/${dramaId}`
+    `${process.env.NEXT_PUBLIC_ROOT}/api/content/drama/${dramaId}`
   )
     .then(res => {
       return res.json();
