@@ -27,7 +27,7 @@ function DSearch() {
     const queryString = new URLSearchParams(
       formData.entries() as any
     ).toString();
-    const redirectUrl = `/result?${queryString}`;
+    const redirectUrl = `/contentResult?${queryString}`;
     // 리디렉션 실행
     router.push(redirectUrl);
   }
@@ -60,7 +60,7 @@ function DSearch() {
         <Spacing />
         <KeywordBox
           title={CONTENT_SEARCH.title.keyword}
-          onFind={input => AC('title', input)}
+          onFind={input => AC('keyword', input)}
           onInput={() => null}
           inputId="movieKeyword"
           inputName="movieKeyword"
@@ -100,13 +100,13 @@ function DSearch() {
             onTo={() => null}
           />
           <Spacing />
-          {/* //제작투자배급사 */}
+          {/* //방영채널 */}
           <KeywordBox
             title={CONTENT_SEARCH.title.channel}
-            onFind={input => AC('company', input)}
+            onFind={input => AC('channel', input)}
             onInput={() => {}}
-            inputId="movieCompany"
-            inputName="movieCompany"
+            inputId="channel"
+            inputName="channel"
           />
           <Spacing />
           {/* //스트리밍 제공 */}
@@ -143,10 +143,10 @@ function DSearch() {
 }
 
 DSearch.getInitialProps = async () => {
-  const API = await fetch('https://swapi.dev/api/people/1').then(res =>
-    res.json()
-  );
-  return API;
+  // const API = await fetch('https://swapi.dev/api/people/1').then(res =>
+  //   res.json()
+  // );
+  // return API;
 };
 
 export default DSearch;

@@ -11,6 +11,7 @@ const contentSearch = async (req: NextApiRequest, res: NextApiResponse) => {
     keyword = '',
     story = '',
     company = '',
+    channel = '',
   } = req.query;
 
   const params = [];
@@ -23,6 +24,7 @@ const contentSearch = async (req: NextApiRequest, res: NextApiResponse) => {
   if (keyword) params.push(`keywords=${keyword}`);
   if (story) params.push(`plot=${story}`);
   if (company) params.push(`companies=${company}`);
+  if (company) params.push(`channel=${channel}`);
   params.push(`page=${page}`, 'size=20', 'sort=nameKr,des');
 
   const Url = `${process.env.NEXT_PUBLIC_ROOT}/api/content/search?${params.join(

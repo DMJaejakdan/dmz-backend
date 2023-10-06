@@ -17,19 +17,19 @@ const DateBox = dynamic(() => import('dmzlib/DateBox'), { ssr: false });
 
 function PSearch() {
   const router = useRouter();
-  async function searchMovie(e: FormEvent<HTMLFormElement>) {
+  async function searchPerson(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const queryString = new URLSearchParams(
       formData.entries() as any
     ).toString();
-    const redirectUrl = `/result?${queryString}`;
+    const redirectUrl = `/personResult?${queryString}`;
     // 리디렉션 실행
     router.push(redirectUrl);
   }
   return (
     <>
-      <form onSubmit={searchMovie}>
+      <form onSubmit={searchPerson}>
         <InputBox
           title={PERSON_SEARCH.title.personName}
           placeholder={PERSON_SEARCH.placeholder.personName}

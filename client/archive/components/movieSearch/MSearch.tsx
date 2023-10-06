@@ -28,7 +28,7 @@ function MSearch() {
     const queryString = new URLSearchParams(
       formData.entries() as any
     ).toString();
-    const redirectUrl = `/result?${queryString}`;
+    const redirectUrl = `/contentResult?${queryString}`;
     // 리디렉션 실행
     router.push(redirectUrl);
   }
@@ -61,7 +61,7 @@ function MSearch() {
         <Spacing />
         <KeywordBox
           title={moviesearch.title.keyword}
-          onFind={input => AC('title', input)}
+          onFind={input => AC('keyword', input)}
           onInput={() => null}
           inputId="movieKeyword"
           inputName="movieKeyword"
