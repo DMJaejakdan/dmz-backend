@@ -13,7 +13,7 @@ module.exports = withVanillaExtract({
             dmzlib: `dmzlib@${process.env.NEXT_PUBLIC_ROOT}/dmzlib/_next/static/chunks/remoteEntry.js`,
           },
           exposes: {
-            './Map': './pages/container.tsx',
+            './Map': './pages/Segment.tsx',
           },
           shared: {
             next: {
