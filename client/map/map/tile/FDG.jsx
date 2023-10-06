@@ -42,7 +42,7 @@ function FDG({ vertices, edges }) {
         d3
           .forceLink(links)
           .id(d => d.id)
-          .distance(50 * Math.sqrt(d.weight))
+          .distance(150 * (Math.random() + 1))
       )
       .force('charge', d3.forceManyBody())
       .force(
