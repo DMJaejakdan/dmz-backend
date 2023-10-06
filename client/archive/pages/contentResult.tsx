@@ -1,4 +1,4 @@
-import { CS, ContentResponse } from './api/_methods';
+import { MS, DS, ContentResponse } from './api/_methods';
 import dynamic from 'next/dynamic';
 import imgSrc from '@/constants/imgSrc';
 import Link from 'next/link';
@@ -58,7 +58,7 @@ function ResultsPage({ data }: ContentResponse) {
             };
             return (
               <div key={idx}>
-                <Link href={`/dmzarchive/detail/movie/${content.id}`}>
+                <Link href={`/detail/movie/${content.id}`}>
                   <MovieCard movieCardData={movieCardData} />
                 </Link>
                 <br />
@@ -73,11 +73,20 @@ function ResultsPage({ data }: ContentResponse) {
 
 ResultsPage.getInitialProps = async (context: NextPageContext) => {
   const queries = context.query; // URL의 쿼리 파라미터 접근
-  const res = await CS(queries);
-  if (res) {
-    return res;
+  if (queries?.type === 'MOVIE') {
+    const res = await MS(queries);
+    if (res) {
+      return res;
+    } else {
+      return { data: [] };
+    }
   } else {
-    return { data: [] };
+    const res = await DS(queries);
+    if (res) {
+      return res;
+    } else {
+      return { data: [] };
+    }
   }
 };
 export default ResultsPage;
