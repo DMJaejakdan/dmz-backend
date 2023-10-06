@@ -1,3 +1,4 @@
+import { getInitialGraph } from '@/map/hooks/getMapData';
 import FDG from '@/map/tile/FDG';
 
 function Segment({ vertices, edges }: { vertices: any; edges: any }) {
@@ -16,9 +17,7 @@ function Graph({ vertices, edges }: { vertices: any; edges: any }) {
   );
 }
 export async function getStaticProps() {
-  const { vertices, edges } = await fetch(
-    'https://j9a602a.p.ssafy.io/dmzmap/api/getInitialData'
-  ).then(response => response.json());
+  const { vertices, edges } = await getInitialGraph();
   return { props: { vertices, edges }, revalidate: 300 };
 }
 export default Segment;
