@@ -81,3 +81,6 @@ elk/logs/
 # typescript
 **/*.tsbuildinfo
 **/next-env.d.ts
+
+# 대용량 제외
+/exec/data-dump
